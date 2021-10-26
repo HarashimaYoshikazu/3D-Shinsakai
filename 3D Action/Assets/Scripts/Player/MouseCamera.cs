@@ -25,8 +25,8 @@ public class MouseCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
         Vector3 dir = Vector3.forward * v + Vector3.right * h;
         // カメラのローカル座標系を基準に dir を変換する
