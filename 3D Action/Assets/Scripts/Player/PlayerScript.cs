@@ -12,16 +12,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float _jumpSpeed = 3;
     Rigidbody _rb = default;
     bool _isGrounded = true;
+    Animator _anim = default;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
         Vector3 dir = Vector3.forward * v + Vector3.right * h;
         // カメラのローカル座標系を基準に dir を変換する
@@ -41,6 +43,15 @@ public class PlayerScript : MonoBehaviour
         }
 
         _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+
+        if (_anim)
+        {
+            Vector3 walkSpeed = _rb.velocity;
+            walkSpeed.y = 0;
+            _anim.SetFloat("Speed", walkSpeed.magnitude);
+        }
+        _anim.SetFloat("X", h);
+        _anim.SetFloat("Y", v);
     }
 
     void OnTriggerEnter(Collider other)
