@@ -7,6 +7,7 @@ public class MouseCamera : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 3;
     [SerializeField] float _jumpSpeed = 3;
+    [SerializeField] float _damptime = 0.1f;
     Rigidbody _rb = default;
     bool _isGrounded = true;
     Animator _anim = default;
@@ -66,7 +67,7 @@ public class MouseCamera : MonoBehaviour
             walkSpeed.y = 0;
             _anim.SetFloat("Speed", walkSpeed.magnitude);
         }
-        _anim.SetFloat("X", h);
-        _anim.SetFloat("Y", v);
+        _anim.SetFloat("X", h,_damptime,Time.deltaTime);
+        _anim.SetFloat("Y", v,_damptime, Time.deltaTime);
     }
 }
