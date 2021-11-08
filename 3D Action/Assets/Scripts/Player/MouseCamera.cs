@@ -67,6 +67,7 @@ public class MouseCamera : MonoBehaviour
             walkSpeed.y = 0;
             _anim.SetFloat("Speed", walkSpeed.magnitude);
         }
+        //damptimeを追加すると滑らかに
         _anim.SetFloat("X", h,_damptime,Time.deltaTime);
         _anim.SetFloat("Y", v,_damptime, Time.deltaTime);
     }
