@@ -54,6 +54,10 @@ public class MouseCamera : MonoBehaviour
             _moveSpeed = _currentSpeed;
             _anim.SetBool("isRun", false);
         }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _anim.SetTrigger("Punching");   
+        }
 
 
         _rb.velocity = dir * _moveSpeed + Vector3.up * y;
