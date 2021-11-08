@@ -7,7 +7,8 @@ public class MouseCamera : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 1;
     [SerializeField] float _dushSpeed = 3;
-    float _currentSpeed = default;
+    float _walkSpeed;
+    bool isAttack = false;
     [SerializeField] float _jumpSpeed = 3;
     [SerializeField] float _damptime = 0.1f;
     Rigidbody _rb = default;
@@ -23,6 +24,7 @@ public class MouseCamera : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
+        _walkSpeed = _moveSpeed;
     }
 
     // Update is called once per frame
@@ -45,18 +47,18 @@ public class MouseCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _currentSpeed = _moveSpeed;
             _moveSpeed = _dushSpeed;
             _anim.SetBool("isRun", true);
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _moveSpeed = _currentSpeed;
+            _moveSpeed = _walkSpeed;
             _anim.SetBool("isRun", false);
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !isAttack)
         {
-            _anim.SetTrigger("Punching");   
+            _anim.SetTrigger("Punching");
+            isAttack = true;
         }
 
 
@@ -88,5 +90,15 @@ public class MouseCamera : MonoBehaviour
         //damptimeを追加すると滑らかに
         _anim.SetFloat("X", h,_damptime,Time.deltaTime);
         _anim.SetFloat("Y", v,_damptime, Time.deltaTime);
+    }
+
+    private void Move()
+    {
+        _moveSpeed = _walkSpeed;
+        isAttack = false;        
+    }
+    private void Stop()
+    {
+        _moveSpeed = 0f;
     }
 }
