@@ -3,28 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class MouseCamera : MonoBehaviour
+public class MouseCamera : MonoBehaviour,IMatchTarget
 {
     [SerializeField] float _moveSpeed = 1;
     [SerializeField] float _dushSpeed = 3;
     float _walkSpeed;
-    bool isAttack = false;
     [SerializeField] float _jumpSpeed = 3;
+    [SerializeField] float _attackMovePower = 2f;
     [SerializeField] float _damptime = 0.1f;
     Rigidbody _rb = default;
     bool _isGrounded = true;
     Animator _anim = default;
 
+    [SerializeField] Transform _target;
+    Collider _targetCollider;
+
     [SerializeField] Transform player;
     [SerializeField] Transform eye;
     [SerializeField] AxisState vertical;
     [SerializeField] AxisState horizontal;
+
+    public Vector3 TargetPosition   => _targetCollider.ClosestPoint(transform.position); 
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _walkSpeed = _moveSpeed;
+        _anim.keepAnimatorControllerStateOnDisable = true;
+        _target.TryGetComponent(out _targetCollider);
+
+        foreach (var smb in _anim.GetBehaviours<MatchAttackSMB>())
+        {
+            smb.Target = this;
+        }
     }
 
     // Update is called once per frame
@@ -55,10 +68,9 @@ public class MouseCamera : MonoBehaviour
             _moveSpeed = _walkSpeed;
             _anim.SetBool("isRun", false);
         }
-        if (Input.GetButtonDown("Fire1") && !isAttack)
+        if (Input.GetButtonDown("Fire1"))
         {
             _anim.SetTrigger("Punching");
-            isAttack = true;
         }
 
 
@@ -77,7 +89,7 @@ public class MouseCamera : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            y = _jumpSpeed;
+            //y = _jumpSpeed;
         }
         
 
@@ -94,11 +106,16 @@ public class MouseCamera : MonoBehaviour
 
     private void Move()
     {
-        _moveSpeed = _walkSpeed;
-        isAttack = false;        
+        _moveSpeed = _walkSpeed;       
     }
     private void Stop()
     {
         _moveSpeed = 0f;
     }
+    void AttackMove()
+    {
+        //_rb.AddForce((this.gameObject.transform.forward - _rb.velocity) * _attackMovePower, ForceMode.Impulse);
+    }
+
+    
 }
