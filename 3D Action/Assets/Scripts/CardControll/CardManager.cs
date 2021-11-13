@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaedManager : MonoBehaviour
+public class CardManager : MonoBehaviour
 {
-    [SerializeField] GameObject _card1;
-    [SerializeField] GameObject _card2;
-    static GameObject[] cards  = new GameObject[10];    public static GameObject[] Cards { get => cards; set => cards = value; }
+    [SerializeField] GameObject _card1 = null;
+    [SerializeField] GameObject _card2 = null;
+    static List<GameObject> cards = new List<GameObject>();   public static List<GameObject> Cards { get => cards; set => cards = value; }
 
     private void Start()
     {
-        cards[0] = _card1;
-        cards[1] = _card2;
+        cards.Add(_card1);
+        cards.Add(_card2);
     }
-    void UseCard()
+    public void UseCard()
     {
         Debug.Log(cards[0]);
     }

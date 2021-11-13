@@ -20,6 +20,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     [SerializeField] bool m_canPutOutOfDeck = false;
     /// <summary>動かす前に所属していたデッキ</summary>
     Transform m_originDeck = default;
+    GameObject m_parentPanel = null;
+    IsPanelScript isPanelScript;
 
     bool isPanel = false;
 
@@ -27,7 +29,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     {
         m_rectTransform = GetComponent<RectTransform>();
         m_table = GameObject.FindGameObjectWithTag("TableTag");
-
+        m_parentPanel = GameObject.FindGameObjectWithTag("ParentTag");
+        isPanelScript = m_parentPanel.gameObject.GetComponent<IsPanelScript>();
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
@@ -112,6 +115,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         {
             message += $"マウスポインタは {currentDeck.name} の上にあります";
             this.transform.SetParent(currentDeck.transform);
+            PanelActive();
         }
         else
         {
@@ -150,6 +154,13 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         //（※）EventSystem のインターフェイスを使った通常のプログラミングだと、オブジェクトが重なっている場合は「一番上に描画されているオブジェクト」しかマウスの動きを検出できない。
         // そのため、デッキの上にカードが重なっている場合、デッキ側でマウスの動きを検出できない。そのため EventSystem.current.RaycastAll を使う必要があった。
         // ちなみに Hierarchy 上で下にある UI オブジェクトが前面に描画される。
+    }
+    void PanelActive()
+    {
+        if (this.gameObject.transform.parent.name == "PlayPanel")
+        {
+            isPanelScript.PanelOn();
+        }
     }
 
 }
