@@ -65,7 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardBase\CardBase.cs" />
+    <Compile Include="Assets\Scripts\CardBase\TestCard.cs" />
+    <Compile Include="Assets\Scripts\CardBase\TestCard2.cs" />
+    <Compile Include="Assets\Scripts\CardControll\CaedManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardController.cs" />
+    <Compile Include="Assets\Scripts\CardControll\CardManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardPlay.cs" />
     <Compile Include="Assets\Scripts\CardControll\GameManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
