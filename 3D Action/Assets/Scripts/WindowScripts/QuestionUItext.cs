@@ -32,7 +32,6 @@ public class QuestionUItext : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             return true;
-
         }
         return false;
     }
@@ -66,11 +65,17 @@ public class QuestionUItext : MonoBehaviour
             if (len > text.Length) break;
             _talkText.text = text.Substring(0, len);
         }
+        yield return StartCoroutine("Skip");
         _yesbutton.SetActive(true);
         _nobutton.SetActive(true);
 
         _talkText.text = text;
-        yield return 0;
+        
         _playing = false;
+    }
+
+    IEnumerator Skip()
+    {
+        while (!this.Q_IsSpace()) yield return 0;
     }
 }

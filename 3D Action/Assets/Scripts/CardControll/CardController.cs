@@ -49,6 +49,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
         if (currentDeck)
         {
+            //カード動かせないようにこのスクリプト切る
+            //
             message += $"マウスポインタは {currentDeck.name} の上にあります";
         }
         else
