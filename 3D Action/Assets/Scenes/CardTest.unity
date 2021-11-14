@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 84416904}
   - component: {fileID: 84416903}
   - component: {fileID: 84416905}
+  - component: {fileID: 84416906}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -180,6 +181,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _card1: {fileID: 7032934717280550617, guid: 39b8403c07996e640b648b85d5ea9d87, type: 3}
   _card2: {fileID: 2103424071942662124, guid: 1458671c4ae6ed14ea894d841b36c11c, type: 3}
+--- !u!114 &84416906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84416902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab81fa86446134c4baf8db55e4bbd435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questionPanel: {fileID: 2086602103}
+  _inventriPanel: {fileID: 1196005691}
+  _yes: {fileID: 161468955}
+  _no: {fileID: 894418953}
 --- !u!1 &161468955
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: No
 --- !u!222 &194270443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -980,12 +997,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 84416902}
-        m_MethodName: 
+      - m_Target: {fileID: 84416906}
+        m_MethodName: No
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1277,7 +1294,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Yes
 --- !u!222 &1451683513
 CanvasRenderer:
   m_ObjectHideFlags: 0

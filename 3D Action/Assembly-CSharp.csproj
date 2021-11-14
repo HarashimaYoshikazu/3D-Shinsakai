@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Player\Move\MatchAttackSMB.cs" />
     <Compile Include="Assets\Scripts\Player\Move\MouseCamera.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerStateManager.cs" />
+    <Compile Include="Assets\Scripts\WindowScripts\QuestionExcute.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />

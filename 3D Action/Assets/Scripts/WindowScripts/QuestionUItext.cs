@@ -21,8 +21,11 @@ public class QuestionUItext : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _child = GameObject.Find("Text");
         _talkText = _child.GetComponent<Text>();
+    }
+    private void OnEnable()
+    {
         Debug.Log("panelOpen");
-        DrawText( "このカードを使用しますか？");
+        DrawText("このカードを使用しますか？");
     }
 
 

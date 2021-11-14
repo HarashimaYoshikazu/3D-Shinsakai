@@ -8,6 +8,7 @@ TagManager:
   - TableTag
   - DeckTag
   - ParentTag
+  - PlayingCard
   layers:
   - Default
   - TransparentFX

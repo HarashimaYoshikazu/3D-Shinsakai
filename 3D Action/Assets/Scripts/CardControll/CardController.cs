@@ -49,8 +49,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
         if (currentDeck)
         {
-            //カード動かせないようにこのスクリプト切る
-            //
+        
             message += $"マウスポインタは {currentDeck.name} の上にあります";
         }
         else
@@ -115,9 +114,15 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
         if (currentDeck)
         {
+            this.enabled = false;
             message += $"マウスポインタは {currentDeck.name} の上にあります";
             this.transform.SetParent(currentDeck.transform);
             PanelActive();
+            //tagをPlayingに変更する
+            this.gameObject.tag = "PlayingCard";
+            //カード動かせないようにこのスクリプト切る
+
+
         }
         else
         {
