@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] GameObject _card1 = null;
-    [SerializeField] GameObject _card2 = null;
-    static List<GameObject> cards = new List<GameObject>();   public static List<GameObject> Cards { get => cards; set => cards = value; }
+    //のちのちドロップ用とかイベント用とか色んな配列にする
+    [SerializeField]  GameObject[] _allCards;
+    static List<GameObject> inventriCards = new List<GameObject>();   public static List<GameObject> InventriCards { get => inventriCards; set => inventriCards = value; }
+    public GameObject[] AllCards { get => _allCards; set => _allCards = value; }
 
     private void Start()
     {
-        cards.Add(_card1);
-        cards.Add(_card2);
+        inventriCards.Add(AllCards[0]);
+        inventriCards.Add(AllCards[1]);
     }
     public void UseCard()
     {
-        Debug.Log(cards[0]);
+        Debug.Log(inventriCards[0]);
     }
 }

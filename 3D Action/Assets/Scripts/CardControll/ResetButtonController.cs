@@ -41,7 +41,7 @@ public class ResetButtonController : MonoBehaviour
     GameObject CreateRandomCard()
     {
         //持ってるカードIDに応じたカードプレハブを生成できるように
-        GameObject image = Instantiate(CardManager.Cards[1]);
+        GameObject image = Instantiate(CardManager.InventriCards[1]);
         //image.sprite = m_cardSprites[Random.Range(0, m_cardSprites.Length)];
         //image.gameObject.name = image.sprite.name;
         return image;

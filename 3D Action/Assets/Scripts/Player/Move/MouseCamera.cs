@@ -23,7 +23,11 @@ public class MouseCamera : MonoBehaviour,IMatchTarget
     [SerializeField] AxisState vertical;
     [SerializeField] AxisState horizontal;
 
-    public Vector3 TargetPosition   => _targetCollider.ClosestPoint(transform.position); 
+    static bool isAttack = false;
+
+    public Vector3 TargetPosition   => _targetCollider.ClosestPoint(transform.position);
+
+    public static bool IsAttack { get => isAttack; set => isAttack = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +75,7 @@ public class MouseCamera : MonoBehaviour,IMatchTarget
         if (Input.GetButtonDown("Fire1"))
         {
             _anim.SetTrigger("Punching");
+            isAttack = true;
         }
 
 
@@ -115,6 +120,10 @@ public class MouseCamera : MonoBehaviour,IMatchTarget
     void AttackMove()
     {
         //_rb.AddForce((this.gameObject.transform.forward - _rb.velocity) * _attackMovePower, ForceMode.Impulse);
+    }
+    void AttackEnd()
+    {
+        isAttack = false;
     }
 
     
