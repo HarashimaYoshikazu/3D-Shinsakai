@@ -11,8 +11,8 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
-        inventriCards.Add(AllCards[0]);
-        inventriCards.Add(AllCards[1]);
+        //inventriCards.Add(AllCards[0]);
+        //inventriCards.Add(AllCards[1]);
     }
     public void UseCard()
     {

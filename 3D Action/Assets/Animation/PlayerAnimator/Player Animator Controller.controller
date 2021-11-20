@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetBodyPart: 4
-  _efffectiveRange: {x: 0, y: 0.3}
+  _efffectiveRange: {x: 0.5, y: 0.5}
   _assistPower: 0.51
   _assistDistance: 3
 --- !u!1109 &4787396876410441920
