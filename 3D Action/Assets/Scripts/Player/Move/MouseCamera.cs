@@ -119,7 +119,7 @@ public class MouseCamera : MonoBehaviour,IMatchTarget
     }
     void AttackMove()
     {
-        //_rb.AddForce((this.gameObject.transform.forward - _rb.velocity) * _attackMovePower, ForceMode.Impulse);
+        _rb.AddForce((this.gameObject.transform.forward - _rb.velocity) * _attackMovePower, ForceMode.Impulse);
     }
     void AttackEnd()
     {

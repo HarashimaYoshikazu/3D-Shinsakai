@@ -1082,8 +1082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetBodyPart: 4
   _efffectiveRange: {x: 0.5, y: 0.5}
-  _assistPower: 0.51
-  _assistDistance: 3
+  _assistPower: 0.217
+  _assistDistance: 4.89
 --- !u!1109 &4787396876410441920
 AnimatorTransition:
   m_ObjectHideFlags: 1
