@@ -56,7 +56,7 @@ public class MouseCamera : MonoBehaviour,IMatchTarget
         // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
         dir.y = 0;
         // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
-        if (dir != Vector3.zero) this.transform.forward = dir;
+        //if (dir != Vector3.zero) this.transform.forward = dir;
         // 水平方向（XZ平面上）の速度を計算する
         dir = dir.normalized * _moveSpeed;
         // 垂直方向の速度を計算する
