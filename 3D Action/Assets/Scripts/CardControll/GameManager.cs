@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject m_playerUI;
     bool isPanel = false;
+    [SerializeField] MouseCamera _mouseCamera;
 
     void Start()
     {
@@ -19,11 +20,13 @@ public class GameManager : MonoBehaviour
         {
             m_playerUI.SetActive(true);
             isPanel = true;
+            _mouseCamera.enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isPanel)
         {
             m_playerUI.SetActive(false);
             isPanel = false;
+            _mouseCamera.enabled = true;
         }
     }
 }

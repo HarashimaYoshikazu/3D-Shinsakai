@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\WindowScripts\QuestionExcute.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\WindowScripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
     <Compile Include="Assets\Scripts\botu\CardPlay.cs" />
     <Compile Include="Assets\Scripts\botu\MouseController.cs" />
