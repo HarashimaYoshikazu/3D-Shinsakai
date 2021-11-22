@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,6 @@ public class MatchAttackSMB : StateMachineBehaviour
     IMatchTarget target;
     [SerializeField] AvatarTarget _targetBodyPart = AvatarTarget.Root;
     [SerializeField] Vector2 _efffectiveRange;
-
     [SerializeField, Range(0, 1)] float _assistPower = 1;
     [SerializeField, Range(0, 10)] float _assistDistance = 1;
 
@@ -21,20 +20,24 @@ public class MatchAttackSMB : StateMachineBehaviour
     {
         if (!isInitialized)
         {
-            var weight = new Vector3(_assistPower,0,_assistPower);
-            _weightMask = new MatchTargetWeightMask(weight,0);
+            var weight = new Vector3(_assistPower, 0, _assistPower);
+            _weightMask = new MatchTargetWeightMask(weight, 0);
             isInitialized = true;
         }
-        isSkip = Vector3.Distance(target.TargetPosition, animator.rootPosition) > _assistDistance;
+        if (target != null)
+        {
+            isSkip = Vector3.Distance(target.TargetPosition, animator.rootPosition) > _assistDistance;
+        }
+        
     }
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (isSkip ||animator.IsInTransition(layerIndex))
+        if (isSkip || animator.IsInTransition(layerIndex) || target == null)
         {
             return;
         }
-        if(stateInfo.normalizedTime > _efffectiveRange.y)
+        if (stateInfo.normalizedTime > _efffectiveRange.y)
         {
             animator.InterruptMatchTarget(false);
         }
@@ -51,6 +54,6 @@ public class MatchAttackSMB : StateMachineBehaviour
 }
 public interface IMatchTarget
 {
-    Vector3 TargetPosition { get;  }
+    Vector3 TargetPosition { get; }
 }
 

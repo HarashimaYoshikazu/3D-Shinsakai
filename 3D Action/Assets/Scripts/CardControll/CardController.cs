@@ -1,14 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; // この名前空間にあるインターフェイスを使う
+using UnityEngine.EventSystems; 
 
-/// <summary>
-/// カードを制御するコンポーネント
-/// 
-/// Unity の UI で使えるインターフェイスの一覧
-/// https://docs.unity3d.com/ja/2018.4/ScriptReference/EventSystems.IBeginDragHandler.html
-/// （※）左パネルのリストに使えるインターフェイスの一覧がある
-/// </summary>
+
+
 public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, IBeginDragHandler, IPointerUpHandler
 {
     /// <summary>テーブルオブジェクト（"TableTag" が付いている UI オブジェクト）</summary>
@@ -49,7 +44,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
         if (currentDeck)
         {
-        
+
             message += $"マウスポインタは {currentDeck.name} の上にあります";
         }
         else
@@ -64,6 +59,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log($"OnBeginDrag: {this.name}");
+        Debug.Log($"OnBeginDrag: {this.name}");
         Debug.Log($"OnBeginDrag: {this.name}");
         this.transform.SetParent(m_table.transform);
 

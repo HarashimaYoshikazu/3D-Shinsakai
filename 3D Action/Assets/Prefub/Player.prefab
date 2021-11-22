@@ -2893,7 +2893,6 @@ MonoBehaviour:
   _jumpSpeed: 3
   _attackMovePower: 3.5
   _damptime: 0.1
-  _target: {fileID: 0}
   player: {fileID: 7730046285207590072}
   eye: {fileID: 7839673319926350879}
   vertical:
@@ -3007,7 +3006,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
   m_Center: {x: -0.06, y: 0.06, z: 0.02}
 --- !u!1 &7208641629803014309
 GameObject:
