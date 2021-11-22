@@ -26,12 +26,13 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
 
     [SerializeField] ColiderGet _coliderGet;
 
-    static bool isAttack = false;
+    bool isAttack = false;
+    static bool isFire = false;
 
 
     public Vector3 TargetPosition => ColiderGet.Nearbyobject.ClosestPoint(transform.position);
 
-    public static bool IsAttack { get => isAttack; set => isAttack = value; }
+    public static bool IsFire { get => isFire; set => isFire = value; }
 
     void Start()
     {

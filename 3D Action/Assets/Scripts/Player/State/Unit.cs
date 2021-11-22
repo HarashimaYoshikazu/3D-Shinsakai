@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _hp -= 5;
+            _hp -= PlayerStateManager.Attack;
             Debug.Log(_hp);
         }
     }
