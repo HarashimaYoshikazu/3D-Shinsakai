@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class QuestionExcute : MonoBehaviour
 {
-
     GameObject _playingcard;
     CardController _cardController;
-    [SerializeField] GameObject _questionPanel;
-    [SerializeField] GameObject _inventriPanel;
-    [SerializeField] GameObject _yes;
-    [SerializeField] GameObject _no;
+    [SerializeField, Header("UI関係"), Tooltip("UIパネル")] GameObject _UIPanel;
+    [SerializeField, Tooltip("カード実行時の質問パネル")] GameObject _questionPanel;
+    [SerializeField, Tooltip("インベントリパネル")] GameObject _inventriPanel;
+    [SerializeField, Tooltip("質問のYesボタン")] GameObject _yes;
+    [SerializeField, Tooltip("質問のNoボタン")] GameObject _no;
+    [SerializeField,Header("コンポーネント"), Tooltip("プレイヤーのの移動と視点のコンポーネント")] MouseCamera _mouseCamera;
+    [SerializeField, Tooltip("ゲームマネージャー")] GameManager _gameManager;
     public void Yes()
     {
-
+        _playingcard = GameObject.FindGameObjectWithTag("PlayingCard");
+        CardBase cb = _playingcard.gameObject.GetComponent<CardBase>();
+        cb.Execute();
+        _questionPanel.SetActive(false);
+        _gameManager.PanelOf();
+        CardManager.InventriCards.RemoveAt(cb.CardIndex);
+        Destroy(_playingcard);
     }
 
     public void No()

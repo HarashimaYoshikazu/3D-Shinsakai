@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateManager 
 {
-    static int hp;
+    static int hp = 20;
     static int attack = 5;
     static int gold = 0;
     static int skillPoint = 0; 

@@ -16,4 +16,9 @@ public class TestCard2 : CardBase
     {
         
     }
+
+    public override void Execute()
+    {
+        PlayerHPBar.HPfluctuation(5);
+    }
 }

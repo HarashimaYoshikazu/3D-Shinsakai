@@ -12,7 +12,13 @@ public class CardManager : MonoBehaviour
     private void Start()
     {
         inventriCards.Add(AllCards[0]);
+        CardBase cb = inventriCards[inventriCards.Count-1].gameObject.GetComponent<CardBase>();
+        cb.CardIndex = inventriCards.Count-1;
+        Debug.Log(cb.CardIndex);
         inventriCards.Add(AllCards[1]);
+        CardBase cb2 = inventriCards[inventriCards.Count - 1].gameObject.GetComponent<CardBase>();
+        cb2.CardIndex = inventriCards.Count - 1;
+        Debug.Log(cb2.CardIndex);
     }
     public void UseCard()
     {

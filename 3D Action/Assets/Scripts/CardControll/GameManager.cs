@@ -18,15 +18,25 @@ public class GameManager : MonoBehaviour
         //m_playerUI.gameObject.transform.parent.name ==
         if (Input.GetKeyDown(KeyCode.Tab) && !isPanel)
         {
-            m_playerUI.SetActive(true);
-            isPanel = true;
-            _mouseCamera.enabled = false;
+            PanelOn();
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isPanel)
         {
-            m_playerUI.SetActive(false);
-            isPanel = false;
-            _mouseCamera.enabled = true;
+            PanelOf();
         }
+    }
+
+    public void PanelOn()
+    {
+        m_playerUI.SetActive(true);
+        isPanel = true;
+        _mouseCamera.enabled = false;
+    }
+
+    public void PanelOf()
+    {
+        m_playerUI.SetActive(false);
+        isPanel = false;
+        _mouseCamera.enabled = true;
     }
 }

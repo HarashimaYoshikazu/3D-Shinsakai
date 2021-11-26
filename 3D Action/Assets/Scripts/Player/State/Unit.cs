@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField]int _hp  =10;
-    [SerializeField] CardManager _cardManager;
-    [SerializeField] int _getGold =5;
+    [SerializeField,Header("エネミーの情報"),Tooltip("エネミーHP")]int _hp  =10;
     public int Hp { get => _hp; set => _hp = value; }
-    bool isDead = false;
+    [SerializeField, Tooltip("ドロップするゴールド")] int _getGold = 5;
+    [SerializeField,Header("コンポーネント"), Tooltip("カードマネージャー")] CardManager _cardManager;
 
-    // Start is called before the first frame update
+    bool isDead = false;
+    static　GameObject _dropCard;
+    public GameObject DropCard { get => _dropCard; set => _dropCard = value; }
+
     void Start()
     {
-
+        int ran = Random.Range(0, _cardManager.AllCards.Length);
+        _dropCard = _cardManager.AllCards[ran];
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Hp <= 0  )
@@ -44,8 +46,11 @@ public class Unit : MonoBehaviour
     void Dead()
     {
         //インベントリにランダムなカードを追加
-        int ran = Random.Range(0, _cardManager.AllCards.Length);
-        CardManager.InventriCards.Add(_cardManager.AllCards[ran]);
+        CardManager.InventriCards.Add(_dropCard);
+        //CardBaseに現在のIndexを保存しておく
+        CardBase cb = CardManager.InventriCards[CardManager.InventriCards.Count - 1].gameObject.GetComponent<CardBase>();
+        cb.CardIndex = CardManager.InventriCards.Count - 1;
+        Debug.Log(cb.CardIndex);
         //お金、経験値を追加
         PlayerStateManager.Gold += _getGold;
         //死ぬアニメーションを再生       
