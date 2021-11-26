@@ -10,6 +10,7 @@ TagManager:
   - ParentTag
   - PlayingCard
   - enemy
+  - GameManager
   layers:
   - Default
   - TransparentFX
