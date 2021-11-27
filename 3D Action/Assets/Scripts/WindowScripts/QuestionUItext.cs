@@ -19,7 +19,7 @@ public class QuestionUItext : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _child = GameObject.Find("Text");
+        _child = GameObject.Find("QuestionText");
         _talkText = _child.GetComponent<Text>();
     }
     private void OnEnable()

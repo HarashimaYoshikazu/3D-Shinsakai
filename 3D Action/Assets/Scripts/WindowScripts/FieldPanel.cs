@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class FieldPanel : MonoBehaviour
 {
     [SerializeField] GameObject _fieldPanel;
-    [SerializeField] Text _text;
+    [SerializeField] Text _fieldtext;
+    [SerializeField] UItext _uItext;
     void Start()
     {
         
@@ -21,8 +22,9 @@ public class FieldPanel : MonoBehaviour
     {
         _fieldPanel.SetActive(isActive);
     } 
-    public void FieldText(string fieldtext)
+    public void FieldText(string message)
     {
-        _text.text = fieldtext;
+        _uItext.DrawText(message,_fieldtext);
+        //_text.text = fieldtext;
     }
 }

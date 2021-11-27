@@ -30,19 +30,19 @@ public class UItext : MonoBehaviour
     }
 
     // ナレーション用のテキストを生成する関数
-    public void DrawText(string text)
+    public void DrawText(string text, Text talk)
     {
-        StartCoroutine("CoDrawText", text);
+        StartCoroutine(CoDrawText(text, talk));
     }
     // 通常会話用のテキストを生成する関数
-    public void DrawText(string name, string text)
+    public void DrawText(string name, string text,Text talk)
     {
         nameText.text = name + "\n「";
-        StartCoroutine("CoDrawText", text + "」");
+        StartCoroutine(CoDrawText(text,talk));
     }
 
     // テキストがヌルヌル出てくるためのコルーチン
-    IEnumerator CoDrawText(string text)
+    IEnumerator CoDrawText(string text,Text talk)
     {
         playing = true;
         float time = 0;
@@ -56,9 +56,9 @@ public class UItext : MonoBehaviour
 
             int len = Mathf.FloorToInt(time / textSpeed);
             if (len > text.Length) break;
-            talkText.text = text.Substring(0, len);
+            talk.text = text.Substring(0, len);
         }
-        talkText.text = text;
+        talk.text = text;
         yield return 0;
         playing = false;
     }

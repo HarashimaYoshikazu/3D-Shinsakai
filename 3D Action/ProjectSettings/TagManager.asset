@@ -11,6 +11,9 @@ TagManager:
   - PlayingCard
   - enemy
   - GameManager
+  - CardNameTag
+  - CardInfoTag
+  - CardKoukaTag
   layers:
   - Default
   - TransparentFX

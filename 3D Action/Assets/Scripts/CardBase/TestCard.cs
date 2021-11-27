@@ -25,12 +25,5 @@ public class TestCard : CardBase
         FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
         fieldpanel.FieldPanelSetActive(true);
         fieldpanel.FieldText($"敵は{name}を持っている！");
-        StartCoroutine(FieldPanelOf());
-    }
-    IEnumerator FieldPanelOf()
-    {
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>().FieldPanelSetActive(false);
-        
     }
 }

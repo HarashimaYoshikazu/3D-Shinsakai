@@ -17,6 +17,8 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     Transform m_originDeck = default;
     GameObject m_parentPanel = null;
     IsPanelScript isPanelScript;
+    GameObject _GUIPanel;
+    GameManager gm;
 
     bool isPanel = false;
 
@@ -26,11 +28,12 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         m_table = GameObject.FindGameObjectWithTag("TableTag");
         m_parentPanel = GameObject.FindGameObjectWithTag("ParentTag");
         isPanelScript = m_parentPanel.gameObject.GetComponent<IsPanelScript>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-
+        gm.InfoOnOf(false);
         m_rectTransform.position = eventData.position;
         //Transform.SetAsLastSibling()
 
@@ -165,5 +168,6 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
             isPanelScript.PanelOn();
         }
     }
+
 
 }
