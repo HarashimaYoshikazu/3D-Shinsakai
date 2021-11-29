@@ -81,7 +81,9 @@
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\System\ShopManager.cs" />
     <Compile Include="Assets\Scripts\System\Singleton.cs" />
+    <Compile Include="Assets\Scripts\System\SkillParam.cs" />
     <Compile Include="Assets\Scripts\System\SkillTreeManager.cs" />
+    <Compile Include="Assets\Scripts\System\skilltest.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\CardUI.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FalseSelf.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FieldPanel.cs" />
