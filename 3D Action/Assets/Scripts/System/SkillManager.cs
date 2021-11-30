@@ -25,7 +25,10 @@ public class SkillManager : MonoBehaviour
 	//　スキル毎のパラメータ
 	[SerializeField,Tooltip("スキル")] private SkillParam[] _skillParams;
 	//　スキルポイントを表示するテキストUI
-	public Text skillText;
+	[SerializeField, Tooltip("スキルポイントを表示するテキストUI")] Text skillText;
+
+	[SerializeField,Header("スキル取得"), Tooltip("攻撃力")] int[] _addAttack = new int[2];
+	[SerializeField, Tooltip("防御力")] int[] _addDefence = new int[2];
 
 	void Awake()
 	{
@@ -38,6 +41,23 @@ public class SkillManager : MonoBehaviour
 	public void LearnSkill(SkillType type, int point)
 	{
 		_IsSkillsLearned[(int)type] = true;
+        switch(type)
+		{
+			case SkillType.Attack1:
+				PlayerStateManager.Attack += _addAttack[0];
+				Debug.Log("攻撃力は"+PlayerStateManager.Attack);
+				break;
+			case SkillType.Defense1:
+				PlayerStateManager.Attack += _addDefence[0];
+				break;
+			case SkillType.Attack2:
+				PlayerStateManager.Attack += _addAttack[1];
+				Debug.Log("攻撃力は" + PlayerStateManager.Attack);
+				break;
+			case SkillType.Defense2:
+				PlayerStateManager.Attack += _addDefence[1];
+				break;
+		}
 		SetSkillPoint(point);
 		SetText();
 		CheckOnOff();

@@ -284,6 +284,8 @@ MonoBehaviour:
   - {fileID: 2052477807}
   - {fileID: 1063244832}
   skillText: {fileID: 472993879}
+  _addAttack: 0200000003000000
+  _addDefence: 0200000003000000
 --- !u!1 &161468955
 GameObject:
   m_ObjectHideFlags: 0
