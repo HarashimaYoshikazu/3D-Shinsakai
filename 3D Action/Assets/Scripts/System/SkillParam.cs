@@ -5,24 +5,12 @@ using System;
 
 public class SkillParam : MonoBehaviour
 {
-	//　スキル管理システム
-	[SerializeField]
-	private SkillManager _skillManager;
-	//　このスキルの種類
-	[SerializeField]
-	private SkillType type;
-	//　このスキルを覚える為に必要なスキルポイント
-	[SerializeField]
-	private int spendPoint;
-	//　スキルのタイトル
-	[SerializeField]
-	private string skillTitle;
-	//　スキル情報
-	[SerializeField]
-	private string skillInformation;
-	//　スキル情報を載せるテキストUI
-	[SerializeField]
-	private Text text;
+	[SerializeField, Tooltip("GameManagerObjectのSkillManagerComornent")] private SkillManager _skillManager;
+	[SerializeField, Tooltip("スキルの種類")] private SkillType _skilltype;
+	[SerializeField, Tooltip("覚えるのに必要なコスト")] private int _cost;
+	[SerializeField, Tooltip("スキルの名前")] private string _skillName;
+	[SerializeField, Tooltip("スキルの説明")] private string _skillInfo;
+	[SerializeField, Tooltip("表示するテキスト")] private Text _text;
 
 	// Use this for initialization
 	void Start()
@@ -35,23 +23,23 @@ public class SkillParam : MonoBehaviour
 	public void OnClick()
 	{
 		//　スキルを覚えていたら何もせずreturn
-		if (_skillManager.IsSkill(type))
+		if (_skillManager.IsSkill(_skilltype))
 		{
 			return;
 		}
 		//　スキルを覚えられるかどうかチェック
-		if (_skillManager.CanLearnSkill(type, spendPoint))
+		if (_skillManager.CanLearnSkill(_skilltype, _cost))
 		{
 			//　スキルを覚えさせる
-			_skillManager.LearnSkill(type, spendPoint);
+			_skillManager.LearnSkill(_skilltype, _cost);
 
 			ChangeButtonColor(new Color(0f, 0f, 1f, 1f));
 
-			text.text = skillTitle + "を覚えた";
+			_text.text = _skillName + "を覚えた";
 		}
 		else
 		{
-			text.text = "スキルを覚えられません。";
+			_text.text = "スキルを覚えられません。";
 		}
 	}
 
@@ -59,12 +47,12 @@ public class SkillParam : MonoBehaviour
 	public void CheckButtonOnOff()
 	{
 		//　スキルを覚えられるかどうかチェック
-		if (!_skillManager.CanLearnSkill(type))
+		if (!_skillManager.CanLearnSkill(_skilltype))
 		{
 			ChangeButtonColor(new Color(0.8f, 0.8f, 0.8f, 0.8f));
 			//　スキルをまだ覚えていない
 		}
-		else if (!_skillManager.IsSkill(type))
+		else if (!_skillManager.IsSkill(_skilltype))
 		{
 			ChangeButtonColor(new Color(1f, 1f, 1f, 1f));
 		}
@@ -72,12 +60,13 @@ public class SkillParam : MonoBehaviour
 	//　スキル情報を表示
 	public void SetText()
 	{
-		text.text = skillTitle + "：消費スキルポイント" + spendPoint + "\n" + skillInformation;
+		_text.text = _skillName + "：消費スキルポイント" + _cost + "\n" + _skillInfo;
 	}
 	//　スキル情報をリセット
 	public void ResetText()
 	{
-		text.text = "";
+		//text.text = "";
+		_text.text = "スキルポイント：" + PlayerStateManager.SkillPoint;
 	}
 	//　ボタンの色を変更する
 	public void ChangeButtonColor(Color color)
@@ -89,6 +78,7 @@ public class SkillParam : MonoBehaviour
 		//　取得済みのスキルボタンの色を変える
 		cb.normalColor = color;
 		cb.pressedColor = color;
+		//選ばれている時の色も変えないとダメ
 		cb.selectedColor = color;
 		cb.highlightedColor = color;
 		//　ボタンのカラー情報を設定
