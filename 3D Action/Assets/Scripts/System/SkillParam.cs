@@ -7,7 +7,7 @@ public class SkillParam : MonoBehaviour
 {
 	//　スキル管理システム
 	[SerializeField]
-	private skilltest skillSystem;
+	private SkillManager _skillManager;
 	//　このスキルの種類
 	[SerializeField]
 	private SkillType type;
@@ -35,15 +35,15 @@ public class SkillParam : MonoBehaviour
 	public void OnClick()
 	{
 		//　スキルを覚えていたら何もせずreturn
-		if (skillSystem.IsSkill(type))
+		if (_skillManager.IsSkill(type))
 		{
 			return;
 		}
 		//　スキルを覚えられるかどうかチェック
-		if (skillSystem.CanLearnSkill(type, spendPoint))
+		if (_skillManager.CanLearnSkill(type, spendPoint))
 		{
 			//　スキルを覚えさせる
-			skillSystem.LearnSkill(type, spendPoint);
+			_skillManager.LearnSkill(type, spendPoint);
 
 			ChangeButtonColor(new Color(0f, 0f, 1f, 1f));
 
@@ -59,12 +59,12 @@ public class SkillParam : MonoBehaviour
 	public void CheckButtonOnOff()
 	{
 		//　スキルを覚えられるかどうかチェック
-		if (!skillSystem.CanLearnSkill(type))
+		if (!_skillManager.CanLearnSkill(type))
 		{
 			ChangeButtonColor(new Color(0.8f, 0.8f, 0.8f, 0.8f));
 			//　スキルをまだ覚えていない
 		}
-		else if (!skillSystem.IsSkill(type))
+		else if (!_skillManager.IsSkill(type))
 		{
 			ChangeButtonColor(new Color(1f, 1f, 1f, 1f));
 		}
@@ -89,6 +89,8 @@ public class SkillParam : MonoBehaviour
 		//　取得済みのスキルボタンの色を変える
 		cb.normalColor = color;
 		cb.pressedColor = color;
+		cb.selectedColor = color;
+		cb.highlightedColor = color;
 		//　ボタンのカラー情報を設定
 		button.colors = cb;
 	}

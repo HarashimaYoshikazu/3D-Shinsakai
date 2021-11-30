@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public enum SkillType
 {
 	Attack1,
-	Attack2,
 	Defense1,
-	Defense2,
-	Speed1,
-	Speed2,
-	Combo,
-	Master
+	//Attack2,
+	//Defense2,
+	//Speed1,
+	//Speed2,
+	//Combo,
+	//Master
 };
 
-public class skilltest : MonoBehaviour
+public class SkillManager : MonoBehaviour
 {
 	//　スキルを覚える為のスキルポイント
-	[SerializeField] private int skillPoint;
+	//[SerializeField] private int skillPoint;
 	//　スキルを覚えているかどうかのフラグ
 	[SerializeField] private bool[] skills;
 	//　スキル毎のパラメータ
@@ -48,46 +48,46 @@ public class skilltest : MonoBehaviour
 	//　スキルポイントを減らす
 	public void SetSkillPoint(int point)
 	{
-		skillPoint -= point;
+		PlayerStateManager.SkillPoint -= point;
 	}
 	//　スキルポイントを取得
 	public int GetSkillPoint()
 	{
-		return skillPoint;
+		return PlayerStateManager.SkillPoint;
 	}
 	//　スキルを覚えられるかチェック
 	public bool CanLearnSkill(SkillType type, int spendPoint = 0)
 	{
 		//　持っているスキルポイントが足りない
-		if (skillPoint < spendPoint)
+		if (PlayerStateManager.SkillPoint < spendPoint)
 		{
 			return false;
 		}
-		//　攻撃UP2は攻撃UP1を覚えていなければダメ
-		if (type == SkillType.Attack2)
-		{
-			return skills[(int)SkillType.Attack1];
-			//　防御UP2は防御UP1を覚えていなければダメ
-		}
-		else if (type == SkillType.Defense2)
-		{
-			return skills[(int)SkillType.Defense1];
-			//　速さUP2は速さUP1を覚えていなければダメ
-		}
-		else if (type == SkillType.Speed2)
-		{
-			return skills[(int)SkillType.Speed1];
-			//　コンボは攻撃UP2と防御２を覚えていなければダメ
-		}
-		else if (type == SkillType.Combo)
-		{
-			return skills[(int)SkillType.Attack2] && skills[(int)SkillType.Defense2];
-			//　マスタースキルは全てのスキルを覚えていなければダメ
-		}
-		else if (type == SkillType.Master)
-		{
-			return skills[(int)SkillType.Attack2] && skills[(int)SkillType.Defense2] && skills[(int)SkillType.Speed2] && skills[(int)SkillType.Combo];
-		}
+		////　攻撃UP2は攻撃UP1を覚えていなければダメ
+		//if (type == SkillType.Attack2)
+		//{
+		//	return skills[(int)SkillType.Attack1];
+		//	//　防御UP2は防御UP1を覚えていなければダメ
+		//}
+		//else if (type == SkillType.Defense2)
+		//{
+		//	return skills[(int)SkillType.Defense1];
+		//	//　速さUP2は速さUP1を覚えていなければダメ
+		//}
+		//else if (type == SkillType.Speed2)
+		//{
+		//	return skills[(int)SkillType.Speed1];
+		//	//　コンボは攻撃UP2と防御２を覚えていなければダメ
+		//}
+		//else if (type == SkillType.Combo)
+		//{
+		//	return skills[(int)SkillType.Attack2] && skills[(int)SkillType.Defense2];
+		//	//　マスタースキルは全てのスキルを覚えていなければダメ
+		//}
+		//else if (type == SkillType.Master)
+		//{
+		//	return skills[(int)SkillType.Attack2] && skills[(int)SkillType.Defense2] && skills[(int)SkillType.Speed2] && skills[(int)SkillType.Combo];
+		//}
 		return true;
 	}
 	//　スキル毎にボタンのオン・オフをする処理を実行させる
@@ -101,6 +101,6 @@ public class skilltest : MonoBehaviour
 
 	void SetText()
 	{
-		skillText.text = "スキルポイント：" + skillPoint;
+		skillText.text = "スキルポイント：" + PlayerStateManager.SkillPoint;
 	}
 }

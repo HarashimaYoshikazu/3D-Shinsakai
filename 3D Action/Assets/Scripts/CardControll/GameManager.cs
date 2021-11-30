@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     bool isPanel = false;
     [SerializeField] MouseCamera _mouseCamera;
     [SerializeField] GameObject _cardInfo;
+    [SerializeField] GameObject _SkillPanel;
 
     void Start()
     {
@@ -44,5 +45,9 @@ public class GameManager : MonoBehaviour
     public void InfoOnOf(bool isActive)
     {
         _cardInfo.SetActive(isActive);
+    }
+    public void SkillTreeOn(bool isactive)
+    {
+        _SkillPanel.SetActive(isactive);
     }
 }
