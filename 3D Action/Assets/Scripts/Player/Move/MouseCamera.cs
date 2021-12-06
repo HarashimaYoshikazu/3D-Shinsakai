@@ -101,10 +101,10 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
         eye.localRotation = vaerticalRotation;
 
 
-        if (Input.GetButtonDown("Jump") && _isGrounded)
-        {
-            //y = _jumpSpeed;
-        }
+        //if (Input.GetButtonDown("Jump") && _isGrounded)
+        //{
+        //    //y = _jumpSpeed;
+        //}
 
 
         if (_anim)

@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
     <Compile Include="Assets\Scripts\botu\CardPlay.cs" />
     <Compile Include="Assets\Scripts\botu\MouseController.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerDirection.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\botu\SkillTreeManager.cs" />
     <Reference Include="UnityEngine">

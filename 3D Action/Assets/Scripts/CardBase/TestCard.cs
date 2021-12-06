@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestCard : CardBase
 {
@@ -8,8 +9,7 @@ public class TestCard : CardBase
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {   
     }
 
     // Update is called once per frame
@@ -20,10 +20,20 @@ public class TestCard : CardBase
     public override void Execute()
     {
         ColiderGet colget = GameObject.FindGameObjectWithTag("Player").GetComponent<ColiderGet>();
-        colget.GetEnemy();
-        GameObject drop = ColiderGet.Nearbyobject.gameObject.GetComponent<Unit>().DropCard;
-        FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
-        fieldpanel.FieldPanelSetActive(true);
-        fieldpanel.FieldText($"敵は{name}を持っている！");
+        if (ColiderGet.Nearbyobject.gameObject.tag =="enemy")
+        {
+            colget.GetEnemy();
+            GameObject drop = ColiderGet.Nearbyobject.gameObject.GetComponent<Unit>().DropCard;
+            FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
+            fieldpanel.FieldPanelSetActive(true);
+            fieldpanel.FieldText($"敵は{name}を持っている！");
+        }
+        else
+        {
+            FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
+            fieldpanel.FieldPanelSetActive(true);
+            fieldpanel.FieldText($"敵がちかくにいない・・・");
+        }
+
     }
 }
