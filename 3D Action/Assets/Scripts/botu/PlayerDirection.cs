@@ -19,9 +19,9 @@ public class PlayerDirection : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-
             Debug.Log(_npcPos);
             _player.transform.LookAt(_npcPos.transform.position) ;
-        mc.enabled = false;
+        mc.MoveSpeed = 0;
+        mc.StopAnim();
     }
 }

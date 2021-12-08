@@ -13,6 +13,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
     [SerializeField] float _damptime = 0.1f;
     Rigidbody _rb = default;
     bool _isGrounded = true;
+    bool _isMove = true;
     Animator _anim = default;
 
     //[SerializeField] Transform _target;
@@ -33,6 +34,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
     public Vector3 TargetPosition => ColiderGet.Nearbyobject.ClosestPoint(transform.position);
 
     public static bool IsFire { get => isFire; set => isFire = value; }
+    public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
 
     void Start()
     {
@@ -54,20 +56,49 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
 
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h;
+        float v;
+        if (_isMove)
+        {
+            h = Input.GetAxisRaw("Horizontal");
+            v = Input.GetAxisRaw("Vertical");
+            Vector3 dir = Vector3.forward * v + Vector3.right * h;
+            // カメラのローカル座標系を基準に dir を変換する
+            dir = Camera.main.transform.TransformDirection(dir);
+            // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
+            dir.y = 0;
+            // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
+            //if (dir != Vector3.zero) this.transform.forward = dir;
+            // 水平方向（XZ平面上）の速度を計算する
+            dir = dir.normalized * _moveSpeed;
+            // 垂直方向の速度を計算する
+            float y = _rb.velocity.y;
+            _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+            _anim.SetFloat("X", h, _damptime, Time.deltaTime);
+            _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
+        }
+        else if(!_isMove)
+        {
+            h = 0;
+            v = 0;
+            Vector3 dir = Vector3.forward * v + Vector3.right * h;
+            // カメラのローカル座標系を基準に dir を変換する
+            dir = Camera.main.transform.TransformDirection(dir);
+            // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
+            dir.y = 0;
+            // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
+            //if (dir != Vector3.zero) this.transform.forward = dir;
+            // 水平方向（XZ平面上）の速度を計算する
+            dir = dir.normalized * _moveSpeed;
+            // 垂直方向の速度を計算する
+            float y = _rb.velocity.y;
+            _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+            _anim.SetFloat("X", h, _damptime, Time.deltaTime);
+            _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
+        }
 
-        Vector3 dir = Vector3.forward * v + Vector3.right * h;
-        // カメラのローカル座標系を基準に dir を変換する
-        dir = Camera.main.transform.TransformDirection(dir);
-        // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
-        dir.y = 0;
-        // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
-        //if (dir != Vector3.zero) this.transform.forward = dir;
-        // 水平方向（XZ平面上）の速度を計算する
-        dir = dir.normalized * _moveSpeed;
-        // 垂直方向の速度を計算する
-        float y = _rb.velocity.y;
+
+
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -88,7 +119,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
         }
 
 
-        _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+        //
 
 
         horizontal.Update(Time.deltaTime);
@@ -114,8 +145,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
             _anim.SetFloat("Speed", walkSpeed.magnitude);
         }
         //damptimeを追加すると滑らかに
-        _anim.SetFloat("X", h, _damptime, Time.deltaTime);
-        _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
+
     }
 
     private void Move()
@@ -134,6 +164,11 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
     {
         isAttack = false;
     }
-
+    //stop関数を作る
+    public void StopAnim()
+    {
+        _anim.Play("idle");
+        _isMove = false;
+    }
 
 }
