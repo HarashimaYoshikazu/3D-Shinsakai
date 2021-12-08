@@ -56,47 +56,40 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
 
     void Update()
     {
-        float h;
-        float v;
+        float h = default;
+        float v = default;
         if (_isMove)
         {
             h = Input.GetAxisRaw("Horizontal");
             v = Input.GetAxisRaw("Vertical");
-            Vector3 dir = Vector3.forward * v + Vector3.right * h;
-            // カメラのローカル座標系を基準に dir を変換する
-            dir = Camera.main.transform.TransformDirection(dir);
-            // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
-            dir.y = 0;
-            // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
-            //if (dir != Vector3.zero) this.transform.forward = dir;
-            // 水平方向（XZ平面上）の速度を計算する
-            dir = dir.normalized * _moveSpeed;
-            // 垂直方向の速度を計算する
-            float y = _rb.velocity.y;
-            _rb.velocity = dir * _moveSpeed + Vector3.up * y;
-            _anim.SetFloat("X", h, _damptime, Time.deltaTime);
-            _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
+            if (_anim)
+            {
+                Vector3 walkSpeed = _rb.velocity;
+                walkSpeed.y = 0;
+                _anim.SetFloat("Speed", walkSpeed.magnitude);
+            }
+
         }
         else if(!_isMove)
         {
             h = 0;
             v = 0;
-            Vector3 dir = Vector3.forward * v + Vector3.right * h;
-            // カメラのローカル座標系を基準に dir を変換する
-            dir = Camera.main.transform.TransformDirection(dir);
-            // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
-            dir.y = 0;
-            // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
-            //if (dir != Vector3.zero) this.transform.forward = dir;
-            // 水平方向（XZ平面上）の速度を計算する
-            dir = dir.normalized * _moveSpeed;
-            // 垂直方向の速度を計算する
-            float y = _rb.velocity.y;
-            _rb.velocity = dir * _moveSpeed + Vector3.up * y;
-            _anim.SetFloat("X", h, _damptime, Time.deltaTime);
-            _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
-        }
 
+        }
+        Vector3 dir = Vector3.forward * v + Vector3.right * h;
+        // カメラのローカル座標系を基準に dir を変換する
+        dir = Camera.main.transform.TransformDirection(dir);
+        // カメラは斜め下に向いているので、Y 軸の値を 0 にして「XZ 平面上のベクトル」にする
+        dir.y = 0;
+        // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
+        //if (dir != Vector3.zero) this.transform.forward = dir;
+        // 水平方向（XZ平面上）の速度を計算する
+        dir = dir.normalized * _moveSpeed;
+        // 垂直方向の速度を計算する
+        float y = _rb.velocity.y;
+        _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+        _anim.SetFloat("X", h, _damptime, Time.deltaTime);
+        _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
 
 
 
@@ -138,12 +131,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
         //}
 
 
-        if (_anim)
-        {
-            Vector3 walkSpeed = _rb.velocity;
-            walkSpeed.y = 0;
-            _anim.SetFloat("Speed", walkSpeed.magnitude);
-        }
+
         //damptimeを追加すると滑らかに
 
     }
@@ -167,8 +155,13 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
     //stop関数を作る
     public void StopAnim()
     {
-        _anim.Play("idle");
+        _anim.SetBool("isMove", true);
         _isMove = false;
+    }
+    public void TestExit()
+    {
+        _anim.SetBool("isMove", false);
+        _isMove = true;
     }
 
 }

@@ -17,11 +17,14 @@ public class PlayerDirection : MonoBehaviour
     {
         
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-            Debug.Log(_npcPos);
-            _player.transform.LookAt(_npcPos.transform.position) ;
-        mc.MoveSpeed = 0;
+        Debug.Log(_npcPos);
+        _player.transform.LookAt(_npcPos.transform.position) ;
+        //mc.MoveSpeed = 0;
         mc.StopAnim();
+        //mc.enabled = false;
     }
+
+
 }
