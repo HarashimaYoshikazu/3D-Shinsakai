@@ -9166,6 +9166,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087042781}
   m_CullTransparentMesh: 0
+--- !u!4 &2095933715 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: fed828ab310f1144e96c82e797cb98b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 882432365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2132287581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132287582}
+  - component: {fileID: 2132287583}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: npc
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132287582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132287581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2095933715}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2132287583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132287581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0862461, y: 0.050498724, z: 1.2468133}
+  m_Center: {x: 0.04312313, y: 0.014160037, z: 0.12340644}
 --- !u!1 &2133357534
 GameObject:
   m_ObjectHideFlags: 0
@@ -12670,13 +12720,13 @@ MonoBehaviour:
   eye: {fileID: 7839673321418044754}
   vertical:
     Value: 0
-    m_SpeedMode: 0
+    m_SpeedMode: 1
     m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: -30
     m_MaxValue: 30
     m_Wrap: 0
@@ -12688,7 +12738,7 @@ MonoBehaviour:
       m_LegacyVelocityFilterStrength: 0
   horizontal:
     Value: 0
-    m_SpeedMode: 0
+    m_SpeedMode: 1
     m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
