@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject m_playerUI;
     bool isPanel = false;
-    [SerializeField] MouseCamera _mouseCamera;
+    [SerializeField] PlayerController _mouseCamera;
     [SerializeField] GameObject _cardInfo;
     [SerializeField] GameObject _SkillPanel;
 

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
-public class MouseCamera : MonoBehaviour, IMatchTarget
+public class PlayerController : MonoBehaviour, IMatchTarget
 {
+    public static event Action OnStartTalk;
     [SerializeField] float _moveSpeed = 1;
     [SerializeField] float _dushSpeed = 3;
     float _walkSpeed;
@@ -38,6 +40,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
 
     void Start()
     {
+        OnStartTalk();
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _walkSpeed = _moveSpeed;
@@ -56,6 +59,7 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
 
     void Update()
     {
+        //_isMoveがtrueのときのみ入力を受け付ける
         float h = default;
         float v = default;
         if (_isMove)
@@ -68,7 +72,14 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
                 walkSpeed.y = 0;
                 _anim.SetFloat("Speed", walkSpeed.magnitude);
             }
+            horizontal.Update(Time.deltaTime);
+            vertical.Update(Time.deltaTime);
 
+            var horaizontalRotation = Quaternion.AngleAxis(horizontal.Value, Vector3.up);
+            var vaerticalRotation = Quaternion.AngleAxis(vertical.Value, Vector3.right);
+
+            player.rotation = horaizontalRotation;
+            eye.localRotation = vaerticalRotation;
         }
         else if(!_isMove)
         {
@@ -88,11 +99,12 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
         // 垂直方向の速度を計算する
         float y = _rb.velocity.y;
         _rb.velocity = dir * _moveSpeed + Vector3.up * y;
+        //Debug.Log(_rb.velocity);
         _anim.SetFloat("X", h, _damptime, Time.deltaTime);
         _anim.SetFloat("Y", v, _damptime, Time.deltaTime);
 
 
-
+        //shiftを押すとダッシュ
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             _moveSpeed = _dushSpeed;
@@ -110,30 +122,16 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
             _anim.SetTrigger("Punching");
             isAttack = true;
         }
-
-
-        //
-
-
-        horizontal.Update(Time.deltaTime);
-        vertical.Update(Time.deltaTime);
-
-        var horaizontalRotation = Quaternion.AngleAxis(horizontal.Value, Vector3.up);
-        var vaerticalRotation = Quaternion.AngleAxis(vertical.Value, Vector3.right);
-
-        player.rotation = horaizontalRotation;
-        eye.localRotation = vaerticalRotation;
-
-
-        //if (Input.GetButtonDown("Jump") && _isGrounded)
-        //{
-        //    //y = _jumpSpeed;
-        //}
-
-
-
         //damptimeを追加すると滑らかに
 
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "npc" &&Input.GetButtonDown("Jump"))
+        {
+            StopAnim();
+            this.transform.LookAt(other.transform.parent.transform.position);
+        }
     }
 
     private void Move()
@@ -152,9 +150,12 @@ public class MouseCamera : MonoBehaviour, IMatchTarget
     {
         isAttack = false;
     }
-    //stop関数を作る
+    /// <summary>
+    /// プレイヤーの入力を受け付けなくする、Idolのアニメーションの再生
+    /// </summary>
     public void StopAnim()
     {
+        _moveSpeed = 0;
         _anim.SetBool("isMove", true);
         _isMove = false;
     }

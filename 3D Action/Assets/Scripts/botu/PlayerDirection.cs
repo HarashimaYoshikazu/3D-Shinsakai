@@ -6,7 +6,7 @@ public class PlayerDirection : MonoBehaviour
 {
     Transform _npcPos;
     GameObject _player;
-    [SerializeField] MouseCamera mc;
+    [SerializeField] PlayerController mc;
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -15,16 +15,16 @@ public class PlayerDirection : MonoBehaviour
 
     void Update()
     {
-        
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(_npcPos);
-        _player.transform.LookAt(_npcPos.transform.position) ;
-        //mc.MoveSpeed = 0;
+
+        _player.transform.LookAt(_npcPos.transform.position);
+        //
+        mc.enabled = false;
         mc.StopAnim();
-        //mc.enabled = false;
+        //
+        mc.MoveSpeed = 0;
     }
-
-
 }

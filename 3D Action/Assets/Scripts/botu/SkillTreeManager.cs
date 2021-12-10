@@ -19,7 +19,7 @@ public class SkillTreeManager : MonoBehaviour
     }
     void ResetSkill()
     {
-        MouseCamera.IsFire = false;
+        PlayerController.IsFire = false;
         PlayerStateManager.SkillPoint += _usedCost;
     }
 
@@ -29,7 +29,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             PlayerStateManager.SkillPoint -= _skillCost;
             _usedCost += _skillCost;
-            MouseCamera.IsFire = true;
+            PlayerController.IsFire = true;
         }
     }
 

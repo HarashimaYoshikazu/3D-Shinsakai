@@ -11,7 +11,7 @@ public class QuestionExcute : MonoBehaviour
     [SerializeField, Tooltip("インベントリパネル")] GameObject _inventriPanel;
     [SerializeField, Tooltip("質問のYesボタン")] GameObject _yes;
     [SerializeField, Tooltip("質問のNoボタン")] GameObject _no;
-    [SerializeField,Header("コンポーネント"), Tooltip("プレイヤーのの移動と視点のコンポーネント")] MouseCamera _mouseCamera;
+    [SerializeField,Header("コンポーネント"), Tooltip("プレイヤーのの移動と視点のコンポーネント")] PlayerController _mouseCamera;
     [SerializeField, Tooltip("ゲームマネージャー")] GameManager _gameManager;
     public void Yes()
     {
