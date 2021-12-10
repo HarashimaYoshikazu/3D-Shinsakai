@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class NpcManager : MonoBehaviour
 {  
+    [SerializeField] GameObject _fieldPanel;
     void Awake()
     {
-        PlayerController.OnStartTalk += Num;
+        EventAction.OnStartTalk += Num;
     }
 
     void Update()

@@ -10,7 +10,7 @@ public class FieldPanel : MonoBehaviour
     [SerializeField] UItext _uItext;
     void Start()
     {
-        
+        EventAction.OnStartTalk += FieldPanelOn;
     }
 
     // Update is called once per frame
@@ -18,10 +18,14 @@ public class FieldPanel : MonoBehaviour
     {
         
     }
-    public void FieldPanelSetActive(bool isActive)
+    public void FieldPanelOn()
     {
-        _fieldPanel.SetActive(isActive);
-    } 
+        _fieldPanel.SetActive(true);
+    }
+    public void FieldPanelOff()
+    {
+        _fieldPanel.SetActive(false);
+    }
     public void FieldText(string message)
     {
         _uItext.DrawText(message,_fieldtext);

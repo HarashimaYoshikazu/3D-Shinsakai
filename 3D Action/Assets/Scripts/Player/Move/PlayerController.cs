@@ -5,8 +5,7 @@ using Cinemachine;
 using System;
 
 public class PlayerController : MonoBehaviour, IMatchTarget
-{
-    public static event Action OnStartTalk;
+{  
     [SerializeField] float _moveSpeed = 1;
     [SerializeField] float _dushSpeed = 3;
     float _walkSpeed;
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour, IMatchTarget
 
     void Start()
     {
-        OnStartTalk();
+        EventAction.OnStartTalk += StopAnim;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _walkSpeed = _moveSpeed;
@@ -125,11 +124,15 @@ public class PlayerController : MonoBehaviour, IMatchTarget
         //damptimeを追加すると滑らかに
 
     }
+    /// <summary>
+    /// npcの前に立つと会話できる
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "npc" &&Input.GetButtonDown("Jump"))
         {
-            StopAnim();
+            EventAction.OnTalk();
             this.transform.LookAt(other.transform.parent.transform.position);
         }
     }

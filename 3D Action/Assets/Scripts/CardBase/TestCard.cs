@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class TestCard : CardBase
 {
     string ms = "testcard１です";
+    FieldPanel _fp;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        _fp = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
     }
 
     // Update is called once per frame
@@ -25,15 +27,21 @@ public class TestCard : CardBase
             colget.GetEnemy();
             GameObject drop = ColiderGet.Nearbyobject.gameObject.GetComponent<Unit>().DropCard;
             FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
-            fieldpanel.FieldPanelSetActive(true);
+            fieldpanel.FieldPanelOn();
             fieldpanel.FieldText($"敵は{name}を持っている！");
         }
         else
         {
             FieldPanel fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanel>();
-            fieldpanel.FieldPanelSetActive(true);
+            fieldpanel.FieldPanelOff();
             fieldpanel.FieldText($"敵がちかくにいない・・・");
+            StartCoroutine(SelfSet());
         }
 
+    }
+    IEnumerator SelfSet()
+    {
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        _fp.FieldPanelOff();
     }
 }
