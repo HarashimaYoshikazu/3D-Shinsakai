@@ -2827,7 +2827,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1190
+  m_Name: pb_Mesh-40246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6928,50 +6928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb907753c1428a42b6d67dbab13e35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
-  _dushSpeed: 2
-  _jumpSpeed: 3
-  _attackMovePower: 3.5
-  _damptime: 0.1
-  player: {fileID: 1735965868}
-  eye: {fileID: 973630874}
-  vertical:
-    Value: 0
-    m_SpeedMode: 1
-    m_MaxSpeed: 1
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -30
-    m_MaxValue: 30
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  horizontal:
-    Value: 0
-    m_SpeedMode: 1
-    m_MaxSpeed: 2
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  _coliderGet: {fileID: 1735965869}
 --- !u!136 &1735965871
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12702,25 +12658,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6921316334080622415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bb907753c1428a42b6d67dbab13e35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 205427201b3633841859174b13e05707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 1
   _dushSpeed: 2
   _jumpSpeed: 3
-  _attackMovePower: 3.5
+  _attackMovePower: 2
   _damptime: 0.1
   player: {fileID: 7730046286636492277}
   eye: {fileID: 7839673321418044754}
   vertical:
     Value: 0
-    m_SpeedMode: 1
+    m_SpeedMode: 0
     m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -30
     m_MaxValue: 30
     m_Wrap: 0
@@ -12732,8 +12688,8 @@ MonoBehaviour:
       m_LegacyVelocityFilterStrength: 0
   horizontal:
     Value: 0
-    m_SpeedMode: 1
-    m_MaxSpeed: 2
+    m_SpeedMode: 0
+    m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -12741,7 +12697,7 @@ MonoBehaviour:
     m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
-    m_Wrap: 1
+    m_Wrap: 0
     m_Recentering:
       m_enabled: 0
       m_WaitTime: 0

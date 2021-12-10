@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject m_playerUI;
     bool isPanel = false;
-    [SerializeField] PlayerController _mouseCamera;
+    [SerializeField] PlayerController _playercon;
     [SerializeField] GameObject _cardInfo;
     [SerializeField] GameObject _SkillPanel;
 
@@ -32,14 +32,14 @@ public class GameManager : MonoBehaviour
     {
         m_playerUI.SetActive(true);
         isPanel = true;
-        _mouseCamera.enabled = false;
+        _playercon.enabled = false;
     }
 
     public void PanelOf()
     {
         m_playerUI.SetActive(false);
         isPanel = false;
-        _mouseCamera.enabled = true;
+        _playercon.enabled = true;
     }
 
     public void InfoOnOf(bool isActive)
