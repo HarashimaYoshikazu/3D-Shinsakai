@@ -14,6 +14,7 @@ public class NpcManager : MonoBehaviour
     {
         
     }
+    //パネルオンにする、メッセージ書き換える、パネルオフコルーチン
     void Num()
     {
         Debug.Log("aa");
