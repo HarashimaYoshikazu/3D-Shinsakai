@@ -637,8 +637,14 @@
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
@@ -654,12 +660,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/vantan/Shinsakai/3D Action/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
