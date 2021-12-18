@@ -72,11 +72,8 @@
     <Compile Include="Assets\Scripts\CardControll\GameManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardControll\ResetButtonController.cs" />
-    <Compile Include="Assets\Scripts\Player\Move\ColiderGet.cs" />
-    <Compile Include="Assets\Scripts\Player\Move\MatchAttackSMB.cs" />
-    <Compile Include="Assets\Scripts\Player\Move\PlayerCollider.cs" />
-    <Compile Include="Assets\Scripts\Player\Move\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Player\Move\PlayerMove.cs" />
+    <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
+    <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerHPBar.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerStateManager.cs" />
     <Compile Include="Assets\Scripts\Player\State\Unit.cs" />
@@ -94,10 +91,16 @@
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
     <Compile Include="Assets\Scripts\botu\CardPlay.cs" />
+    <Compile Include="Assets\Scripts\botu\ColiderGet.cs" />
+    <Compile Include="Assets\Scripts\botu\MatchAttackSMB.cs" />
     <Compile Include="Assets\Scripts\botu\MouseController.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerCollider.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerController.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerDirection.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\botu\SkillTreeManager.cs" />
+    <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\NpcManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

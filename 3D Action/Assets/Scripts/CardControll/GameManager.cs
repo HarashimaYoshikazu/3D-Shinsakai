@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject m_playerUI;
+    [SerializeField,Tooltip("カードを管理するパネル")] 
+    GameObject m_playerUI;   
+    [SerializeField, Tooltip("プレイヤーを操作するクラス")] 
+    FPSPlayerMove _playercon;
+    [SerializeField, Tooltip("カード情報を表示するパネル")] 
+    GameObject _cardInfo;
+    [SerializeField, Tooltip("スキルツリーを表示するパネル")] 
+    GameObject _SkillPanel;
+    /// <summary>/// パネルが表示されているかどうかのフラグ/// </summary>
     bool isPanel = false;
-    [SerializeField] PlayerController _playercon;
-    [SerializeField] GameObject _cardInfo;
-    [SerializeField] GameObject _SkillPanel;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
-        //m_playerUI.gameObject.transform.parent.name ==
         if (Input.GetKeyDown(KeyCode.Tab) && !isPanel)
         {
             PanelOn();
@@ -33,6 +32,8 @@ public class GameManager : MonoBehaviour
         m_playerUI.SetActive(true);
         isPanel = true;
         _playercon.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PanelOf()
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
         m_playerUI.SetActive(false);
         isPanel = false;
         _playercon.enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void InfoOnOf(bool isActive)

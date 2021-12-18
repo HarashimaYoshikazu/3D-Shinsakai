@@ -6,13 +6,18 @@ public class QuestionExcute : MonoBehaviour
 {
     GameObject _playingcard;
     CardController _cardController;
-    [SerializeField, Header("UI関係"), Tooltip("UIパネル")] GameObject _UIPanel;
-    [SerializeField, Tooltip("カード実行時の質問パネル")] GameObject _questionPanel;
-    [SerializeField, Tooltip("インベントリパネル")] GameObject _inventriPanel;
-    [SerializeField, Tooltip("質問のYesボタン")] GameObject _yes;
-    [SerializeField, Tooltip("質問のNoボタン")] GameObject _no;
-    [SerializeField,Header("コンポーネント"), Tooltip("プレイヤーのの移動と視点のコンポーネント")] PlayerController _mouseCamera;
-    [SerializeField, Tooltip("ゲームマネージャー")] GameManager _gameManager;
+    [SerializeField, Header("UI関係"), Tooltip("UIパネル")] 
+    GameObject _UIPanel;
+    [SerializeField, Tooltip("カード実行時の質問パネル")]
+    GameObject _questionPanel;
+    [SerializeField, Tooltip("インベントリパネル")]
+    GameObject _inventriPanel;
+    [SerializeField, Tooltip("質問のYesボタン")]
+    GameObject _yes;
+    [SerializeField, Tooltip("質問のNoボタン")]
+    GameObject _no;
+    [SerializeField, Tooltip("ゲームマネージャー")]
+    GameManager _gameManager;
     public void Yes()
     {
         _playingcard = GameObject.FindGameObjectWithTag("PlayingCard");
@@ -22,6 +27,8 @@ public class QuestionExcute : MonoBehaviour
         _gameManager.PanelOf();
         CardManager.InventriCards.RemoveAt(cb.CardIndex);
         Destroy(_playingcard);
+        _yes.SetActive(false);
+        _no.SetActive(false);
     }
 
     public void No()

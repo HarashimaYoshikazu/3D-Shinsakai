@@ -10,7 +10,8 @@ public class ColiderGet : MonoBehaviour
 
     private void Awake()
     {
-        nearbyobject = GameObject.Find("defaultCol").GetComponent<Collider>();
+        //nearbyobject = GameObject.Find("defaultCol").GetComponent<Collider>();
+        nearbyobject = GetComponent<Collider>();
     }
     public void GetEnemy()
     {
