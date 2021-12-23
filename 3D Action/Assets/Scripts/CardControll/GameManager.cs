@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum State
+{
+    OnStart,
+    OnField,
+    OnMenu,
+    OnGameover,
+}
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField,Tooltip("カードを管理するパネル")] 

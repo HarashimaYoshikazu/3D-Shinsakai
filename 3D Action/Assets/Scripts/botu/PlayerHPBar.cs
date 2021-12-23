@@ -21,7 +21,7 @@ public class PlayerHPBar : MonoBehaviour
     {
         
     }
-    public static void HPfluctuation(int value)
+    public static void HPfluctuations(int value)
     {
         PlayerStateManager.Hp += value;
         _hpbar.value = PlayerStateManager.Hp;
@@ -29,6 +29,6 @@ public class PlayerHPBar : MonoBehaviour
 
     public void TestHpHerasu(int dmg)
     {
-        HPfluctuation(dmg);
+        HPfluctuations(dmg);
     }
 }
