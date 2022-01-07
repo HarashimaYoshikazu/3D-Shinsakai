@@ -240,6 +240,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5212113444727153667, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851693629}
+    - target: {fileID: 5212113444727153667, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TestHpHerasu
+      objectReference: {fileID: 0}
     - target: {fileID: 5212113445233364143, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
         type: 3}
       propertyPath: m_AnchorMax.x

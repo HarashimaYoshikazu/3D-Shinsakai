@@ -74,9 +74,7 @@
     <Compile Include="Assets\Scripts\CardControll\ResetButtonController.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
-    <Compile Include="Assets\Scripts\Player\State\PlayerHPBar.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />
-    <Compile Include="Assets\Scripts\Player\State\Unit.cs" />
     <Compile Include="Assets\Scripts\System\EventAction.cs" />
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\System\ShopManager.cs" />
@@ -97,10 +95,13 @@
     <Compile Include="Assets\Scripts\botu\PlayerCollider.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerController.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerDirection.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerHPBar.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerStateManagerBotu.cs" />
     <Compile Include="Assets\Scripts\botu\SkillTreeManager.cs" />
+    <Compile Include="Assets\Scripts\botu\Unit.cs" />
     <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\NpcManager.cs" />
     <Reference Include="UnityEngine">
