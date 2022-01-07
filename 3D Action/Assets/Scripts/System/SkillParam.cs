@@ -5,12 +5,18 @@ using System;
 
 public class SkillParam : MonoBehaviour
 {
-	[SerializeField, Tooltip("GameManagerObjectのSkillManagerComornent")] private SkillManager _skillManager;
-	[SerializeField, Tooltip("スキルの種類")] private SkillType _skilltype;
-	[SerializeField, Tooltip("覚えるのに必要なコスト")] private int _cost;
-	[SerializeField, Tooltip("スキルの名前")] private string _skillName;
-	[SerializeField, Tooltip("スキルの説明")] private string _skillInfo;
-	[SerializeField, Tooltip("表示するテキスト")] private Text _text;
+	[SerializeField, Tooltip("GameManagerObjectのSkillManagerComornent")] 
+	SkillManager _skillManager;
+	[SerializeField, Tooltip("スキルの種類")] 
+	SkillType _skilltype;
+	[SerializeField, Tooltip("覚えるのに必要なコスト")]
+	int _cost;
+	[SerializeField, Tooltip("スキルの名前")] 
+	string _skillName;
+	[SerializeField, Tooltip("スキルの説明")] 
+	string _skillInfo;
+	[SerializeField, Tooltip("表示するテキスト")] 
+	Text _text;
 
 	// Use this for initialization
 	void Start()
@@ -66,7 +72,7 @@ public class SkillParam : MonoBehaviour
 	public void ResetText()
 	{
 		//text.text = "";
-		_text.text = "スキルポイント：" + PlayerStateManagerBotu.SkillPoint;
+		_text.text = "スキルポイント：" + PlayerPalam.Instance.SkillPoint;
 	}
 	//　ボタンの色を変更する
 	public void ChangeButtonColor(Color color)

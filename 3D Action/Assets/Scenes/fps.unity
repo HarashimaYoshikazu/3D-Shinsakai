@@ -240,6 +240,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5212113444198296446, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5212113444727153667, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1081,9 +1086,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerUI: {fileID: 1634065808}
+  _SkillPanel: {fileID: 208066558}
   _playercon: {fileID: 851693625}
   _cardInfo: {fileID: 1989372362}
-  _SkillPanel: {fileID: 208066558}
+  isHome: 0
 --- !u!4 &1326369837
 Transform:
   m_ObjectHideFlags: 0
@@ -1490,7 +1496,7 @@ RectTransform:
   m_LocalScale: {x: 1.6171, y: 1.6171, z: 1.6171}
   m_Children: []
   m_Father: {fileID: 558610858}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

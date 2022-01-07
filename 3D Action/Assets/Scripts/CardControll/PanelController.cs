@@ -5,18 +5,28 @@ using UnityEngine;
 public class PanelController : MonoBehaviour
 {
     [SerializeField,Tooltip("カードを管理するパネル")] 
-    GameObject m_playerUI;   
+    GameObject m_playerUI;
+    [SerializeField, Tooltip("スキルツリーを表示するパネル")]
+    GameObject _SkillPanel;
     [SerializeField, Tooltip("プレイヤーを操作するクラス")] 
     FPSPlayerMove _playercon;
     [SerializeField, Tooltip("カード情報を表示するパネル")] 
     GameObject _cardInfo;
-    [SerializeField, Tooltip("スキルツリーを表示するパネル")] 
-    GameObject _SkillPanel;
+
     /// <summary>/// パネルが表示されているかどうかのフラグ/// </summary>
     bool isPanel = false;
     bool isSkillPanel = false;
+    [SerializeField] bool isHome = false;
 
     void Update()
+    {
+        if (!isHome)
+        {
+            InputButton();
+        }
+    }
+
+    void InputButton()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && !isPanel)
         {
@@ -40,18 +50,25 @@ public class PanelController : MonoBehaviour
     {
         m_playerUI.SetActive(true);
         isPanel = true;
-        _playercon.enabled = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (_playercon)
+        {
+            _playercon.enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }        
+
     }
 
     public void PanelOf()
     {
         m_playerUI.SetActive(false);
         isPanel = false;
-        _playercon.enabled = true;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (_playercon)
+        {
+            _playercon.enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void InfoOnOf(bool isActive)
@@ -64,16 +81,22 @@ public class PanelController : MonoBehaviour
         if (isactive)
         {
             isSkillPanel = true;
-            _playercon.enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (_playercon)
+            {
+                _playercon.enabled = false;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
         else
         {
             isSkillPanel = false;
-            _playercon.enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (_playercon)
+            {
+                _playercon.enabled = true;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
 }

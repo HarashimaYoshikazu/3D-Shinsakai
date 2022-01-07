@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public static int a= 0;
     [SerializeField,Header("エネミーの情報"),Tooltip("エネミーHP")]int _hp  =10;
     public int Hp { get => _hp; set => _hp = value; }
     [SerializeField, Tooltip("ドロップするゴールド")] 
@@ -28,7 +29,7 @@ public class Unit : MonoBehaviour
             Dead();
             Debug.Log(_hp + "しんだ");
             Debug.Log(CardManager.InventriCards[0]);
-            Debug.Log("お金　＝" +PlayerStateManagerBotu.Gold);
+            Debug.Log("お金　＝" + PlayerPalam.Instance.Gold);
             isDead = true;
         }
         if (isDead)
@@ -40,7 +41,7 @@ public class Unit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _hp -= PlayerStateManagerBotu.Attack;
+            _hp -= PlayerPalam.Instance.Attack;
             Debug.Log(_hp);
         }
     }
@@ -54,7 +55,7 @@ public class Unit : MonoBehaviour
         cb.CardIndex = CardManager.InventriCards.Count - 1;
         Debug.Log(cb.CardIndex);
         //お金、経験値を追加
-        PlayerStateManagerBotu.Gold += _getGold;
+        PlayerPalam.Instance.Goldfluctuation(_getGold) ;
         //死ぬアニメーションを再生       
         //ターゲットをDefaultに戻す
         ColiderGet.Nearbyobject = GameObject.Find("defaultCol").GetComponent<Collider>();
