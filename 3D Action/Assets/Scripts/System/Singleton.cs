@@ -1,22 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Singleton : MonoBehaviour
+/// <summary>
+/// 継承する事でシングトン化するクラス
+/// </summary>
+/// <typeparam name="TOwer">シングトン化させたいクラス</typeparam>
+public class Singleton<TOwer> : MonoBehaviour where TOwer : Singleton<TOwer>
 {
-    static Singleton Instance = default;
+    public static TOwer Instance { get; private set; } = null;
+    public bool IsAlive => Instance != null;
 
     private void Awake()
     {
-        if (Instance)
+        if (!IsAlive)
         {
-            Debug.Log("systemが既に存在します");
-            Destroy(this.gameObject);
+            Instance = this as TOwer;
+            OnAwake();
+            return;
         }
-        else
+        Destroy(this);
+    }
+
+    /// <summary>
+    /// 派生先用のAwake関数
+    /// </summary>
+    protected virtual void OnAwake() { }
+
+
+    private void OnDestroy()
+    {
+        if (Instance != null || Instance == this)
         {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Release();
+            Instance = null;
         }
     }
+    /// <summary>
+    /// 派生先用のOnDestroy関数
+    /// </summary>
+    protected virtual void Release() { }
 }

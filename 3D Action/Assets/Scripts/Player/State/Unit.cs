@@ -6,8 +6,10 @@ public class Unit : MonoBehaviour
 {
     [SerializeField,Header("エネミーの情報"),Tooltip("エネミーHP")]int _hp  =10;
     public int Hp { get => _hp; set => _hp = value; }
-    [SerializeField, Tooltip("ドロップするゴールド")] int _getGold = 5;
-    [SerializeField,Header("コンポーネント"), Tooltip("カードマネージャー")] CardManager _cardManager;
+    [SerializeField, Tooltip("ドロップするゴールド")] 
+    int _getGold = 5;
+    [SerializeField,Header("コンポーネント"), Tooltip("カードマネージャー")]
+    CardManager _cardManager;
 
     bool isDead = false;
     static　GameObject _dropCard;
@@ -26,7 +28,7 @@ public class Unit : MonoBehaviour
             Dead();
             Debug.Log(_hp + "しんだ");
             Debug.Log(CardManager.InventriCards[0]);
-            Debug.Log("お金　＝" +PlayerStateManager.Gold);
+            Debug.Log("お金　＝" +PlayerStateManagerBotu.Gold);
             isDead = true;
         }
         if (isDead)
@@ -38,7 +40,7 @@ public class Unit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _hp -= PlayerStateManager.Attack;
+            _hp -= PlayerStateManagerBotu.Attack;
             Debug.Log(_hp);
         }
     }
@@ -52,7 +54,7 @@ public class Unit : MonoBehaviour
         cb.CardIndex = CardManager.InventriCards.Count - 1;
         Debug.Log(cb.CardIndex);
         //お金、経験値を追加
-        PlayerStateManager.Gold += _getGold;
+        PlayerStateManagerBotu.Gold += _getGold;
         //死ぬアニメーションを再生       
         //ターゲットをDefaultに戻す
         ColiderGet.Nearbyobject = GameObject.Find("defaultCol").GetComponent<Collider>();

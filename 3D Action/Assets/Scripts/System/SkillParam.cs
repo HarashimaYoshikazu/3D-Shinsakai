@@ -66,7 +66,7 @@ public class SkillParam : MonoBehaviour
 	public void ResetText()
 	{
 		//text.text = "";
-		_text.text = "スキルポイント：" + PlayerStateManager.SkillPoint;
+		_text.text = "スキルポイント：" + PlayerStateManagerBotu.SkillPoint;
 	}
 	//　ボタンの色を変更する
 	public void ChangeButtonColor(Color color)

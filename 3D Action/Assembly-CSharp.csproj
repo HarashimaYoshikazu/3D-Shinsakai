@@ -69,13 +69,13 @@
     <Compile Include="Assets\Scripts\CardBase\TestCard2.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardController.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardManager.cs" />
-    <Compile Include="Assets\Scripts\CardControll\GameManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
+    <Compile Include="Assets\Scripts\CardControll\PanelController.cs" />
     <Compile Include="Assets\Scripts\CardControll\ResetButtonController.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerHPBar.cs" />
-    <Compile Include="Assets\Scripts\Player\State\PlayerStateManager.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />
     <Compile Include="Assets\Scripts\Player\State\Unit.cs" />
     <Compile Include="Assets\Scripts\System\EventAction.cs" />
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\botu\PlayerDirection.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\botu\PlayerStateManagerBotu.cs" />
     <Compile Include="Assets\Scripts\botu\SkillTreeManager.cs" />
     <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\NpcManager.cs" />

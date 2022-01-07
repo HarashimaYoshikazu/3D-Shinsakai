@@ -3,32 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHPBar : MonoBehaviour
+public class PlayerHPBar : Singleton<PlayerHPBar>
 {
-    static Slider _hpbar;
-    public Slider Hpbar { get => _hpbar; set => _hpbar = value; }
+    Slider _hpbar;
+    public Slider Hpbar { get => _hpbar; }
 
-    // Start is called before the first frame update
     void Start()
     {
         _hpbar = GameObject.Find("Slider").GetComponent<Slider>();
-        _hpbar.maxValue = PlayerStateManager.Hp;
-        _hpbar.value = PlayerStateManager.Hp;
+        Debug.Log("BAR初期化");
+        _hpbar.maxValue = PlayerPalam.Instance.HP;
+        _hpbar.value = PlayerPalam.Instance.HP;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
-    public static void HPfluctuation(int value)
+    public void HPbarfluctuation(int value)
     {
-        PlayerStateManager.Hp += value;
-        _hpbar.value = PlayerStateManager.Hp;
+        PlayerPalam.Instance.HPfluctuation(value);
+        _hpbar.value = PlayerPalam.Instance.HP;
     }
 
     public void TestHpHerasu(int dmg)
     {
-        HPfluctuation(dmg);
+        HPbarfluctuation(dmg);
     }
 }

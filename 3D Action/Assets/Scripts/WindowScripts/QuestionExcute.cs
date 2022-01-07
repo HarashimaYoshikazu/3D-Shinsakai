@@ -17,7 +17,7 @@ public class QuestionExcute : MonoBehaviour
     [SerializeField, Tooltip("質問のNoボタン")]
     GameObject _no;
     [SerializeField, Tooltip("ゲームマネージャー")]
-    GameManager _gameManager;
+    PanelController _gameManager;
     public void Yes()
     {
         _playingcard = GameObject.FindGameObjectWithTag("PlayingCard");

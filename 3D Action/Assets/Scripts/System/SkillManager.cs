@@ -35,7 +35,7 @@ public class SkillManager : MonoBehaviour
 		//　スキル数分の配列を確保
 		_IsSkillsLearned = new bool[_skillParams.Length];
 		SetText();
-		PlayerStateManager.SkillPoint = _skillPoint;
+		PlayerStateManagerBotu.SkillPoint = _skillPoint;
 	}
 	//　スキルを覚える
 	public void LearnSkill(SkillType type, int point)
@@ -44,18 +44,18 @@ public class SkillManager : MonoBehaviour
         switch(type)
 		{
 			case SkillType.Attack1:
-				PlayerStateManager.Attack += _addAttack[0];
-				Debug.Log("攻撃力は"+PlayerStateManager.Attack);
+				PlayerStateManagerBotu.Attack += _addAttack[0];
+				Debug.Log("攻撃力は"+PlayerStateManagerBotu.Attack);
 				break;
 			case SkillType.Defense1:
-				PlayerStateManager.Attack += _addDefence[0];
+				PlayerStateManagerBotu.Attack += _addDefence[0];
 				break;
 			case SkillType.Attack2:
-				PlayerStateManager.Attack += _addAttack[1];
-				Debug.Log("攻撃力は" + PlayerStateManager.Attack);
+				PlayerStateManagerBotu.Attack += _addAttack[1];
+				Debug.Log("攻撃力は" + PlayerStateManagerBotu.Attack);
 				break;
 			case SkillType.Defense2:
-				PlayerStateManager.Attack += _addDefence[1];
+				PlayerStateManagerBotu.Attack += _addDefence[1];
 				break;
 		}
 		SetSkillPoint(point);
@@ -70,18 +70,18 @@ public class SkillManager : MonoBehaviour
 	//　スキルポイントを減らす
 	public void SetSkillPoint(int point)
 	{
-		PlayerStateManager.SkillPoint -= point;
+		PlayerStateManagerBotu.SkillPoint -= point;
 	}
 	//　スキルポイントを取得
 	public int GetSkillPoint()
 	{
-		return PlayerStateManager.SkillPoint;
+		return PlayerStateManagerBotu.SkillPoint;
 	}
 	//　スキルを覚えられるかチェック
 	public bool CanLearnSkill(SkillType type, int spendPoint = 0)
 	{
 		//　持っているスキルポイントが足りない
-		if (PlayerStateManager.SkillPoint < spendPoint)
+		if (PlayerStateManagerBotu.SkillPoint < spendPoint)
 		{
 			return false;
 		}
@@ -123,6 +123,6 @@ public class SkillManager : MonoBehaviour
 
 	void SetText()
 	{
-		skillText.text = "スキルポイント：" + PlayerStateManager.SkillPoint;
+		skillText.text = "スキルポイント：" + PlayerStateManagerBotu.SkillPoint;
 	}
 }

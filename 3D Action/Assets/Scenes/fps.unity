@@ -786,6 +786,8 @@ GameObject:
   - component: {fileID: 851693626}
   - component: {fileID: 851693627}
   - component: {fileID: 851693628}
+  - component: {fileID: 851693630}
+  - component: {fileID: 851693629}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -935,6 +937,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 5
+--- !u!114 &851693629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851693620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108e84b54ca1b4d45958c9920e5da623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &851693630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851693620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4776ce2fc821507489605a2c727f13ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHP: 10
+  _initialAttack: 10
+  _initialGold: 10
+  _initialSkillPoint: 10
 --- !u!1 &914462025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5212113444401953444, guid: a9f3cffb170ed8c478364caf0f6d9fe2,
@@ -1037,7 +1067,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326369835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d8031ee2611894d937d2ce50ba1c46, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c7e5b0e2ca1da64d90f16e3d697c2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerUI: {fileID: 1634065808}

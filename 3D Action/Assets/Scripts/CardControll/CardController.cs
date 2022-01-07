@@ -18,7 +18,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     GameObject m_parentPanel = null;
     IsPanelScript isPanelScript;
     GameObject _GUIPanel;
-    GameManager gm;
+    PanelController gm;
 
     bool isPanel = false;
 
@@ -28,7 +28,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         m_table = GameObject.FindGameObjectWithTag("TableTag");
         m_parentPanel = GameObject.FindGameObjectWithTag("ParentTag");
         isPanelScript = m_parentPanel.gameObject.GetComponent<IsPanelScript>();
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PanelController>();
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)

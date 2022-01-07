@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateManager 
+public class PlayerStateManagerBotu 
 {
     static int hp = 20;
     static int attack = 5;

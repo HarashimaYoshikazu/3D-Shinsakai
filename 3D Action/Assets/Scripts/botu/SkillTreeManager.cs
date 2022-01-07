@@ -20,14 +20,14 @@ public class SkillTreeManager : MonoBehaviour
     void ResetSkill()
     {
         PlayerController.IsFire = false;
-        PlayerStateManager.SkillPoint += _usedCost;
+        PlayerStateManagerBotu.SkillPoint += _usedCost;
     }
 
     void FireSkill()
     {
-        if (PlayerStateManager.SkillPoint>0)
+        if (PlayerStateManagerBotu.SkillPoint>0)
         {
-            PlayerStateManager.SkillPoint -= _skillCost;
+            PlayerStateManagerBotu.SkillPoint -= _skillCost;
             _usedCost += _skillCost;
             PlayerController.IsFire = true;
         }

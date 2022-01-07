@@ -12,10 +12,10 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField, Tooltip("カードのタイプと距離を記載する")] string _cardType;
     [SerializeField, Tooltip("カードの説明")] string _cardInfo;
     [SerializeField] Vector2 _offset;
-    GameManager gm;
+    PanelController gm;
     void Start()
     {
-         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PanelController>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
