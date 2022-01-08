@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : MonoBehaviour
+public class CardManager : Singleton<CardManager>
 {
     //のちのちドロップ用とかイベント用とか色んな配列にする
     [SerializeField] GameObject[] _allCards;
-    static List<GameObject> inventriCards = new List<GameObject>();
-    public static List<GameObject> InventriCards { get => inventriCards; set => inventriCards = value; }
+    List<GameObject> inventriCards = new List<GameObject>();
+    public List<GameObject> InventriCards => inventriCards;
     public GameObject[] AllCards { get => _allCards; set => _allCards = value; }
 
     private void Start()
@@ -21,8 +21,12 @@ public class CardManager : MonoBehaviour
         cb2.CardIndex = inventriCards.Count - 1;
         Debug.Log(cb2.CardIndex);
     }
-    public void UseCard()
+    public void AddCard(GameObject card)
     {
-        Debug.Log(inventriCards[0]);
+        inventriCards.Add(card);
+    }
+    public void RemoveAtCard(int value)
+    {
+        inventriCards.RemoveAt(value);
     }
 }

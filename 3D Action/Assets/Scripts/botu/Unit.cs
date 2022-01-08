@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour
         {            
             Dead();
             Debug.Log(_hp + "しんだ");
-            Debug.Log(CardManager.InventriCards[0]);
+            Debug.Log(CardManager.Instance.InventriCards[0]);
             Debug.Log("お金　＝" + PlayerPalam.Instance.Gold);
             isDead = true;
         }
@@ -49,10 +49,10 @@ public class Unit : MonoBehaviour
     void Dead()
     {
         //インベントリにランダムなカードを追加
-        CardManager.InventriCards.Add(_dropCard);
+        CardManager.Instance.AddCard(_dropCard);
         //CardBaseに現在のIndexを保存しておく
-        CardBase cb = CardManager.InventriCards[CardManager.InventriCards.Count - 1].gameObject.GetComponent<CardBase>();
-        cb.CardIndex = CardManager.InventriCards.Count - 1;
+        CardBase cb = CardManager.Instance.InventriCards[CardManager.Instance.InventriCards.Count - 1].gameObject.GetComponent<CardBase>();
+        cb.CardIndex = CardManager.Instance.InventriCards.Count - 1;
         Debug.Log(cb.CardIndex);
         //お金、経験値を追加
         PlayerPalam.Instance.Goldfluctuation(_getGold) ;

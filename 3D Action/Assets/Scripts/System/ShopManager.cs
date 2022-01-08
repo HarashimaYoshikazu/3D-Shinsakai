@@ -9,6 +9,6 @@ public class ShopManager : MonoBehaviour
     {
         PlayerPalam.Instance.Goldfluctuation(value);
         int ran = Random.Range(0,_cardManager.AllCards.Length);
-        CardManager.InventriCards.Add(_cardManager.AllCards[ran]);
+        CardManager.Instance.AddCard(_cardManager.AllCards[ran]);
     }
 }

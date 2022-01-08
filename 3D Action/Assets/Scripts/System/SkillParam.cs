@@ -5,8 +5,6 @@ using System;
 
 public class SkillParam : MonoBehaviour
 {
-	[SerializeField, Tooltip("GameManagerObjectのSkillManagerComornent")] 
-	SkillManager _skillManager;
 	[SerializeField, Tooltip("スキルの種類")] 
 	SkillType _skilltype;
 	[SerializeField, Tooltip("覚えるのに必要なコスト")]
@@ -29,16 +27,17 @@ public class SkillParam : MonoBehaviour
 	public void OnClick()
 	{
 		//　スキルを覚えていたら何もせずreturn
-		if (_skillManager.IsSkill(_skilltype))
+		if (SkillManager.Instance.IsSkill(_skilltype))
 		{
 			return;
 		}
 		//　スキルを覚えられるかどうかチェック
-		if (_skillManager.CanLearnSkill(_skilltype, _cost))
+		if (SkillManager.Instance.CanLearnSkill(_skilltype, _cost))
 		{
 			//　スキルを覚えさせる
-			_skillManager.LearnSkill(_skilltype, _cost);
+			SkillManager.Instance.LearnSkill(_skilltype, _cost);
 
+			//ボタンの色変える
 			ChangeButtonColor(new Color(0f, 0f, 1f, 1f));
 
 			_text.text = _skillName + "を覚えた";
@@ -53,12 +52,12 @@ public class SkillParam : MonoBehaviour
 	public void CheckButtonOnOff()
 	{
 		//　スキルを覚えられるかどうかチェック
-		if (!_skillManager.CanLearnSkill(_skilltype))
+		if (SkillManager.Instance.CanLearnSkill(_skilltype))
 		{
 			ChangeButtonColor(new Color(0.8f, 0.8f, 0.8f, 0.8f));
 			//　スキルをまだ覚えていない
 		}
-		else if (!_skillManager.IsSkill(_skilltype))
+		else if (SkillManager.Instance.IsSkill(_skilltype))
 		{
 			ChangeButtonColor(new Color(1f, 1f, 1f, 1f));
 		}

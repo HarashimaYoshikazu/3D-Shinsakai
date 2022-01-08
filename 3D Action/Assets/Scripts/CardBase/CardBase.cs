@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CardBase : MonoBehaviour
 {
     [SerializeField] new string name;

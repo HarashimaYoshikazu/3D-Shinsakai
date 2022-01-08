@@ -25,7 +25,7 @@ public class QuestionExcute : MonoBehaviour
         cb.Execute();
         _questionPanel.SetActive(false);
         _gameManager.PanelOf();
-        CardManager.InventriCards.RemoveAt(cb.CardIndex);
+        CardManager.Instance.RemoveAtCard(cb.CardIndex);
         Destroy(_playingcard);
         _yes.SetActive(false);
         _no.SetActive(false);

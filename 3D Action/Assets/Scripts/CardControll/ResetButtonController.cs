@@ -34,9 +34,9 @@ public class ResetButtonController : MonoBehaviour
     {
         DestroyAllCards();
 
-        for (int i = 0; i < CardManager.InventriCards.Count; i++)
+        for (int i = 0; i < CardManager.Instance.InventriCards.Count; i++)
         {
-            GameObject image = Instantiate(CardManager.InventriCards[i]);
+            GameObject image = Instantiate(CardManager.Instance.InventriCards[i]);
             image.transform.SetParent(m_deck.transform);
         }
     }
