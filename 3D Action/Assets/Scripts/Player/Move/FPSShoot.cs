@@ -123,7 +123,7 @@ public class FPSShoot : MonoBehaviour
                     Vector3 dir = m_target.transform.position - this.transform.position;
                     dir.y = 0;
                     dir = (dir.normalized + Vector3.up).normalized;
-                    //rb.AddForce(dir * m_shootPower, ForceMode.Impulse);
+                    rb.AddForce(dir * m_shootPower, ForceMode.Impulse);
                 }
             }
             _timer = 0f;
@@ -131,6 +131,14 @@ public class FPSShoot : MonoBehaviour
     }
     static public void FireIntervalfluctuation(float value)
     {
-        _fireInterval += value;
+        if(_fireInterval + value >= 0)
+        {
+            _fireInterval += value;
+        }
+        else
+        {
+            _fireInterval = 0.1f;
+        }
+        
     }
 }
