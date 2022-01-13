@@ -2,28 +2,45 @@
 
 public class FPSShoot : MonoBehaviour
 {
-    /// <summary>FPS のカメラ</summary>
-    [SerializeField] Camera m_mainCamera;
-    /// <summary>照準となる UI オブジェクト</summary>
-    [SerializeField] UnityEngine.UI.Image m_crosshair;
-    /// <summary>照準に敵を捕らえていない時の色</summary>    
-    [SerializeField] Color m_noTarget = Color.white;
-    /// <summary>照準に敵を捕らえている時の色</summary>
-    [SerializeField] Color m_onTarget = Color.red;
-    /// <summary>射撃可能距離</summary>
-    [SerializeField, Range(1, 200)] float m_shootRange = 10f;
-    /// <summary>照準の Ray が当たる Layer</summary>
-    [SerializeField] LayerMask m_shootingLayer;
+    [SerializeField,Tooltip("FPS のカメラ")]
+    Camera m_mainCamera;
+
+    [SerializeField, Tooltip("照準となる UI オブジェクト")] 
+    UnityEngine.UI.Image m_crosshair;  
+
+    [SerializeField, Tooltip("照準に敵を捕らえていない時の色")] 
+    Color m_noTarget = Color.white;
+
+    [SerializeField, Tooltip("照準に敵を捕らえている時の色")] 
+    Color m_onTarget = Color.red;
+
+    [SerializeField, Range(1, 200), Tooltip("射撃可能距離")]
+    float m_shootRange = 10f;
+
+    [SerializeField, Tooltip("照準の Ray が当たる Layer")]
+    LayerMask m_shootingLayer;
+
     /// <summary>攻撃したらダメージを与えられる対象</summary>
     DamageableController m_target;
-    /// <summary>攻撃した時に加える力のスカラー量</summary>
-    [SerializeField] float m_shootPower = 50f;
-    /// <summary>射撃音</summary>
-    [SerializeField] AudioClip m_shootingSfx;
 
+    [SerializeField, Tooltip("攻撃した時に加える力のスカラー量")] 
+    float m_shootPower = 50f;
+
+    [SerializeField, Tooltip("射撃音")]
+    AudioClip m_shootingSfx;
+
+    [SerializeField, Range(0f,5f), Tooltip("射撃のインターバル")]
+    float _initialFireInterval = 0.5f;
+
+    static float _fireInterval ;
+    public static float FireInterval => _fireInterval;
+
+   /// <summary>インターバルを計測するタイマー</summary>
+    float _timer = 0;
 
     void Start()
     {
+        _fireInterval = _initialFireInterval;
         // マウスカーソルを消す（実行中は ESC キーを押すとマウスカーソルが表示される）
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -40,8 +57,13 @@ public class FPSShoot : MonoBehaviour
 
     void Update()
     {
-        Aim();
+        _timer += Time.deltaTime;
+        Debug.Log(_timer);
+        
         Shoot();
+
+        Aim();
+        
     }
 
     void OnDestroy()
@@ -84,15 +106,14 @@ public class FPSShoot : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && _timer >= _fireInterval)
         {
-            if (m_target)
+            if (m_shootingSfx)
             {
-                if (m_shootingSfx)
-                {
-                    AudioSource.PlayClipAtPoint(m_shootingSfx, this.transform.position);
-                }
-
+                AudioSource.PlayClipAtPoint(m_shootingSfx, this.transform.position);
+            }
+            if (m_target)
+            {   
                 m_target.Damage(1);
 
                 Rigidbody rb = m_target.GetComponent<Rigidbody>();
@@ -105,6 +126,11 @@ public class FPSShoot : MonoBehaviour
                     //rb.AddForce(dir * m_shootPower, ForceMode.Impulse);
                 }
             }
-        }
+            _timer = 0f;
+        }       
+    }
+    static public void FireIntervalfluctuation(float value)
+    {
+        _fireInterval += value;
     }
 }

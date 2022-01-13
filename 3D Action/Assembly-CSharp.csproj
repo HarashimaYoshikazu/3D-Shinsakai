@@ -65,8 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CardBase\CardBase.cs" />
-    <Compile Include="Assets\Scripts\CardBase\TestCard.cs" />
     <Compile Include="Assets\Scripts\CardBase\TestCard2.cs" />
+    <Compile Include="Assets\Scripts\CardBase\TestCard3.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardController.cs" />
     <Compile Include="Assets\Scripts\CardControll\CardManager.cs" />
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\botu\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\botu\TestCard.cs" />
     <Compile Include="Assets\Scripts\botu\Unit.cs" />
     <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\NpcManager.cs" />
