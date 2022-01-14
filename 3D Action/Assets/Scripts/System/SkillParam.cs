@@ -57,6 +57,7 @@ public class SkillParam : MonoBehaviour
 			ChangeButtonColor(new Color(0.8f, 0.8f, 0.8f, 0.8f));
 			//　スキルをまだ覚えていない
 		}
+		
 		else if (SkillManager.Instance.IsSkill(_skilltype))
 		{
 			ChangeButtonColor(new Color(1f, 1f, 1f, 1f));
@@ -83,9 +84,9 @@ public class SkillParam : MonoBehaviour
 		//　取得済みのスキルボタンの色を変える
 		cb.normalColor = color;
 		cb.pressedColor = color;
-		//選ばれている時の色も変えないとダメ
-		cb.selectedColor = color;
-		cb.highlightedColor = color;
+		////選ばれている時の色も変えないとダメ
+		//cb.selectedColor = color;
+		//cb.highlightedColor = color;
 		//　ボタンのカラー情報を設定
 		button.colors = cb;
 	}

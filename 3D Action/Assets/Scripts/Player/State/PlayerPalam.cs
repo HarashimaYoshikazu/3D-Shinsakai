@@ -24,7 +24,7 @@ public class PlayerPalam : Singleton<PlayerPalam>
     ///<summary>現在のゴールド</summary>
     int _gold;
     ///<summary>現在のスキルポイント</summary>
-    int _skillPoint;
+    int _skillPoint = 0;
 
     public int HP => _hp;
     public int Attack => _at;

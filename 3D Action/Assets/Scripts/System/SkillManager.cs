@@ -24,19 +24,20 @@ public class SkillManager : Singleton<SkillManager>
 	[SerializeField,Tooltip("スキルを覚えているかの試験用フラグ")] private bool[] _IsSkillsLearned;
 	//　スキル毎のパラメータ
 	[SerializeField,Tooltip("スキル")] private SkillParam[] _skillParams;
-	//　スキルポイントを表示するテキストUI
+	//　スキルポイントを表示するテキストUI(要変更)
 	[SerializeField, Tooltip("スキルポイントを表示するテキストUI")] Text skillText;
 
 	[SerializeField,Header("スキル取得"), Tooltip("攻撃力")] int[] _addAttack = new int[2];
 	[SerializeField, Tooltip("防御力")] int[] _addDefence = new int[2];
 
-	void Awake()
+	void Start()
 	{
 		//　スキル数分の配列を確保
 		_IsSkillsLearned = new bool[_skillParams.Length];
 		SetText();
 		//PlayerStateManagerBotu.SkillPoint = _skillPoint;
 	}
+
 	//　スキルを覚える
 	public void LearnSkill(SkillType type, int point)
 	{
@@ -56,7 +57,7 @@ public class SkillManager : Singleton<SkillManager>
 				Debug.Log("攻撃力は" + PlayerPalam.Instance.Attack);
 				break;
 			case SkillType.Defense2:
-				PlayerPalam.Instance.Defencefluctuation(_addDefence[2]);
+				PlayerPalam.Instance.Defencefluctuation(_addDefence[1]);
 				Debug.Log("攻撃力は" + PlayerPalam.Instance.Defence);
 				break;
 		}

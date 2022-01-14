@@ -12,14 +12,16 @@ public class CardManager : Singleton<CardManager>
 
     private void Start()
     {
+        //カードをインベントリに追加
         inventriCards.Add(AllCards[0]);
         CardBase cb = inventriCards[inventriCards.Count-1].gameObject.GetComponent<CardBase>();
+        //CardIndexの設定
         cb.CardIndex = inventriCards.Count-1;
-        Debug.Log(cb.CardIndex);
+        Debug.Log("カードインデックスは"+cb.CardIndex);
         inventriCards.Add(AllCards[1]);
         CardBase cb2 = inventriCards[inventriCards.Count - 1].gameObject.GetComponent<CardBase>();
         cb2.CardIndex = inventriCards.Count - 1;
-        Debug.Log(cb2.CardIndex);
+        Debug.Log("カードインデックスは" + cb2.CardIndex);
     }
     public void AddCard(GameObject card)
     {

@@ -117,4 +117,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardType: "\u76D7\u307F\u898B \u52B9\u679C\u7BC4\u56F2 \uFF1A\u9060\u8DDD\u96E2"
   _cardInfo: "\u7BC4\u56F2\u5185\u306E\u6575\u304C\u6301\u3063\u3066\u3044\u308B\u30AB\u30FC\u30C9\u304C\u308F\u304B\u308B"
-  _offset: {x: 10, y: 10}
+  _offset: {x: 300, y: 0}

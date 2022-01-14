@@ -19,8 +19,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void OnPointerEnter(PointerEventData eventData)
-    {
-        
+    {       
         gm.InfoOnOf(true);
         _cardUIPanel = GameObject.FindGameObjectWithTag("CardInfoTag");
         _cardTypeText = GameObject.FindGameObjectWithTag("CardNameTag").GetComponent<Text>();
@@ -28,8 +27,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         _cardUIPanel.transform.position = eventData.position + _offset;
         _cardTypeText.text = _cardType;
         _cardInfoText.text = _cardInfo;
-
-
     }
 
     public void OnPointerExit(PointerEventData eventData)

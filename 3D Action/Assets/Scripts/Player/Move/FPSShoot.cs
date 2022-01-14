@@ -58,7 +58,6 @@ public class FPSShoot : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
-        Debug.Log(_timer);
         
         Shoot();
 
