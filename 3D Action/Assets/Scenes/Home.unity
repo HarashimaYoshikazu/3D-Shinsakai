@@ -399,7 +399,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 576723442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1870570854}
+        m_MethodName: PanelOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &576723442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870570855}
   - component: {fileID: 1870570854}
+  - component: {fileID: 1870570856}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1287,6 +1299,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870570856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870570853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc07c3db0fbafd14db780af6c9b92d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allCards:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &533993453381939879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1561,7 +1588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef4b6da8b18d04fa86916bb9f4ebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillManager: {fileID: 0}
   _skilltype: 1
   _cost: 1
   _skillName: "\u9632\u5FA1\uFF11"
@@ -1662,7 +1688,7 @@ GameObject:
   - component: {fileID: 5212113444307314707}
   - component: {fileID: 5212113444307314706}
   m_Layer: 5
-  m_Name: UIPanel
+  m_Name: CardInventoriPanel
   m_TagString: TableTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1944,7 +1970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef4b6da8b18d04fa86916bb9f4ebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillManager: {fileID: 0}
   _skilltype: 2
   _cost: 2
   _skillName: "\u653B\u6483\uFF12"
@@ -2184,7 +2209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5212113444801856844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,7 +2607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef4b6da8b18d04fa86916bb9f4ebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillManager: {fileID: 0}
   _skilltype: 0
   _cost: 1
   _skillName: "\u653B\u6483\uFF11"
@@ -2673,7 +2697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ef4b6da8b18d04fa86916bb9f4ebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillManager: {fileID: 0}
   _skilltype: 3
   _cost: 2
   _skillName: "\u9632\u5FA1\uFF12"
