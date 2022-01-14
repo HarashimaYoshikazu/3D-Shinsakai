@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886b41a51138ffd4a9b3080533ef15c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialLife: 2
+  m_initialLife: 100
 --- !u!54 &278289439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851693620}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -939,6 +939,7 @@ MonoBehaviour:
     m_Bits: 1
   m_shootPower: 0.1
   m_shootingSfx: {fileID: 8300000, guid: b78bd30e630f413468d047c93bbc76d7, type: 3}
+  _initialFireInterval: 1
 --- !u!114 &851693628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialHP: 10
   _initialAttack: 10
+  _initialDefence: 10
   _initialGold: 10
   _initialSkillPoint: 10
 --- !u!1 &914462025 stripped
@@ -1117,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allCards:
-  - {fileID: 7032934717280550617, guid: 39b8403c07996e640b648b85d5ea9d87, type: 3}
+  - {fileID: 2103424071942662124, guid: f16849c6703017b4d9b722e58612fd47, type: 3}
   - {fileID: 2103424071942662124, guid: 1458671c4ae6ed14ea894d841b36c11c, type: 3}
 --- !u!114 &1326369839
 MonoBehaviour:
