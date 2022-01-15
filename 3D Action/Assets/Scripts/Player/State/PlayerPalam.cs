@@ -56,7 +56,7 @@ public class PlayerPalam : Singleton<PlayerPalam>
     }
     public void Goldfluctuation(int value)
     {
-        _gold += value;
+            _gold += value;
     }
     public void SkillPointfluctuation(int value)
     {
