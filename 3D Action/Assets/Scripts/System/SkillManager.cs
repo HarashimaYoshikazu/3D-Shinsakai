@@ -11,8 +11,8 @@ public enum SkillType
 	Defense1,
 	Attack2,
 	Defense2,
-	//Speed1,
-	//Speed2,
+	Speed1,
+	Speed2,
 	//Combo,
 	//Master
 };
@@ -60,6 +60,14 @@ public class SkillManager : Singleton<SkillManager>
 				PlayerPalam.Instance.Defencefluctuation(_addDefence[1]);
 				Debug.Log("攻撃力は" + PlayerPalam.Instance.Defence);
 				break;
+			case SkillType.Speed1:
+				//PlayerPalam.Instance.Defencefluctuation(_addDefence[0]);
+				Debug.Log("スピードUP1");
+				break;
+			case SkillType.Speed2:
+				//PlayerPalam.Instance.Attackfluctuation(_addAttack[1]);
+				Debug.Log("スピードUP２");
+				break;
 		}
 		SetSkillPoint(point);
 		SetText();
@@ -100,11 +108,11 @@ public class SkillManager : Singleton<SkillManager>
             return _IsSkillsLearned[(int)SkillType.Defense1];
             //　速さUP2は速さUP1を覚えていなければダメ
         }
-        //else if (type == SkillType.Speed2)
-        //{
-        //	return skills[(int)SkillType.Speed1];
-        //	//　コンボは攻撃UP2と防御２を覚えていなければダメ
-        //}
+        else if (type == SkillType.Speed2)
+        {
+            return _IsSkillsLearned[(int)SkillType.Speed1];
+            //　コンボは攻撃UP2と防御２を覚えていなければダメ
+        }
         //else if (type == SkillType.Combo)
         //{
         //	return skills[(int)SkillType.Attack2] && skills[(int)SkillType.Defense2];
