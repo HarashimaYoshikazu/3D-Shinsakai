@@ -7,6 +7,8 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField, Tooltip("表示するテキスト")]
     Text _text;
+    [SerializeField, Tooltip("売るカードを表示するPanel")]
+    GameObject _sellPanel;
 
     private void Start()
     {
@@ -31,5 +33,10 @@ public class ShopManager : MonoBehaviour
             _text.text =card.name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
         }
 
+    }
+
+    public void SellCard()
+    {
+        _sellPanel.SetActive(true);
     }
 }
