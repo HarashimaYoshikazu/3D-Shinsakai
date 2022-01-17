@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class CardBase : MonoBehaviour
 {
-    [SerializeField] new string name;
+    protected string _name;
     int _cardIndex;
 
     public int CardIndex { get => _cardIndex; set => _cardIndex = value; }
+    public string Name { get => _name; set => _name = value; }
 
     public virtual void Execute()
     {

@@ -30,7 +30,8 @@ public class ShopManager : MonoBehaviour
             //取得したインデックスのカードを追加する
             GameObject card = CardManager.Instance.AllCards[ran];
             CardManager.Instance.AddCard(card);
-            _text.text =card.name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
+            CardBase cardBase = card.GetComponent<CardBase>();
+            _text.text =cardBase.Name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
         }
 
     }
