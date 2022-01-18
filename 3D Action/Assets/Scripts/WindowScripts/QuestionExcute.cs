@@ -24,7 +24,7 @@ public class QuestionExcute : MonoBehaviour
         CardBase cb = _playingcard.gameObject.GetComponent<CardBase>();
         cb.Execute();
         _questionPanel.SetActive(false);
-        _gameManager.PanelOf();
+        _gameManager.CardPanelOf();
         CardManager.Instance.RemoveAtCard(cb.CardIndex);
         Destroy(_playingcard);
         _yes.SetActive(false);

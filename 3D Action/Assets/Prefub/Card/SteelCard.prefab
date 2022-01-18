@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9042321110068739805}
   - component: {fileID: 6678840449039296683}
   m_Layer: 0
-  m_Name: test1
+  m_Name: SteelCard
   m_TagString: CardTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56104afe64e0974ba6f48e49cf88bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: test1
+  _name: "\u76D7\u307F\u898B"
 --- !u!222 &9064392113494584712
 CanvasRenderer:
   m_ObjectHideFlags: 0

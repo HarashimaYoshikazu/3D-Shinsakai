@@ -10,9 +10,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField, Tooltip("売るカードを表示するPanel")]
     GameObject _sellPanel;
 
-    private void Start()
+    private void OnEnable()
     {
-        _text.text = "いらっしゃいませ！\n 所持ゴールド："+ PlayerPalam.Instance.Gold;
+        _text.text = "いらっしゃいませ！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
     }
     /// <summary>お金を減らしてインベントリにカードを追加する関数</summary>
     /// <param name="value">購入に必要なお金</param>

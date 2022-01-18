@@ -16,18 +16,20 @@ public class PlayerHPBar : Singleton<PlayerHPBar>
         _hpbar.value = PlayerPalam.Instance.HP;
     }
 
-    void Update()
+    /// <summary>
+    /// HPが変化した際に、実際にSliderに可視表示する関数
+    /// </summary>
+    public void HPbarfluctuation()
     {
+        if (_hpbar)
+        {
+            _hpbar.value = PlayerPalam.Instance.HP;
+        }
         
-    }
-    public void HPbarfluctuation(int value)
-    {
-        PlayerPalam.Instance.HPfluctuation(value);
-        _hpbar.value = PlayerPalam.Instance.HP;
     }
 
     public void TestHpHerasu(int dmg)
     {
-        HPbarfluctuation(dmg);
+        PlayerPalam.Instance.HPfluctuation(dmg);
     }
 }

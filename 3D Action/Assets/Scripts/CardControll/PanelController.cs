@@ -5,7 +5,7 @@ using UnityEngine;
 public class PanelController : MonoBehaviour
 {
     [SerializeField,Tooltip("カードを管理するパネル")] 
-    GameObject m_playerUI;
+    GameObject _cardPanel;
     [SerializeField, Tooltip("スキルツリーを表示するパネル")]
     GameObject _SkillPanel;
     [SerializeField, Tooltip("プレイヤーを操作するクラス")] 
@@ -13,9 +13,6 @@ public class PanelController : MonoBehaviour
     [SerializeField, Tooltip("カード情報を表示するパネル")] 
     GameObject _cardInfo;
 
-    /// <summary>/// パネルが表示されているかどうかのフラグ/// </summary>
-    bool isPanel = false;
-    bool isSkillPanel = false;
     [SerializeField] bool isHome = false;
 
     void Update()
@@ -28,47 +25,52 @@ public class PanelController : MonoBehaviour
 
     void InputButton()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isPanel)
+        if (Input.GetKeyDown(KeyCode.Tab) && !_cardPanel)
         {
-            PanelOn();
+            CardPanelOn();
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && isPanel)
+        else if (Input.GetKeyDown(KeyCode.Tab) && _cardPanel)
         {
-            PanelOf();
+            CardPanelOf();
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !isSkillPanel)
+        if (Input.GetKeyDown(KeyCode.Q) && !_SkillPanel)
         {
             SkillTreeOn(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && isSkillPanel)
+        else if (Input.GetKeyDown(KeyCode.Q) && _SkillPanel)
         {
             SkillTreeOn(false);
         }
     }
 
-    public void PanelOn()
+    /// <summary>
+    /// インベントリパネルを表示させる関数
+    /// </summary>
+    public void CardPanelOn()
     {
-        m_playerUI.SetActive(true);
-        isPanel = true;
-        if (_playercon)
-        {
-            _playercon.enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }        
+        //カードのSetActiveをtrueにする
+        _cardPanel.SetActive(true);
+
+        _playercon.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;        
 
     }
 
-    public void PanelOf()
+    /// <summary>
+    /// インベントリパネルを非表示にする関数
+    /// </summary>
+    public void CardPanelOf()
     {
-        m_playerUI.SetActive(false);
-        isPanel = false;
-        if (_playercon)
-        {
-            _playercon.enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        //カードのパネルを表示
+        _cardPanel.SetActive(false);
+
+        //操作を受け付けるように
+        _playercon.enabled = true;
+
+        //カーソルを表示しないように
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void InfoOnOf(bool isActive)
@@ -80,7 +82,6 @@ public class PanelController : MonoBehaviour
         _SkillPanel.SetActive(isactive);
         if (isactive)
         {
-            isSkillPanel = true;
             if (_playercon)
             {
                 _playercon.enabled = false;
@@ -90,7 +91,6 @@ public class PanelController : MonoBehaviour
         }
         else
         {
-            isSkillPanel = false;
             if (_playercon)
             {
                 _playercon.enabled = true;

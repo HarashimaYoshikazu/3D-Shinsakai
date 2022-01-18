@@ -45,6 +45,11 @@ public class PlayerPalam : Singleton<PlayerPalam>
     public void HPfluctuation(int value)
     {
         _hp += value;
+        if (PlayerHPBar.Instance)
+        {
+            PlayerHPBar.Instance.HPbarfluctuation();
+        }
+
     }
     public void Attackfluctuation(int value)
     {
