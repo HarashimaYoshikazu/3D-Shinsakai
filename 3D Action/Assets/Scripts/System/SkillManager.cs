@@ -34,7 +34,6 @@ public class SkillManager : Singleton<SkillManager>
 	{
 		//　スキル数分の配列を確保
 		_IsSkillsLearned = new bool[_skillParams.Length];
-		SetText();
 		//PlayerStateManagerBotu.SkillPoint = _skillPoint;
 	}
 
@@ -133,7 +132,7 @@ public class SkillManager : Singleton<SkillManager>
 		}
 	}
 
-	void SetText()
+	public void SetText()
 	{
 		skillText.text = "スキルポイント：" + PlayerPalam.Instance.SkillPoint;
 	}
