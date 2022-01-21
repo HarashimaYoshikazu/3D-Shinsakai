@@ -53,7 +53,7 @@ public class Unit : MonoBehaviour
         //CardBaseに現在のIndexを保存しておく
         CardBase cb = CardManager.Instance.InventriCards[CardManager.Instance.InventriCards.Count - 1].gameObject.GetComponent<CardBase>();
         //カードインデックスの設定
-        cb.CardIndex = CardManager.Instance.InventriCards.Count - 1;
+        //cb.CardIndex = CardManager.Instance.InventriCards.Count - 1;
         Debug.Log("カードインデックスは" + cb.CardIndex);
         //お金、経験値を追加
         PlayerPalam.Instance.Goldfluctuation(_getGold) ;

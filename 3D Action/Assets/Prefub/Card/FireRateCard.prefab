@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\u767A\u5C04\u901F\u5EA6UP"
+  _cardPrice: 8
+  _inventoryPanelTag: Inventory
+  _sellCardTag: SellCardPanel
   Intervalfluctuation: -0.5
 --- !u!114 &-348980422912551914
 MonoBehaviour:

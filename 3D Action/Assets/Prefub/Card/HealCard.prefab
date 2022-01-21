@@ -55,6 +55,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\u56DE\u5FA9"
+  _cardPrice: 5
+  _inventoryPanelTag: Inventory
+  _sellCardTag: SellCardPanel
 --- !u!222 &6951870442676158861
 CanvasRenderer:
   m_ObjectHideFlags: 0

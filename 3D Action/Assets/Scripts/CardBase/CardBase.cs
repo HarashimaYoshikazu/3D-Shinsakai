@@ -11,6 +11,14 @@ public class CardBase : MonoBehaviour
     /// <summary>カードがインベントリの何番目にあるかを表した番号</summary>
     int _cardIndex;
 
+    [SerializeField,Tooltip("カードの買値、正の値")]
+    int _cardPrice;
+
+    [SerializeField,Tooltip("出撃時のインベントリパネルのタグ")] 
+    string _inventoryPanelTag = "Inventory";
+    [SerializeField,Tooltip("カードを売る際に表示されるインベントリパネルのタグ")]
+    string _sellCardTag = "SellCardPanel";
+
     public int CardIndex { get => _cardIndex; set => _cardIndex = value; }
     public string Name { get => _name; set => _name = value; }
 
@@ -27,6 +35,14 @@ public class CardBase : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
-        Execute();
+        if (this.transform.parent.gameObject.tag ==_inventoryPanelTag)
+        {
+            Execute();
+        }
+        else if (this.transform.parent.gameObject.tag == _sellCardTag)
+        {
+            ShopManager.Instance.SellCard(_cardIndex,_cardPrice/2,this.gameObject);
+        }
+        
     }
 }
