@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMesh: {fileID: 278289444}
-  _player: {fileID: 0}
+  _attackDistance: 0

@@ -7,16 +7,10 @@ public class FPSPlayerMove : MonoBehaviour
     /// <summary>動く速さ</summary>
     [SerializeField] float _movingSpeed = 5f;
 
-    Rigidbody _rb;
+    [SerializeField]Rigidbody _rb;
     /// <summary>キャラクターの Animator</summary>
     [SerializeField] Animator _anim;
 
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // 方向の入力を取得し、方向を求める

@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movingSpeed: 5
+  _rb: {fileID: 851693626}
   _anim: {fileID: 0}
 --- !u!54 &851693626
 Rigidbody:
@@ -1234,6 +1235,7 @@ MonoBehaviour:
   - {fileID: 203739919}
   - {fileID: 1168130024}
   _interval: 3
+  _enemyLimit: 2
 --- !u!4 &1958286227
 Transform:
   m_ObjectHideFlags: 0
@@ -4256,6 +4258,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 851693624}
+    - target: {fileID: 278289445, guid: 8e7feb857fa12df4fa2b3042958f62b9, type: 3}
+      propertyPath: _attackDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8378657082363577296, guid: 8e7feb857fa12df4fa2b3042958f62b9,
         type: 3}
       propertyPath: m_Name

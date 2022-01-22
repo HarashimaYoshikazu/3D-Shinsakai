@@ -37,14 +37,16 @@ public class Unit : MonoBehaviour
         _life -= damage;
         if (_life < 1)
         {
-            Destroy(gameObject);
             Dead();
+            Destroy(gameObject);
         }
     }
 
     void Dead()
     {
-        
+        //敵を倒したとき用の関数を呼ぶ
+        EnemyGenerator.Instance.OnDeadEnemy();
+
         //インベントリにランダムなカードを追加
         CardManager.Instance.AddCard(_dropCard);
 
@@ -52,9 +54,6 @@ public class Unit : MonoBehaviour
         PlayerPalam.Instance.Goldfluctuation(_getGold) ;
         PlayerPalam.Instance.SkillPointfluctuation(_getSkillPoint);
         //死ぬアニメーションを再生 
-        Debug.Log("しんだ");
-        Debug.Log($"カード：{CardManager.Instance.InventriCards[CardManager.Instance.InventriCards.Count - 1]}");
-        Debug.Log($"お金：{PlayerPalam.Instance.Gold}");
-        Debug.Log($"スキルポイント：{PlayerPalam.Instance.SkillPoint}");
+
     }
 }
