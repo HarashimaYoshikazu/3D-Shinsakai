@@ -11,6 +11,8 @@ public class EnemyMoveController : MonoBehaviour
     /// <summary>プレイヤーとの距離を保持しておく変数</summary>
     Vector3 _playerPosition;
 
+    [SerializeField,Tooltip("プレイヤーに向かって移動し始めるまでの距離")]
+    float _enemyVisibleDistance;
     [SerializeField, Tooltip("攻撃が開始されるプレイヤーとの距離")]
     float _attackDistance;
 
@@ -29,6 +31,11 @@ public class EnemyMoveController : MonoBehaviour
     /// </summary>
     void MoveToPlayer()
     {
+        float distance = Vector3.Distance(this.transform.position, PlayerPalam.Instance.transform.position);
+        if (_enemyVisibleDistance>distance)
+        {
+
+        }
         _navMesh.SetDestination(PlayerPalam.Instance.transform.position);
     }
 
