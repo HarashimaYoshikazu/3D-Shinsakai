@@ -25,11 +25,11 @@ public class PanelController : MonoBehaviour
 
     void InputButton()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !_cardPanel)
+        if (Input.GetKeyDown(KeyCode.Tab) && !_cardPanel.gameObject.activeSelf)
         {
             CardPanelOn();
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && _cardPanel)
+        else if (Input.GetKeyDown(KeyCode.Tab) && _cardPanel.gameObject.activeSelf)
         {
             CardPanelOf();
         }

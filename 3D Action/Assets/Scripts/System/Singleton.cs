@@ -4,17 +4,17 @@ using UnityEngine;
 /// <summary>
 /// 継承する事でシングトン化するクラス
 /// </summary>
-/// <typeparam name="TOwer">シングトン化させたいクラス</typeparam>
-public class Singleton<TOwer> : MonoBehaviour where TOwer : Singleton<TOwer>
+/// <typeparam name="T">シングトン化させたいクラス</typeparam>
+public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    public static TOwer Instance { get; private set; } = null;
+    public static T Instance { get; private set; } = null;
     public bool IsAlive => Instance != null;
 
     private void Awake()
     {
         if (!IsAlive)
         {
-            Instance = this as TOwer;
+            Instance = this as T;
             OnAwake();
             return;
         }

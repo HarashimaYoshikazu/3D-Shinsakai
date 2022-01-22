@@ -3,37 +3,38 @@
 public class FPSShoot : MonoBehaviour
 {
     [SerializeField,Tooltip("FPS のカメラ")]
-    Camera m_mainCamera;
+    Camera _mainCamera;
 
     [SerializeField, Tooltip("照準となる UI オブジェクト")] 
-    UnityEngine.UI.Image m_crosshair;  
+    UnityEngine.UI.Image _crosshair;  
 
     [SerializeField, Tooltip("照準に敵を捕らえていない時の色")] 
-    Color m_noTarget = Color.white;
+    Color _noTarget = Color.white;
 
     [SerializeField, Tooltip("照準に敵を捕らえている時の色")] 
-    Color m_onTarget = Color.red;
+    Color _onTarget = Color.red;
 
     [SerializeField, Range(1, 200), Tooltip("射撃可能距離")]
-    float m_shootRange = 10f;
+    float _shootRange = 10f;
 
     [SerializeField, Tooltip("照準の Ray が当たる Layer")]
-    LayerMask m_shootingLayer;
+    LayerMask _shootingLayer;
 
     /// <summary>攻撃したらダメージを与えられる対象</summary>
-    DamageableController m_target;
+    Unit _target;
 
     [SerializeField, Tooltip("攻撃した時に加える力のスカラー量")] 
-    float m_shootPower = 50f;
+    float _shootPower = 50f;
 
     [SerializeField, Tooltip("射撃音")]
-    AudioClip m_shootingSfx;
+    AudioClip _shootingSfx;
 
-    [SerializeField, Range(0f,5f), Tooltip("射撃のインターバル")]
+    [SerializeField, Range(0f,5f), Tooltip("初期の射撃インターバル")]
     float _initialFireInterval = 0.5f;
 
-    static float _fireInterval ;
-    public static float FireInterval => _fireInterval;
+    /// <summary>現在の射撃インターバル</summary>
+    float _fireInterval ;
+    public float FireInterval => _fireInterval;
 
    /// <summary>インターバルを計測するタイマー</summary>
     float _timer = 0;
@@ -45,10 +46,10 @@ public class FPSShoot : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (!m_mainCamera)
+        if (!_mainCamera)
         {
-            m_mainCamera = Camera.main;
-            if (!m_mainCamera)
+            _mainCamera = Camera.main;
+            if (!_mainCamera)
             {
                 Debug.LogError("Main Camera is not found.");
             }
@@ -73,62 +74,62 @@ public class FPSShoot : MonoBehaviour
 
     /// <summary>
     /// 照準を操作する
-    /// 照準にダメージを与えられる対象がいる場合に照準の色を変え、その対象を m_target に保存する
+    /// 照準にダメージを与えられる対象がいる場合に照準の色を変え、その対象を _target に保存する
     /// </summary>
     void Aim()
     {
-        Ray ray = m_mainCamera.ScreenPointToRay(m_crosshair.rectTransform.position);
+        Ray ray = _mainCamera.ScreenPointToRay(_crosshair.rectTransform.position);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, m_shootRange, m_shootingLayer))
+        if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
         {
-            m_target = hit.collider.GetComponent<DamageableController>();
+            _target = hit.collider.GetComponent<Unit>();
 
-            if (m_target)
+            if (_target)
             {
-                m_crosshair.color = m_onTarget;
+                _crosshair.color = _onTarget;
             }
             else
             {
-                m_crosshair.color = m_noTarget;
+                _crosshair.color = _noTarget;
             }
         }
         else
         {
-            m_target = null;
-            m_crosshair.color = m_noTarget;
+            _target = null;
+            _crosshair.color = _noTarget;
         }
     }
 
     /// <summary>
-    /// 敵を撃つ
+    /// 敵を撃つ関数
     /// </summary>
     private void Shoot()
     {
         if (Input.GetButton("Fire1") && _timer >= _fireInterval)
         {
-            if (m_shootingSfx)
+            if (_shootingSfx)
             {
-                AudioSource.PlayClipAtPoint(m_shootingSfx, this.transform.position);
+                AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);
             }
-            if (m_target)
+            if (_target)
             {   
-                m_target.Damage(1);
+                _target.Damage(1);
 
-                Rigidbody rb = m_target.GetComponent<Rigidbody>();
+                Rigidbody rb = _target.GetComponent<Rigidbody>();
                 if (rb)
                 {
                     // 斜め上方向に力を加える
-                    Vector3 dir = m_target.transform.position - this.transform.position;
+                    Vector3 dir = _target.transform.position - this.transform.position;
                     dir.y = 0;
                     dir = (dir.normalized + Vector3.up).normalized;
-                    rb.AddForce(dir * m_shootPower, ForceMode.Impulse);
+                    rb.AddForce(dir * _shootPower, ForceMode.Impulse);
                 }
             }
             _timer = 0f;
         }       
     }
-    static public void FireIntervalfluctuation(float value)
+    public void FireIntervalfluctuation(float value)
     {
         if(_fireInterval + value >= 0)
         {
@@ -137,7 +138,7 @@ public class FPSShoot : MonoBehaviour
         else
         {
             _fireInterval = 0.1f;
-        }
-        
+        }        
     }
+
 }

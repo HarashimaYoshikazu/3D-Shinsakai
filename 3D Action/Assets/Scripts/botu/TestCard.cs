@@ -24,7 +24,7 @@ public class TestCard : CardBase
         if (ColiderGet.Nearbyobject.gameObject.tag =="enemy")
         {
             colget.GetEnemy();
-            GameObject drop = ColiderGet.Nearbyobject.gameObject.GetComponent<Unit>().DropCard;
+            //GameObject drop = ColiderGet.Nearbyobject.gameObject.GetComponent<Unit>().DropCard;
             FieldPanelScript fieldpanel = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FieldPanelScript>();
             fieldpanel.FieldPanelOn();
             fieldpanel.FieldText($"敵は{name}を持っている！");

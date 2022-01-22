@@ -11,11 +11,13 @@ public class CardManager : Singleton<CardManager>
     public List<GameObject> InventriCards => _inventriCards;
     public GameObject[] AllCards { get => _allCards; set => _allCards = value; }
 
-    private void Start()
+    protected override void OnAwake()
     {
         AddCard(_allCards[0]);
         AddCard(_allCards[1]);
+        Debug.Log($"fromCardManagerカウント{InventriCards.Count}");
     }
+
     public void AddCard(GameObject card)
     {
         //カードを追加

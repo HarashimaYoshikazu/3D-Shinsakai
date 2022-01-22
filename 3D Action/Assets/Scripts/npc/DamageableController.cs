@@ -8,13 +8,13 @@ using UnityEngine;
 public class DamageableController : MonoBehaviour
 {
     /// <summary>初期ライフ</summary>
-    [SerializeField, Range(1, 99999)] int m_initialLife = 5000;
+    [SerializeField, Range(1, 99999)] int _initialLife = 5000;
     /// <summary>現在のライフ</summary>
-    int m_life;
+    int _life;
 
     private void Start()
     {
-        m_life = m_initialLife;
+        _life = _initialLife;
     }
 
     /// <summary>
@@ -23,8 +23,8 @@ public class DamageableController : MonoBehaviour
     /// <param name="damage">ダメージ量</param>
     public void Damage(int damage)
     {
-        m_life -= damage;
-        if (m_life < 1)
+        _life -= damage;
+        if (_life < 1)
         {
             Destroy(gameObject);
         }
