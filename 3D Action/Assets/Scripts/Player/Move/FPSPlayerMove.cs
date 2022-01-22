@@ -6,12 +6,7 @@ public class FPSPlayerMove : MonoBehaviour
 {
     /// <summary>動く速さ</summary>
     [SerializeField] float _movingSpeed = 5f;
-    /// <summary>ターンの速さ</summary>
-    [SerializeField] float _turnSpeed = 3f;
-    /// <summary>ジャンプ力</summary>
-    [SerializeField] float _jumpPower = 5f;
-    /// <summary>接地判定の際、足元からどれくらいの距離を「接地している」と判定するかの長さ</summary>
-    [SerializeField] float _isGroundedLength = 0.2f;
+
     Rigidbody _rb;
     /// <summary>キャラクターの Animator</summary>
     [SerializeField] Animator _anim;

@@ -9,16 +9,12 @@ public class PlayerController : MonoBehaviour, IMatchTarget
     [SerializeField] float _moveSpeed = 1;
     [SerializeField] float _dushSpeed = 3;
     float _walkSpeed;
-    [SerializeField] float _jumpSpeed = 3;
-    [SerializeField] float _attackMovePower = 2f;
     [SerializeField] float _damptime = 0.1f;
     Rigidbody _rb = default;
-    bool _isGrounded = true;
     bool _isMove = true;
     Animator _anim = default;
 
     //[SerializeField] Transform _target;
-    Collider _targetCollider ;
 
     [SerializeField] Transform player;
     [SerializeField] Transform eye;
@@ -28,7 +24,7 @@ public class PlayerController : MonoBehaviour, IMatchTarget
 
     [SerializeField] ColiderGet _coliderGet;
 
-    bool isAttack = false;
+    //bool isAttack = false;
     static bool isFire = false;
 
 
@@ -117,7 +113,7 @@ public class PlayerController : MonoBehaviour, IMatchTarget
             _coliderGet.GetEnemy();
             //攻撃のトリガー
             _anim.SetTrigger("Punching");
-            isAttack = true;
+            //isAttack = true;
         }
         //damptimeを追加すると滑らかに
 
@@ -149,7 +145,7 @@ public class PlayerController : MonoBehaviour, IMatchTarget
     }
     void AttackEnd()
     {
-        isAttack = false;
+        //isAttack = false;
     }
     /// <summary>
     /// プレイヤーの入力を受け付けなくする、Idolのアニメーションの再生

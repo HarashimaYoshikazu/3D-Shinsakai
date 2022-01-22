@@ -11,16 +11,12 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
 
     /// <summary>このオブジェクトの Rect Transform</summary>
     RectTransform m_rectTransform = default;
-    /// <summary>デッキの外に置けるかどうかの設定</summary>
-    [SerializeField] bool m_canPutOutOfDeck = false;
     /// <summary>動かす前に所属していたデッキ</summary>
     Transform m_originDeck = default;
     GameObject m_parentPanel = null;
     IsPanelScript isPanelScript;
     GameObject _GUIPanel;
     PanelController _panelController;
-
-    bool isPanel = false;
 
     void Start()
     {

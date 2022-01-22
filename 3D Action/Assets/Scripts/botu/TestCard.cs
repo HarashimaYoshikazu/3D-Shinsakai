@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class TestCard : CardBase
 {
-    string ms = "testcard１です";
     FieldPanelScript _fp;
 
     // Start is called before the first frame update

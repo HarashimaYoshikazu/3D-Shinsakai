@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealCard : CardBase
 {
-    string ms2 = "testcard２です";
     public override void Execute()
     {
         PlayerPalam.Instance.HPfluctuation(5);

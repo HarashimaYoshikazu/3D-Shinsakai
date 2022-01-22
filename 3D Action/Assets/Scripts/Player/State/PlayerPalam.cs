@@ -15,6 +15,8 @@ public class PlayerPalam : Singleton<PlayerPalam>
     ///<summary>初期スキルポイント</summary>
     [SerializeField, Range(1, 100)] int _initialSkillPoint = 10;
 
+    ///<summary>現在のレベル</summary>
+    int _level;
     ///<summary>現在のHP</summary>
     int _hp;
     ///<summary>現在の攻撃力</summary>
@@ -34,7 +36,6 @@ public class PlayerPalam : Singleton<PlayerPalam>
 
     protected override void OnAwake()
     {
-        Debug.Log("HP初期化");
         _hp = _initialHP;
         _at = _initialAttack;
         _def = _initialDefence;
@@ -53,7 +54,7 @@ public class PlayerPalam : Singleton<PlayerPalam>
     }
     public void Attackfluctuation(int value)
     {
-        _at += value;
+        _at += value; 
     }
     public void Defencefluctuation(int value)
     {
@@ -61,7 +62,7 @@ public class PlayerPalam : Singleton<PlayerPalam>
     }
     public void Goldfluctuation(int value)
     {
-            _gold += value;
+       _gold += value;
     }
     public void SkillPointfluctuation(int value)
     {

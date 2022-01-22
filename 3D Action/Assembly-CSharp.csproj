@@ -76,7 +76,6 @@
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />
     <Compile Include="Assets\Scripts\System\EventAction.cs" />
-    <Compile Include="Assets\Scripts\System\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\System\ShopManager.cs" />
     <Compile Include="Assets\Scripts\System\Singleton.cs" />
@@ -106,6 +105,7 @@
     <Compile Include="Assets\Scripts\botu\Unit.cs" />
     <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\NpcManager.cs" />
+    <None Include="Assets\csv\LevelUpTable.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
