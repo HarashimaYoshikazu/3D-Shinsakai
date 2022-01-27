@@ -31,12 +31,12 @@ public class EnemyMoveController : MonoBehaviour
     /// </summary>
     void MoveToPlayer()
     {
+        //このオブジェクトとプレイヤーの距離
         float distance = Vector3.Distance(this.transform.position, PlayerPalam.Instance.transform.position);
         if (_enemyVisibleDistance>distance)
         {
-
+            _navMesh.SetDestination(PlayerPalam.Instance.transform.position);
         }
-        _navMesh.SetDestination(PlayerPalam.Instance.transform.position);
     }
 
     void Attack()

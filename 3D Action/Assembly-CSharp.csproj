@@ -86,10 +86,12 @@
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardControll\PanelController.cs" />
     <Compile Include="Assets\Scripts\CardControll\ResetButtonController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyGenerator.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMoveController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Unit.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />
-    <Compile Include="Assets\Scripts\System\EventAction.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\System\ShopManager.cs" />
@@ -104,12 +106,10 @@
     <Compile Include="Assets\Scripts\WindowScripts\QuestionExcute.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
-    <Compile Include="Assets\Scripts\botu\CardDebug.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerHPBar.cs" />
-    <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
-    <Compile Include="Assets\Scripts\npc\EnemyGenerator.cs" />
-    <Compile Include="Assets\Scripts\npc\EnemyMoveController.cs" />
-    <Compile Include="Assets\Scripts\npc\Unit.cs" />
+    <Compile Include="Assets\Scripts\_Else\CardDebug.cs" />
+    <Compile Include="Assets\Scripts\_Else\DamageableController.cs" />
+    <Compile Include="Assets\Scripts\_Else\EventAction.cs" />
+    <Compile Include="Assets\Scripts\_Else\PlayerHPBar.cs" />
     <None Include="Assets\Plug-ins\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
