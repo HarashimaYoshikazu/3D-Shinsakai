@@ -16,12 +16,19 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
 
     /// <summary>生成間隔を計るためのタイマー</summary>
     float _timer = 0f;
-    /// <summary>現在の敵の数</summary>
-    int _enemyCount;
+    /// <summary>現在の敵が入っているリスト</summary>
+    List<GameObject> _enemies = new List<GameObject>();
+
+    /// <summary>現在の敵が入っているリスト</summary>
+    bool _generetorOperation = true;
 
     private void Update()
     {
-        Genarate();
+        if (_generetorOperation)
+        {
+            Genarate();
+        }
+        Debug.Log( "敵の数"+_enemies.Count); ;
     }
 
     /// <summary>
@@ -31,28 +38,41 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
     {
         _timer += Time.deltaTime;
         //タイムインターバルを過ぎ、敵の数が上限に達していなかったら
-        if (_interval<_timer && _enemyCount<_enemyLimit)
+        if (_interval<_timer && _enemies.Count<_enemyLimit)
         {
             //敵プレハブとスポーンポジションの配列のランダムなインデックスの値を取得
             int PrefubValue = Random.Range(0,_enemyPrefubs.Length);
             int PosValue = Random.Range(0,_enemyGeneratePositions.Length);
             //タイマーをリセット
             _timer = 0f;
-            //敵をランダムな場所にインスタンス
-            Instantiate(_enemyPrefubs[PrefubValue],_enemyGeneratePositions[PosValue]);
-            //敵のカウントを増やす
-            _enemyCount++;
+            //敵をランダムな場所にインスタンスしてリストに格納
+            _enemies.Add(Instantiate(_enemyPrefubs[PrefubValue],_enemyGeneratePositions[PosValue]));
         }
     }
 
     /// <summary>
     /// 敵を倒したときの処理
     /// </summary>
-    public void OnDeadEnemy()
+    /// <param name="enemy">敵</param>
+    public void OnDeadEnemy(GameObject enemy)
     {
         //タイマーをリセット
         _timer = 0f;
-        //敵のカウントを減らす
-        _enemyCount--;
+        //該当の敵をリストから消す
+        _enemies.Remove(enemy);
+    }
+
+    /// <summary>
+    /// ゲーム終了時の処理
+    /// </summary>
+    public void StopGenerator()
+    {
+        //生成をやめる
+        _generetorOperation = false;
+        //敵を消す
+        foreach (var i in _enemies)
+        {
+            Destroy(i);
+        }
     }
 }

@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour
     void Dead()
     {
         //敵を倒したとき用の関数を呼ぶ
-        EnemyGenerator.Instance.OnDeadEnemy();
+        EnemyGenerator.Instance.OnDeadEnemy(this.gameObject);
 
         //インベントリにランダムなカードを追加
         CardManager.Instance.AddCard(_dropCard);

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d569ba78c6d0784a96f7be953c6cab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialLife: 3
+  _initialLife: 1
   _getGold: 5
   _getSkillPoint: 2
 --- !u!195 &2935698885366938193

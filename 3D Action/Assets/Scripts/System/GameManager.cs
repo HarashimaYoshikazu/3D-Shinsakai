@@ -27,11 +27,13 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// ステージをクリアしたときの処理を行う関数
     /// </summary>
-    void EndStage()
+    public void EndStage()
     {
         //リザルトパネルを表示
         _resaultPanel.SetActive(true);
         SetResultText();
+        //ジェネレーター止める
+        EnemyGenerator.Instance.StopGenerator();
     }
 
     /// <summary>
@@ -58,8 +60,17 @@ public class GameManager : Singleton<GameManager>
     {
         if (_resultText)
         {
-            _resultText.text = $"今回の探索で・・・\nゴールドを{_goldCount}手に入れた！" +
-                               $"\nカードを{_cardCount}枚手に入れた！";
+            if (FPSPlayerMove.Instance.Isend)
+            {
+                _resultText.text = $"ステージクリア！今回の探索で・・・\nゴールドを{_goldCount}手に入れた！" +
+                   $"\nカードを{_cardCount}枚手に入れた！";
+            }
+            else
+            {
+                _resultText.text = $"力尽きてしまった・・・今回の探索で・・・\nゴールドを{_goldCount}手に入れた！" +
+                   $"\nカードを{_cardCount}枚手に入れた！";
+            }
+
         }
     }
 
