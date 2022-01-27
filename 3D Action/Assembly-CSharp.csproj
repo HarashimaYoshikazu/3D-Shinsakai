@@ -104,22 +104,11 @@
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
     <Compile Include="Assets\Scripts\botu\CardDebug.cs" />
-    <Compile Include="Assets\Scripts\botu\CardPlay.cs" />
-    <Compile Include="Assets\Scripts\botu\ColiderGet.cs" />
-    <Compile Include="Assets\Scripts\botu\MatchAttackSMB.cs" />
-    <Compile Include="Assets\Scripts\botu\MouseController.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerCollider.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerDirection.cs" />
     <Compile Include="Assets\Scripts\botu\PlayerHPBar.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerMove.cs" />
-    <Compile Include="Assets\Scripts\botu\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\botu\TestCard.cs" />
-    <Compile Include="Assets\Scripts\botu\Unit.cs" />
     <Compile Include="Assets\Scripts\npc\DamageableController.cs" />
     <Compile Include="Assets\Scripts\npc\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\npc\EnemyMoveController.cs" />
+    <Compile Include="Assets\Scripts\npc\Unit.cs" />
     <None Include="Assets\Plug-ins\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
