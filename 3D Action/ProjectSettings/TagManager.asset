@@ -17,6 +17,12 @@ TagManager:
   - npc
   - Inventory
   - SellCardPanel
+  - Weapon
+  - SecondCamera
+  - BulletSpawn
+  - LevelPart
+  - Dummie
+  - End
   layers:
   - Default
   - TransparentFX

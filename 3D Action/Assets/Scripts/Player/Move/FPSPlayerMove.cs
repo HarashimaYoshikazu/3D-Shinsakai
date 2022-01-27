@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPSPlayerMove : MonoBehaviour
+public class FPSPlayerMove : Singleton<FPSPlayerMove>
 {
-    /// <summary>動く速さ</summary>
-    [SerializeField] float _movingSpeed = 5f;
+    [SerializeField, Tooltip("動く速さ")]
+    float _movingSpeed = 5f;
 
-    [SerializeField]Rigidbody _rb;
-    /// <summary>キャラクターの Animator</summary>
-    [SerializeField] Animator _anim;
+    [SerializeField, Tooltip("キャラクターの Rigidbody")]
+    Rigidbody _rb;
+
+    [SerializeField,Tooltip("キャラクターの Animator")] 
+    Animator _anim;
+
+    [SerializeField,Tooltip("ゲームクリア判定を行うためのタグ")]
+    string _tag = "End";
+
+    /// <summary>終了したかを判定するフラグ</summary>
+    bool isEnd = false;
+    public bool Isend => isEnd;
 
     void Update()
     {
@@ -35,6 +44,18 @@ public class FPSPlayerMove : MonoBehaviour
             Vector3 velo = this.transform.forward * _movingSpeed;
             velo.y = _rb.velocity.y;
             _rb.velocity = velo;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //出口のオブジェクトに入ったら
+        if (other.tag ==_tag)
+        {
+            isEnd = true; //flagをTrueに
+            //カーソル表示
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

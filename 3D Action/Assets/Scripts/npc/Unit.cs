@@ -49,9 +49,11 @@ public class Unit : MonoBehaviour
 
         //インベントリにランダムなカードを追加
         CardManager.Instance.AddCard(_dropCard);
+        GameManager.Instance.GetCardCount();
 
         //お金、経験値を追加
         PlayerPalam.Instance.Goldfluctuation(_getGold) ;
+        GameManager.Instance.GetGoldCount(_getGold);
         PlayerPalam.Instance.SkillPointfluctuation(_getSkillPoint);
         //死ぬアニメーションを再生 
 
