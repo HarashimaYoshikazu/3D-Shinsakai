@@ -20,7 +20,7 @@ public class EnemyMoveController : MonoBehaviour
 
     private void Start()
     {
-        _playerPosition = PlayerPalam.Instance.transform.position;
+        _playerPosition = FPSPlayerMove.Instance.transform.position;
     }
     void Update()
     {
@@ -33,12 +33,12 @@ public class EnemyMoveController : MonoBehaviour
     void MoveToPlayer()
     {
         //このオブジェクトとプレイヤーの距離
-        float distance = Vector3.Distance(this.transform.position, PlayerPalam.Instance.transform.position);
+        float distance = Vector3.Distance(this.transform.position, FPSPlayerMove.Instance.transform.position);
 
         //発覚範囲になったらプレイヤーに向かって動く
         if (_enemyVisibleDistance>distance)
         {
-            _navMesh.SetDestination(PlayerPalam.Instance.transform.position);
+            _navMesh.SetDestination(FPSPlayerMove.Instance.transform.position);
         }
 
         //攻撃範囲まで近づいたら攻撃を始める

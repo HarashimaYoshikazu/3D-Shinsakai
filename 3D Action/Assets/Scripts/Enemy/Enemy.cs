@@ -27,16 +27,12 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log($"カード：{CardManager.Instance.InventriCards[CardManager.Instance.InventriCards.Count - 1]}");
-        Debug.Log($"お金：{PlayerPalam.Instance.Gold}");
-      Debug.Log($"スキルポイント：{PlayerPalam.Instance.SkillPoint}");
         //HP初期化
         _life = _initialLife;
 
-        CardManager cm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<CardManager>();
         //ドロップするカードを全カードからランダムに決める
-        int ran = Random.Range(0, cm.AllCards.Length);
-        _dropCard = cm.AllCards[ran];
+        int ran = Random.Range(0, CardManager.Instance.AllCards.Length);
+        _dropCard = CardManager.Instance.AllCards[ran];
     }
     private void Update()
     {

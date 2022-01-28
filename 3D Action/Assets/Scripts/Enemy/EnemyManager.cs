@@ -30,7 +30,6 @@ public class EnemyManager : Singleton<EnemyManager>
         {
             Genarate();
         }
-        Debug.Log( "敵の数"+_enemies.Count);
     }
 
     /// <summary>

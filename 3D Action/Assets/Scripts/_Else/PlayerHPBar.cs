@@ -11,7 +11,6 @@ public class PlayerHPBar : Singleton<PlayerHPBar>
     void Start()
     {
         _hpbar = GameObject.Find("Slider").GetComponent<Slider>();
-        Debug.Log("BAR初期化");
         _hpbar.maxValue = PlayerPalam.Instance.HP;
         _hpbar.value = PlayerPalam.Instance.HP;
     }

@@ -7,8 +7,13 @@ using DG.Tweening;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void SceneChange(string name)
+    public void SceneChangeSingle(string name)
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
+    }
+
+    public void SceneChangeAddtive(string name)
+    {
+        SceneManager.LoadScene(name,LoadSceneMode.Additive);
     }
 }

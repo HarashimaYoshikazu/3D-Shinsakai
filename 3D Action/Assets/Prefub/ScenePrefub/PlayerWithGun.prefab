@@ -1109,10 +1109,10 @@ GameObject:
   - component: {fileID: 3358362246467939767}
   - component: {fileID: 3358362246467939768}
   - component: {fileID: 3358362246467939769}
-  - component: {fileID: 3358362246467939770}
   - component: {fileID: 3358362246467939771}
+  - component: {fileID: 300049171206397007}
   m_Layer: 0
-  m_Name: FPSPlayer
+  m_Name: PlayerWithGun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   _movingSpeed: 5
   _rb: {fileID: 3358362246467939768}
   _anim: {fileID: 0}
+  _tag: End
 --- !u!54 &3358362246467939768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1268,23 +1269,6 @@ MonoBehaviour:
   _shootPower: 0.01
   _shootingSfx: {fileID: 0}
   _initialFireInterval: 1
---- !u!114 &3358362246467939770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3358362246467939772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4776ce2fc821507489605a2c727f13ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialHP: 10
-  _initialAttack: 10
-  _initialDefence: 10
-  _initialGold: 10
-  _initialSkillPoint: 10
 --- !u!114 &3358362246467939771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1281,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108e84b54ca1b4d45958c9920e5da623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &300049171206397007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358362246467939772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a3714cc9cdff043bde10b9f7f13a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHP: 10
+  _initialAttack: 10
+  _initialDefence: 10
+  _initialGold: 10
+  _initialSkillPoint: 10
 --- !u!1 &3358362246521434130
 GameObject:
   m_ObjectHideFlags: 0

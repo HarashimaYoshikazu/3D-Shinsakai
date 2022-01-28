@@ -15,7 +15,6 @@ public class CardManager : Singleton<CardManager>
     {
         AddCard(_allCards[0]);
         AddCard(_allCards[1]);
-        Debug.Log($"fromCardManagerカウント{InventriCards.Count}");
     }
 
     public void AddCard(GameObject card)
@@ -24,7 +23,6 @@ public class CardManager : Singleton<CardManager>
         _inventriCards.Add(card);
         //カードインデックスの設定
         card.GetComponent<CardBase>().CardIndex = this.InventriCards.Count - 1;
-        Debug.Log("カードインデックスは"+card.GetComponent<CardBase>().CardIndex);
     }
     public void RemoveAtCard(int value)
     {

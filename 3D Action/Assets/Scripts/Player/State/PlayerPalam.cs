@@ -18,13 +18,13 @@ public class PlayerPalam : Singleton<PlayerPalam>
     ///<summary>現在のレベル</summary>
     int _level;
     ///<summary>現在のHP</summary>
-    int _hp;
+    int _hp ;
     ///<summary>現在の攻撃力</summary>
     int _at;
     ///<summary>現在の攻撃力</summary>
     int _def;
     ///<summary>現在のゴールド</summary>
-    int _gold;
+    int _gold ;
     ///<summary>現在のスキルポイント</summary>
     int _skillPoint = 0;
 
@@ -75,5 +75,10 @@ public class PlayerPalam : Singleton<PlayerPalam>
     public void SkillPointfluctuation(int value)
     {
         _skillPoint += value;
+    }
+
+    public void ResetHP()
+    {
+        _hp = _initialHP;
     }
 }

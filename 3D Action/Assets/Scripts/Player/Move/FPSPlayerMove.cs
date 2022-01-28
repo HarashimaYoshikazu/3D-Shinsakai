@@ -55,4 +55,8 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             isEnd = true; //flagをTrueに
         }
     }
+    public void ResetEnd()
+    {
+        isEnd = false;
+    }
 }

@@ -78,27 +78,31 @@ public class FPSShoot : MonoBehaviour
     /// </summary>
     void Aim()
     {
-        Ray ray = _mainCamera.ScreenPointToRay(_crosshair.rectTransform.position);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
+        if (_crosshair)
         {
-            _target = hit.collider.GetComponent<Enemy>();
+            Ray ray = _mainCamera.ScreenPointToRay(_crosshair.rectTransform.position);
+            RaycastHit hit;
 
-            if (_target)
+            if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
             {
-                _crosshair.color = _onTarget;
+                _target = hit.collider.GetComponent<Enemy>();
+
+                if (_target)
+                {
+                    _crosshair.color = _onTarget;
+                }
+                else
+                {
+                    _crosshair.color = _noTarget;
+                }
             }
             else
             {
+                _target = null;
                 _crosshair.color = _noTarget;
             }
         }
-        else
-        {
-            _target = null;
-            _crosshair.color = _noTarget;
-        }
+        
     }
 
     /// <summary>

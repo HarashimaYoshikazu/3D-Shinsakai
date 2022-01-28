@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardUI : MonoBehaviour
 {
     GameObject _cardUIPanel;
     Text _cardTypeText;
@@ -18,19 +18,19 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
          gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PanelController>();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {       
-        gm.InfoOnOf(true);
-        _cardUIPanel = GameObject.FindGameObjectWithTag("CardInfoTag");
-        _cardTypeText = GameObject.FindGameObjectWithTag("CardNameTag").GetComponent<Text>();
-        _cardInfoText = GameObject.FindGameObjectWithTag("CardKoukaTag").GetComponent<Text>();
-        _cardUIPanel.transform.position = eventData.position + _offset;
-        _cardTypeText.text = _cardType;
-        _cardInfoText.text = _cardInfo;
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{       
+    //    gm.InfoOnOf(true);
+    //    _cardUIPanel = GameObject.FindGameObjectWithTag("CardInfoTag");
+    //    _cardTypeText = GameObject.FindGameObjectWithTag("CardNameTag").GetComponent<Text>();
+    //    _cardInfoText = GameObject.FindGameObjectWithTag("CardKoukaTag").GetComponent<Text>();
+    //    _cardUIPanel.transform.position = eventData.position + _offset;
+    //    _cardTypeText.text = _cardType;
+    //    _cardInfoText.text = _cardInfo;
+    //}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        gm.InfoOnOf(false);
-    }
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    gm.InfoOnOf(false);
+    //}
 }

@@ -8,17 +8,20 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     public static T Instance { get; private set; } = null;
-    public bool IsAlive => Instance != null;
 
     private void Awake()
     {
-        if (!IsAlive)
+        if (Instance != null && Instance != this)
         {
+            Destroy(this.gameObject);
+        }
+        else 
+        {            
             Instance = this as T;
             OnAwake();
-            return;
+            DontDestroyOnLoad(gameObject);
         }
-        Destroy(this);
+        
     }
 
     /// <summary>
@@ -29,7 +32,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     private void OnDestroy()
     {
-        if (Instance != null || Instance == this)
+        if (Instance == this)
         {
             Release();
             Instance = null;

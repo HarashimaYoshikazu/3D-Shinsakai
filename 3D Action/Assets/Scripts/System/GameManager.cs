@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+
     [Header("リザルトパネル関係")]
     [SerializeField, Tooltip("テキストやボタンを子オブジェクトに持つパネル")]
     GameObject _resaultPanel;
@@ -16,9 +18,16 @@ public class GameManager : Singleton<GameManager>
     /// <summary>ダンジョン１回で手に入れたカード</summary>
     int _cardCount = 0;
 
+
     private void Update()
     {
-        if (FPSPlayerMove.Instance.Isend || PlayerPalam.Instance.HP <= 0)
+        Debug.Log($"PlayerMoveのインスタンスのフラグ{FPSPlayerMove.Instance.Isend}");
+        if (FPSPlayerMove.Instance.Isend )
+        {
+            EndStage();
+        }
+        Debug.Log($"PlayerPalamがついてるオブジェクトの名前 {PlayerPalam.Instance.name}");
+        if (PlayerPalam.Instance.HP <= 0)
         {
             EndStage();
         }
@@ -33,10 +42,17 @@ public class GameManager : Singleton<GameManager>
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         //リザルトパネルを表示
-        _resaultPanel.SetActive(true);
+        if (_resaultPanel)
+        {
+            _resaultPanel.SetActive(true);
+        }       
         SetResultText();
         //ジェネレーター止める
         EnemyManager.Instance.StopGenerator();
+
+        //HPリセット
+        PlayerPalam.Instance.ResetHP();
+        FPSPlayerMove.Instance.ResetEnd();
     }
 
     /// <summary>
