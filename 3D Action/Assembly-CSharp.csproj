@@ -86,9 +86,9 @@
     <Compile Include="Assets\Scripts\CardControll\IsPanelScript.cs" />
     <Compile Include="Assets\Scripts\CardControll\PanelController.cs" />
     <Compile Include="Assets\Scripts\CardControll\ResetButtonController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyGenerator.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMoveController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Unit.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />

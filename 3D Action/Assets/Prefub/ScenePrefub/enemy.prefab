@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMesh: {fileID: 2935698885366938193}
-  _enemyVisibleDistance: 0
+  _enemyVisibleDistance: 50
   _attackDistance: 3

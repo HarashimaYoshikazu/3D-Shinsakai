@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (FPSPlayerMove.Instance.Isend)
+        if (FPSPlayerMove.Instance.Isend || PlayerPalam.Instance.HP <= 0)
         {
             EndStage();
         }
@@ -29,11 +29,14 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void EndStage()
     {
+        //カーソル表示
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         //リザルトパネルを表示
         _resaultPanel.SetActive(true);
         SetResultText();
         //ジェネレーター止める
-        EnemyGenerator.Instance.StopGenerator();
+        EnemyManager.Instance.StopGenerator();
     }
 
     /// <summary>

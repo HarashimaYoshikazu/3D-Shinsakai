@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("エネミーの情報")]
 
@@ -18,6 +18,13 @@ public class Unit : MonoBehaviour
     /// <summary>倒すと獲得できるカード</summary>
     GameObject _dropCard;
 
+    [SerializeField, Tooltip("攻撃でプレイヤーに与えるダメージ")]
+    int _attackDamage = 2;
+    [SerializeField, Tooltip("プレイヤーにダメージを与える間隔")]
+    float _attackInterval = 2f;
+    /// <summary>攻撃間隔を計るタイマー</summary>
+    float _timer = 0f;
+
     void Start()
     {
         //Debug.Log($"カード：{CardManager.Instance.InventriCards[CardManager.Instance.InventriCards.Count - 1]}");
@@ -30,6 +37,10 @@ public class Unit : MonoBehaviour
         //ドロップするカードを全カードからランダムに決める
         int ran = Random.Range(0, cm.AllCards.Length);
         _dropCard = cm.AllCards[ran];
+    }
+    private void Update()
+    {
+        _timer += Time.deltaTime;
     }
 
     public void Damage(int damage)
@@ -45,7 +56,7 @@ public class Unit : MonoBehaviour
     void Dead()
     {
         //敵を倒したとき用の関数を呼ぶ
-        EnemyGenerator.Instance.OnDeadEnemy(this.gameObject);
+        EnemyManager.Instance.OnDeadEnemy(this.gameObject);
 
         //インベントリにランダムなカードを追加
         CardManager.Instance.AddCard(_dropCard);
@@ -57,5 +68,17 @@ public class Unit : MonoBehaviour
         PlayerPalam.Instance.SkillPointfluctuation(_getSkillPoint);
         //死ぬアニメーションを再生 
 
+    }
+
+    /// <summary>
+    /// 一定間隔ごとにプレイヤーのＨＰを減らす関数
+    /// </summary>
+    public void Attack()
+    {        
+        if (_attackInterval<_timer)
+        {
+            PlayerPalam.Instance.HPfluctuation(-(_attackDamage));
+            _timer = 0;
+        }
     }
 }

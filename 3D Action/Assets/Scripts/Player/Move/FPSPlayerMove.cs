@@ -53,9 +53,6 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
         if (other.tag ==_tag)
         {
             isEnd = true; //flagをTrueに
-            //カーソル表示
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

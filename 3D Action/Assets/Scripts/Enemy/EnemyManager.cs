@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyGenerator : Singleton<EnemyGenerator>
+/// <summary>
+/// 敵を生成、管理するクラス
+/// </summary>
+public class EnemyManager : Singleton<EnemyManager>
 {
     [SerializeField,Tooltip("敵オブジェクトのプレハブ")] 
     GameObject[] _enemyPrefubs;
@@ -19,7 +21,7 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
     /// <summary>現在の敵が入っているリスト</summary>
     List<GameObject> _enemies = new List<GameObject>();
 
-    /// <summary>現在の敵が入っているリスト</summary>
+    /// <summary>敵の生成をやめるフラグ</summary>
     bool _generetorOperation = true;
 
     private void Update()
@@ -28,7 +30,7 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
         {
             Genarate();
         }
-        Debug.Log( "敵の数"+_enemies.Count); ;
+        Debug.Log( "敵の数"+_enemies.Count);
     }
 
     /// <summary>
@@ -75,4 +77,5 @@ public class EnemyGenerator : Singleton<EnemyGenerator>
             Destroy(i);
         }
     }
+    
 }

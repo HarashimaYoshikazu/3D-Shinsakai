@@ -21,7 +21,7 @@ public class FPSShoot : MonoBehaviour
     LayerMask _shootingLayer;
 
     /// <summary>攻撃したらダメージを与えられる対象</summary>
-    Unit _target;
+    Enemy _target;
 
     [SerializeField, Tooltip("攻撃した時に加える力のスカラー量")] 
     float _shootPower = 50f;
@@ -83,7 +83,7 @@ public class FPSShoot : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
         {
-            _target = hit.collider.GetComponent<Unit>();
+            _target = hit.collider.GetComponent<Enemy>();
 
             if (_target)
             {
