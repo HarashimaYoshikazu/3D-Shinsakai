@@ -20,13 +20,10 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
     [SerializeField, Tooltip("スポーンポジション")]
     Transform _initialTransform;
 
-    /// <summary>プレイヤーが死亡したかを判定するフラグ</summary>
-    bool isAllive = true;
-    public bool IsAllive => isAllive;
 
     private void Start()
     {
-        SceneManager.sceneLoaded += ResetPos;
+        //SceneManager.sceneLoaded += ResetPos;
     }
 
     void Update()
@@ -54,13 +51,6 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             velo.y = _rb.velocity.y;
             _rb.velocity = velo;
         }
-
-        if (PlayerPalam.Instance.HP <= 0)
-        {
-            isAllive = false;
-            GameManager.Instance.Result();           
-        }
-        Debug.Log(isAllive +"HPは" +PlayerPalam.Instance.HP);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,13 +59,10 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
         if (other.tag ==_tag)
         {
             Debug.Log("おわり");
-            GameManager.Instance.Result();
+            InBattleSceneManager.Instance.Result();
         }
     }
-    public void ResetEnd()
-    {
-        isAllive = true;
-    }
+
 
     public void ResetPos(Scene scen,LoadSceneMode mode)
     {

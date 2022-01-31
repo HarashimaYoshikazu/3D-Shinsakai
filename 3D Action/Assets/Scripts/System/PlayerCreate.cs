@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCreate : Singleton<PlayerCreate>
+/// <summary>
+/// 開始時にプレイヤーを生成するクラス
+/// </summary>
+public class PlayerCreate : MonoBehaviour
 {
     [SerializeField, Tooltip("Playerのプレハブ")]
     GameObject _player;
     [SerializeField, Tooltip("Playerのスポーンポジション")]
     Transform _playerSpown;
-    
+    private void Awake()
+    {
+        //プレイヤー生成関数をイベントに登録
+        //InBattleSceneManager.Instance.OnBeginBattle += InstansPlayer;
+    }
+
     /// <summary>
     /// プレイヤーを生成する関数
     /// </summary>
-    public void InstansPlayer()
+    void InstansPlayer()
     {
         Debug.Log("Player生成");
         //Playerを生成

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HomeScript : MonoBehaviour
+public class HomeSceneManager : MonoBehaviour
 {
     [SerializeField, Tooltip("ホーム画面最初に表示するメッセージ")] 
     string _defaultMessage;
@@ -13,6 +13,10 @@ public class HomeScript : MonoBehaviour
     void Start()
     {
         HomeDefault();
+        //現在のStateをHomeに変更
+        GameManager.Instance.StateChange(State.Home);
+        //HPリセット
+        PlayerPalam.Instance.ResetHP();
     }
 
     public void HomeDefault()
