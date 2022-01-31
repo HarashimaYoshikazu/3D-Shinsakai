@@ -24,8 +24,6 @@ public class SkillManager : DDOLSingleton<SkillManager>
 	[SerializeField,Tooltip("スキルを覚えているかの試験用フラグ")] private bool[] _IsSkillsLearned;
 	//　スキル毎のパラメータ
 	[SerializeField,Tooltip("スキル")] private SkillParam[] _skillParams;
-	//　スキルポイントを表示するテキストUI(要変更)
-	[SerializeField, Tooltip("スキルポイントを表示するテキストUI")] Text skillText;
 
 	[SerializeField,Header("スキル取得"), Tooltip("攻撃力")] int[] _addAttack = new int[2];
 	[SerializeField, Tooltip("防御力")] int[] _addDefence = new int[2];
@@ -134,6 +132,6 @@ public class SkillManager : DDOLSingleton<SkillManager>
 
 	public void SetText()
 	{
-		skillText.text = "スキルポイント：" + PlayerPalam.Instance.SkillPoint;
+		HomeSceneManager.Instance.SendMessage("スキルポイント：" + PlayerPalam.Instance.SkillPoint);
 	}
 }

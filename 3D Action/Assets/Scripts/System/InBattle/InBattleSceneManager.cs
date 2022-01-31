@@ -36,11 +36,6 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     {        
         OnResult += SetResultText;
     }
-    private void Start()
-    {
-        //現在のStateをBattleに変更
-        GameManager.Instance.StateChange(State.Battle);
-    }
     private void Update()
     {
         BattleUpdate();

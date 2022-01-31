@@ -24,7 +24,7 @@ public class EnemyManager : Singleton<EnemyManager>
     /// <summary>敵の生成をやめるフラグ</summary>
     bool _generetorOperation = true;
 
-    protected override void OnAwake()
+    private void Start()
     {
         InBattleSceneManager.Instance.OnResult += StopGenerator;
     }

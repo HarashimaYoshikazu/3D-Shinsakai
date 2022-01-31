@@ -12,7 +12,7 @@ public class ShopManager : Singleton<ShopManager>
 
     private void OnEnable()
     {
-        _text.text = "いらっしゃいませ！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
+        HomeSceneManager.Instance.SetMessage("いらっしゃいませ！\n 所持ゴールド：" + PlayerPalam.Instance.Gold) ;
     }
     /// <summary>お金を減らしてインベントリにカードを追加する関数</summary>
     /// <param name="value">購入に必要なお金</param>
