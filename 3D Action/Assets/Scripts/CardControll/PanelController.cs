@@ -8,8 +8,7 @@ public class PanelController : MonoBehaviour
     GameObject _cardPanel;
     [SerializeField, Tooltip("スキルツリーを表示するパネル")]
     GameObject _SkillPanel;
-    [SerializeField, Tooltip("プレイヤーを操作するクラス")] 
-    FPSPlayerMove _playercon;
+
     [SerializeField, Tooltip("カード情報を表示するパネル")] 
     GameObject _cardInfo;
 
@@ -51,7 +50,6 @@ public class PanelController : MonoBehaviour
         //カードのSetActiveをtrueにする
         _cardPanel.SetActive(true);
 
-        _playercon.enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;        
 
@@ -66,7 +64,6 @@ public class PanelController : MonoBehaviour
         _cardPanel.SetActive(false);
 
         //操作を受け付けるように
-        _playercon.enabled = true;
 
         //カーソルを表示しないように
         Cursor.visible = false;
@@ -82,21 +79,17 @@ public class PanelController : MonoBehaviour
         _SkillPanel.SetActive(isactive);
         if (isactive)
         {
-            if (_playercon)
-            {
-                _playercon.enabled = false;
+
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-            }
+            
         }
         else
         {
-            if (_playercon)
-            {
-                _playercon.enabled = true;
+
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-            }
+            
         }
     }
 }

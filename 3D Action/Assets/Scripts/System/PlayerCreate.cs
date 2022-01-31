@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCreate : MonoBehaviour
+public class PlayerCreate : Singleton<PlayerCreate>
 {
     [SerializeField, Tooltip("Playerのプレハブ")]
     GameObject _player;
     [SerializeField, Tooltip("Playerのスポーンポジション")]
     Transform _playerSpown;
-    private void Start()
+    
+    /// <summary>
+    /// プレイヤーを生成する関数
+    /// </summary>
+    public void InstansPlayer()
     {
         Debug.Log("Player生成");
         //Playerを生成

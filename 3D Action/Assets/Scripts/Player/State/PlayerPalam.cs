@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPalam : Singleton<PlayerPalam>
+public class PlayerPalam : DDOLSingleton<PlayerPalam>
 {
     ///<summary>初期HP</summary>
     [SerializeField, Range(1, 100)] int _initialHP = 10;

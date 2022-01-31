@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Singleton<T>
+public class DDOLSingleton<T> : MonoBehaviour where T : DDOLSingleton<T>
 {
     public static T Instance { get; private set; } = null;
 
@@ -12,12 +12,13 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         {
             Destroy(this.gameObject);
         }
-        else
-        {
+        else 
+        {            
             Instance = this as T;
             OnAwake();
+            DontDestroyOnLoad(gameObject);
         }
-
+        
     }
 
     /// <summary>

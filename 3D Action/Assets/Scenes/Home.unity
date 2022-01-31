@@ -3675,7 +3675,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPanel: {fileID: 0}
   _SkillPanel: {fileID: 5212113444783720119}
-  _playercon: {fileID: 0}
   _cardInfo: {fileID: 0}
   isHome: 1
 --- !u!4 &1870570855

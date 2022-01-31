@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : Singleton<CardManager>
+public class CardManager : DDOLSingleton<CardManager>
 {
     //のちのちドロップ用とかイベント用とか色んな配列にする
     [SerializeField] GameObject[] _allCards;

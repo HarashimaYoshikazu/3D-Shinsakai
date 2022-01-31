@@ -17,7 +17,7 @@ public enum SkillType
 	//Master
 };
 
-public class SkillManager : Singleton<SkillManager>
+public class SkillManager : DDOLSingleton<SkillManager>
 {
 	//[SerializeField,Tooltip("スキルポイントの初期化値")] private int _skillPoint = 5;
 	//　スキルを覚えているかどうかのフラグ

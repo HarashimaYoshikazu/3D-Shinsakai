@@ -24,31 +24,27 @@ public class EnemyManager : Singleton<EnemyManager>
     /// <summary>敵の生成をやめるフラグ</summary>
     bool _generetorOperation = true;
 
-    private void Update()
-    {
-        if (_generetorOperation)
-        {
-            Genarate();
-        }
-    }
-
     /// <summary>
     /// 敵を生成する関数
     /// </summary>
-    void Genarate()
+    public void Genarate()
     {
-        _timer += Time.deltaTime;
-        //タイムインターバルを過ぎ、敵の数が上限に達していなかったら
-        if (_interval<_timer && _enemies.Count<_enemyLimit)
+        if (_generetorOperation)
         {
-            //敵プレハブとスポーンポジションの配列のランダムなインデックスの値を取得
-            int PrefubValue = Random.Range(0,_enemyPrefubs.Length);
-            int PosValue = Random.Range(0,_enemyGeneratePositions.Length);
-            //タイマーをリセット
-            _timer = 0f;
-            //敵をランダムな場所にインスタンスしてリストに格納
-            _enemies.Add(Instantiate(_enemyPrefubs[PrefubValue],_enemyGeneratePositions[PosValue]));
-        }
+            Debug.Log("敵生成！");
+            _timer += Time.deltaTime;
+            //タイムインターバルを過ぎ、敵の数が上限に達していなかったら
+            if (_interval < _timer && _enemies.Count < _enemyLimit)
+            {
+                //敵プレハブとスポーンポジションの配列のランダムなインデックスの値を取得
+                int PrefubValue = Random.Range(0, _enemyPrefubs.Length);
+                int PosValue = Random.Range(0, _enemyGeneratePositions.Length);
+                //タイマーをリセット
+                _timer = 0f;
+                //敵をランダムな場所にインスタンスしてリストに格納
+                _enemies.Add(Instantiate(_enemyPrefubs[PrefubValue], _enemyGeneratePositions[PosValue]));
+            }
+        }       
     }
 
     /// <summary>
