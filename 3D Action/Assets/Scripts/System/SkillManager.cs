@@ -17,28 +17,23 @@ public enum SkillType
 	//Master
 };
 
-public class SkillManager : DDOLSingleton<SkillManager>
+public class SkillManager : Singleton<SkillManager>
 {
-	//[SerializeField,Tooltip("スキルポイントの初期化値")] private int _skillPoint = 5;
-	//　スキルを覚えているかどうかのフラグ
-	[SerializeField,Tooltip("スキルを覚えているかの試験用フラグ")] private bool[] _IsSkillsLearned;
-	//　スキル毎のパラメータ
 	[SerializeField,Tooltip("スキル")] private SkillParam[] _skillParams;
+	public SkillParam[] SkillParams => _skillParams;
 
 	[SerializeField,Header("スキル取得"), Tooltip("攻撃力")] int[] _addAttack = new int[2];
 	[SerializeField, Tooltip("防御力")] int[] _addDefence = new int[2];
 
 	void Start()
-	{
-		//　スキル数分の配列を確保
-		_IsSkillsLearned = new bool[_skillParams.Length];
+	{		
 		//PlayerStateManagerBotu.SkillPoint = _skillPoint;
 	}
 
 	//　スキルを覚える
 	public void LearnSkill(SkillType type, int point)
 	{
-		_IsSkillsLearned[(int)type] = true;
+		MemorySkills.Instance._IsSkillsLearned[(int)type] = true;
         switch(type)
 		{
 			case SkillType.Attack1:
@@ -73,7 +68,7 @@ public class SkillManager : DDOLSingleton<SkillManager>
 	//　スキルを覚えているかどうかのチェック
 	public bool IsSkill(SkillType type)
 	{
-		return _IsSkillsLearned[(int)type];
+		return MemorySkills.Instance._IsSkillsLearned[(int)type];
 	}
 	//ここらへんPlayerParamと比較していらないとこ削る
 	//　スキルポイントを減らす
@@ -97,17 +92,17 @@ public class SkillManager : DDOLSingleton<SkillManager>
         //　攻撃UP2は攻撃UP1を覚えていなければダメ
         if (type == SkillType.Attack2)
         {
-            return _IsSkillsLearned[(int)SkillType.Attack1];
+            return MemorySkills.Instance._IsSkillsLearned[(int)SkillType.Attack1];
             //　防御UP2は防御UP1を覚えていなければダメ
         }
         else if (type == SkillType.Defense2)
         {
-            return _IsSkillsLearned[(int)SkillType.Defense1];
+            return MemorySkills.Instance._IsSkillsLearned[(int)SkillType.Defense1];
             //　速さUP2は速さUP1を覚えていなければダメ
         }
         else if (type == SkillType.Speed2)
         {
-            return _IsSkillsLearned[(int)SkillType.Speed1];
+            return MemorySkills.Instance._IsSkillsLearned[(int)SkillType.Speed1];
             //　コンボは攻撃UP2と防御２を覚えていなければダメ
         }
         //else if (type == SkillType.Combo)

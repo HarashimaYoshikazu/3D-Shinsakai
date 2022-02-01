@@ -17,6 +17,12 @@ public class SkillParam : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		//　もうすでにスキルを覚えていたら
+		if (SkillManager.Instance.IsSkill(_skilltype))
+		{
+			//ボタンの色変える
+			ChangeButtonColor(Color.blue);
+		}
 		//　スキルを覚えられる状態でなければボタンを無効化
 		CheckButtonOnOff();
 	}

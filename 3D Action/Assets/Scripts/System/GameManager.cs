@@ -19,6 +19,17 @@ public class GameManager : DDOLSingleton<GameManager>
 
     private void Update()
     {
+        switch (_currentState)
+        {
+            case State.Start:
+                break;
+            case State.Home:
+                break;
+            case State.Battle:
+                break;
+            case State.Result:
+                break;
+        }
     }
 
     /// <summary>
@@ -27,7 +38,25 @@ public class GameManager : DDOLSingleton<GameManager>
     /// <param name="updateState">変更後のStete</param>
     public void StateChange(State updateState)
     {
+        StateBegin();
         _currentState = updateState;
+    }
+
+    void StateBegin()
+    {
+
+        switch (_currentState)
+        {
+            case State.Start:
+                break;
+            case State.Home:
+                break;
+            case State.Battle:
+                break;
+            case State.Result:
+                break;
+        }
+
     }
 
 }
@@ -40,5 +69,6 @@ public enum State
     Start,
     Home,
     Battle,
+    Result
 }
 

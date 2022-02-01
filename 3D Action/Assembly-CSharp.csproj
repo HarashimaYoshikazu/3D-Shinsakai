@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\System\DDOLSystem.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\System\InBattle\InBattleSceneManager.cs" />
+    <Compile Include="Assets\Scripts\System\MemorySkills.cs" />
     <Compile Include="Assets\Scripts\System\PlayerCreate.cs" />
     <Compile Include="Assets\Scripts\System\PlayerPos.cs" />
     <Compile Include="Assets\Scripts\System\SceneChanger.cs" />
