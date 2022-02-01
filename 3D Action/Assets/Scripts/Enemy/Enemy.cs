@@ -31,8 +31,13 @@ public class Enemy : MonoBehaviour
         _life = _initialLife;
 
         //ドロップするカードを全カードからランダムに決める
-        int ran = Random.Range(0, CardManager.Instance.AllCards.Length);
-        _dropCard = CardManager.Instance.AllCards[ran];
+        if (CardManager.Instance)
+        {
+            int ran = Random.Range(0, CardManager.Instance.AllCards.Length);
+            _dropCard = CardManager.Instance.AllCards[ran];
+        }
+        
+       
     }
     private void Update()
     {

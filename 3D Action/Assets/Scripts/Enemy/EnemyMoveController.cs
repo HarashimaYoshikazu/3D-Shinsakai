@@ -20,11 +20,15 @@ public class EnemyMoveController : MonoBehaviour
 
     private void Start()
     {
-        _playerPosition = FPSPlayerMove.Instance.transform.position;
+            _playerPosition = FPSPlayerMove.Instance.transform.position;
+        
+        
     }
     void Update()
     {
-        MoveToPlayer();
+            MoveToPlayer();
+        
+        
     }
 
     /// <summary>
