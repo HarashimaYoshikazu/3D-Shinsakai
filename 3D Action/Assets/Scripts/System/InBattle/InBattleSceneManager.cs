@@ -75,7 +75,6 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
             _isDead = true;
             Result();
         }
-        Debug.Log(_isDead + "HPは" + PlayerPalam.Instance.HP);
     }
 
     /// <summary>

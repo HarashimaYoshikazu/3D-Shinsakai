@@ -8,5 +8,6 @@ public class HealCard : CardBase
     {
         PlayerPalam.Instance.HPfluctuation(5);
         base.Execute();
+        Debug.Log("HPは" + PlayerPalam.Instance.HP);
     }
 }

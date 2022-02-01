@@ -36,7 +36,6 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         if (_generetorOperation)
         {
-            Debug.Log("敵生成！");
             _timer += Time.deltaTime;
             //タイムインターバルを過ぎ、敵の数が上限に達していなかったら
             if (_interval < _timer && _enemies.Count < _enemyLimit)

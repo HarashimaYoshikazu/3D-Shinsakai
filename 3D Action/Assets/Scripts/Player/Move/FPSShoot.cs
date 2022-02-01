@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FPSShoot : MonoBehaviour
+public class FPSShoot : Singleton<FPSShoot>
 {
     [SerializeField,Tooltip("FPS のカメラ")]
     Camera _mainCamera;
@@ -62,8 +62,7 @@ public class FPSShoot : MonoBehaviour
         
         Shoot();
 
-        Aim();
-        
+        Aim();        
     }
 
     void OnDestroy()
@@ -133,6 +132,10 @@ public class FPSShoot : MonoBehaviour
             _timer = 0f;
         }       
     }
+    /// <summary>
+    /// ファイレートを変更する関数
+    /// </summary>
+    /// <param name="value"></param>
     public void FireIntervalfluctuation(float value)
     {
         if(_fireInterval + value >= 0)
@@ -143,6 +146,15 @@ public class FPSShoot : MonoBehaviour
         {
             _fireInterval = 0.1f;
         }        
+    }
+
+    /// <summary>
+    /// クロスヘアのSetActiveを変更する関数
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetCrosshair(bool value)
+    {
+        _crosshair.gameObject.SetActive(value);
     }
 
 }

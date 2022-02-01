@@ -27,18 +27,12 @@ public class PanelController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && !_cardPanel.gameObject.activeSelf)
         {
             CardPanelOn();
+            
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && _cardPanel.gameObject.activeSelf)
         {
             CardPanelOf();
-        }
-        if (Input.GetKeyDown(KeyCode.Q) && !_SkillPanel)
-        {
-            SkillTreeOn(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q) && _SkillPanel)
-        {
-            SkillTreeOn(false);
+            
         }
     }
 
@@ -47,6 +41,7 @@ public class PanelController : MonoBehaviour
     /// </summary>
     public void CardPanelOn()
     {
+        FPSShoot.Instance.SetCrosshair(false);
         //カードのSetActiveをtrueにする
         _cardPanel.SetActive(true);
 
@@ -60,6 +55,7 @@ public class PanelController : MonoBehaviour
     /// </summary>
     public void CardPanelOf()
     {
+        FPSShoot.Instance.SetCrosshair(true);
         //カードのパネルを表示
         _cardPanel.SetActive(false);
 
