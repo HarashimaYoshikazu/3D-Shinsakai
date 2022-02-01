@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class ShopManager : Singleton<ShopManager>
 {
-    [SerializeField, Tooltip("表示するテキスト")]
-    Text _text;
     [SerializeField, Tooltip("売るカードを表示するPanel")]
     GameObject _sellPanel;
 
     private void OnEnable()
     {
-        HomeSceneManager.Instance.SetMessage("いらっしゃいませ！\n 所持ゴールド：" + PlayerPalam.Instance.Gold) ;
+        TextManager.Instance.SetMessage("いらっしゃいませ！\n 所持ゴールド：" + PlayerPalam.Instance.Gold) ;
     }
     /// <summary>お金を減らしてインベントリにカードを追加する関数</summary>
     /// <param name="value">購入に必要なお金</param>
@@ -20,7 +18,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         if (0>PlayerPalam.Instance.Gold + value)
         {
-            _text.text = "ゴールドが足りません\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
+            TextManager.Instance.SetMessage("ゴールドが足りません\n 所持ゴールド：" + PlayerPalam.Instance.Gold);
         }
         else
         {
@@ -33,7 +31,7 @@ public class ShopManager : Singleton<ShopManager>
             //インデックスの設定
             CardBase cardBase = card.GetComponent<CardBase>();
             //cardBase.CardIndex = CardManager.Instance.InventriCards.Count - 1;
-            _text.text =cardBase.Name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold;
+            TextManager.Instance.SetMessage(cardBase.Name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold);
         }
 
     }
@@ -47,12 +45,12 @@ public class ShopManager : Singleton<ShopManager>
     {
         //削除するカードのCardManagerコンポーネントを取得
         CardBase cardBase = CardManager.Instance.InventriCards[index].GetComponent<CardBase>();
-        _text.text = $"{cardBase.Name}を{value}で売った\n 所持ゴールド：{PlayerPalam.Instance.Gold}";
+        TextManager.Instance.SetMessage($"{cardBase.Name}を{value}で売った\n 所持ゴールド：{PlayerPalam.Instance.Gold}");
         //ゴールド追加
         PlayerPalam.Instance.Goldfluctuation(value);
         //削除
         CardManager.Instance.RemoveAtCard(index);
-        GameObject.FindGameObjectWithTag("CardInfoTag").SetActive(false);
+        //GameObject.FindGameObjectWithTag("CardInfoTag").SetActive(false);
         Destroy(card);
         
     }

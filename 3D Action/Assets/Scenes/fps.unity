@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52908d40064af74885d067aeec8ca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resaultPanelPrefub: {fileID: 7684224526900914782, guid: 2d8dbcbb9d4ab4843b0971c0b2667521,
+  _resaultCanvasPrefub: {fileID: 7684224526900914782, guid: 2d8dbcbb9d4ab4843b0971c0b2667521,
     type: 3}
   _resultTextPrefub: {fileID: 9140662423431823505, guid: c4611343c50d9124590b5c160176a6ae,
     type: 3}
@@ -1663,7 +1663,6 @@ MonoBehaviour:
   - {fileID: 5212113444895712714}
   - {fileID: 5212113444739489512}
   - {fileID: 5212113445896690087}
-  skillText: {fileID: 5212113445311946192}
   _addAttack: 0300000005000000
   _addDefence: 0200000004000000
 --- !u!4 &1782960185
@@ -2860,7 +2859,6 @@ MonoBehaviour:
   _cost: 2
   _skillName: "\u653B\u6483\uFF12"
   _skillInfo: "\u653B\u6483\u529B\u304C\u4E2DUP"
-  _text: {fileID: 5212113445311946192}
 --- !u!114 &5212113444739489513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,7 +3311,6 @@ MonoBehaviour:
   _cost: 1
   _skillName: "\u9632\u5FA1\uFF11"
   _skillInfo: "\u9632\u5FA1\u529B\u304C\u5C0FUP"
-  _text: {fileID: 5212113445311946192}
 --- !u!224 &5212113444895712715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4401,7 +4398,6 @@ MonoBehaviour:
   _cost: 1
   _skillName: "\u653B\u6483\uFF11"
   _skillInfo: "\u653B\u6483\u529B\u304C\u5C0FUP"
-  _text: {fileID: 5212113445311946192}
 --- !u!222 &5212113445858925243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4755,7 +4751,6 @@ MonoBehaviour:
   _cost: 2
   _skillName: "\u9632\u5FA1\uFF12"
   _skillInfo: "\u9632\u5FA1\u529B\u304C\u4E2DUP"
-  _text: {fileID: 5212113445311946192}
 --- !u!1 &5212113445925110200
 GameObject:
   m_ObjectHideFlags: 0

@@ -132,6 +132,6 @@ public class SkillManager : DDOLSingleton<SkillManager>
 
 	public void SetText()
 	{
-		HomeSceneManager.Instance.SendMessage("スキルポイント：" + PlayerPalam.Instance.SkillPoint);
+		TextManager.Instance.SetMessage("スキルポイント：" + PlayerPalam.Instance.SkillPoint);
 	}
 }

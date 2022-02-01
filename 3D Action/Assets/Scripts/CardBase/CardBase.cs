@@ -35,10 +35,12 @@ public class CardBase : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
+        //親オブジェクトのタグがインベントリパネルだったら
         if (this.transform.parent.gameObject.tag ==_inventoryPanelTag)
         {
             Execute();
         }
+        //セルカードタグだったら
         else if (this.transform.parent.gameObject.tag == _sellCardTag)
         {
             ShopManager.Instance.SellCard(_cardIndex,_cardPrice/2,this.gameObject);

@@ -13,8 +13,6 @@ public class SkillParam : MonoBehaviour
 	string _skillName;
 	[SerializeField, Tooltip("スキルの説明")] 
 	string _skillInfo;
-	[SerializeField, Tooltip("表示するテキスト")] 
-	Text _text;
 
 	// Use this for initialization
 	void Start()
@@ -40,11 +38,11 @@ public class SkillParam : MonoBehaviour
 			//ボタンの色変える
 			ChangeButtonColor(Color.blue);
 
-			_text.text = _skillName + "を覚えた";
+			TextManager.Instance.SetMessage(_skillName + "を覚えた");
 		}
 		else
 		{
-			_text.text = "スキルを覚えられません。";
+			TextManager.Instance.SetMessage("スキルを覚えられません。");
 		}
 	}
 
@@ -71,13 +69,13 @@ public class SkillParam : MonoBehaviour
 	//　スキル情報を表示
 	public void SetText()
 	{
-		_text.text = _skillName + "：消費スキルポイント" + _cost + "\n" + _skillInfo;
+		TextManager.Instance.SetMessage(_skillName + "：消費スキルポイント" + _cost + "\n" + _skillInfo);
 	}
 	//　スキル情報をリセット
 	public void ResetText()
 	{
 		//text.text = "";
-		_text.text = "スキルポイント：" + PlayerPalam.Instance.SkillPoint;
+		TextManager.Instance.SetMessage("スキルポイント：" + PlayerPalam.Instance.SkillPoint);
 	}
 	//　ボタンの色を変更する
 	public void ChangeButtonColor(Color color)

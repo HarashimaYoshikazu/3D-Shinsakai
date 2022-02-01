@@ -10,7 +10,7 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     [Header("リザルトパネル関係")]
 
     [SerializeField, Tooltip("テキストやボタンを子オブジェクトに持つパネルプレハブ")]
-    GameObject _resaultPanelPrefub;
+    GameObject _resaultCanvasPrefub;
 
     [SerializeField, Tooltip("リザルトを出力するテキストコンポーネントプレハブ")]
     Text _resultTextPrefub;
@@ -84,11 +84,11 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     void SetResultText()
     {
         
-        if (_resaultPanelPrefub && _resultTextPrefub  )
+        if (_resaultCanvasPrefub && _resultTextPrefub  )
         {
             //リザルトパネル,テキストを生成
-            var panel = Instantiate(_resaultPanelPrefub);
-            Text text = Instantiate(_resultTextPrefub, panel.transform);
+            var canvas = Instantiate(_resaultCanvasPrefub);
+            Text text = Instantiate(_resultTextPrefub, canvas.transform);
 
             //脱出時死んでいるかでメッセージを変える
             if (!_isDead)
