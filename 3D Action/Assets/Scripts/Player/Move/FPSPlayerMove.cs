@@ -26,7 +26,7 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
         //SceneManager.sceneLoaded += ResetPos;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // 方向の入力を取得し、方向を求める
         float v = Input.GetAxisRaw("Vertical");

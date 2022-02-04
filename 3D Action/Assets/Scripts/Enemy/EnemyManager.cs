@@ -45,8 +45,9 @@ public class EnemyManager : Singleton<EnemyManager>
                 int PosValue = Random.Range(0, _enemyGeneratePositions.Length);
                 //タイマーをリセット
                 _timer = 0f;
+                Vector3 pos = new Vector3(_enemyGeneratePositions[PosValue].position.x,0f, _enemyGeneratePositions[PosValue].position.z);
                 //敵をランダムな場所にインスタンスしてリストに格納
-                _enemies.Add(Instantiate(_enemyPrefubs[PrefubValue], _enemyGeneratePositions[PosValue]));
+                _enemies.Add(Instantiate(_enemyPrefubs[PrefubValue], pos, Quaternion.identity));
             }
         }       
     }
