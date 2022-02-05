@@ -41,7 +41,7 @@ public class EnemyMoveController : MonoBehaviour
 
     [Header("Animatorのトリガー")]
     [SerializeField,Tooltip("攻撃アニメーションのブール名")]
-    string _attackTrigger = "Attack";
+    string _attackBool = "Attack";
     [SerializeField, Tooltip("走りアニメーションのトリガー名")]
     string _walkBool = "Walk";
 
@@ -65,11 +65,12 @@ public class EnemyMoveController : MonoBehaviour
         {
             //ダッシュフラグをオンに
             _animator.SetBool(_walkBool, _isWalk);
+            _animator.SetBool(_attackBool,_isAttack);
         }
 
         if (!_isDead)
         {
-            if (_isWalk)
+            if (_isWalk && !_isAttack)
             {
                 MoveToPlayer();
             }
@@ -134,8 +135,9 @@ public class EnemyMoveController : MonoBehaviour
             Debug.Log($"HPは{PlayerPalam.Instance.HP}");
         }
 
-        _animator.SetTrigger(_attackTrigger);
-        
+        //攻撃中のフラグをONに
+        _isAttack = true;
+               
     }
 
     /// <summary>
@@ -146,5 +148,10 @@ public class EnemyMoveController : MonoBehaviour
         _isDead = true;
         _rb.velocity = Vector3.zero;
         _speed = 0f;
+    }
+
+    public void AttackFalse()
+    {
+        _isAttack = false;
     }
 }
