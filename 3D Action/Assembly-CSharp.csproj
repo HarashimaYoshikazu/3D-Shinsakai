@@ -64,12 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Download\Easy FPS\Scripts\BulletScript.cs" />
-    <Compile Include="Assets\Download\Easy FPS\Scripts\DestroyAfterTimeParticle.cs" />
-    <Compile Include="Assets\Download\Easy FPS\Scripts\GunInventory.cs" />
-    <Compile Include="Assets\Download\Easy FPS\Scripts\GunScript.cs" />
-    <Compile Include="Assets\Download\Easy FPS\Scripts\MouseLookScript.cs" />
-    <Compile Include="Assets\Download\Easy FPS\Scripts\PlayerMovementScript.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
@@ -117,6 +111,7 @@
     <Compile Include="Assets\Scripts\_Else\DamageableController.cs" />
     <Compile Include="Assets\Scripts\_Else\EventAction.cs" />
     <Compile Include="Assets\Scripts\_Else\PlayerHPBar.cs" />
+    <None Include="Assets\Download\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
     <None Include="Assets\Plug-ins\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.25f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

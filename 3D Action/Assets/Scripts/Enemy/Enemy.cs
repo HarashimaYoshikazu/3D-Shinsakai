@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("EnemyMoveクラス")]
     EnemyMoveController _enemyMoveController;
 
+    [SerializeField, Tooltip("死亡アニメーションのトリガー名")]
+    string _deathTrigger = "Death";
+
     void Start()
     {
         //HP初期化
@@ -55,7 +58,7 @@ public class Enemy : MonoBehaviour
         if (_life < 1)
         {
             Dead();
-            _enemyMoveController.Stop();
+            _enemyMoveController.DeadStop();
             Destroy(gameObject,5f);
             //レイヤー変える
             this.gameObject.layer = default;
@@ -76,16 +79,8 @@ public class Enemy : MonoBehaviour
         InBattleSceneManager.Instance.GetGoldCount(_getGold);
         PlayerPalam.Instance.SkillPointfluctuation(_getSkillPoint);
 
-        //死ぬアニメーションをランダムで再生 
-        int randum = Random.Range(0,2);
-        if (randum ==0)
-        {
-            _animator.SetTrigger("DeadBack");
-        }
-        else
-        {
-            _animator.SetTrigger("DeadForward");
-        }
+        //死亡時アニメーション
+        _animator.SetTrigger(_deathTrigger);
 
     }
 

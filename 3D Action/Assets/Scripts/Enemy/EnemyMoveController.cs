@@ -27,14 +27,24 @@ public class EnemyMoveController : MonoBehaviour
     [SerializeField, Tooltip("このオブジェクトについているアニメーターコンポーネント")]
     Animator _animator = default;
 
-    /// <summary>動くか攻撃するかを判定するフラグ</summary>
-    bool _isRun = false;
+    /// <summary>歩いているか判定するフラグ</summary>
+    bool _isWalk = false;
 
-    /// <summary>動くか攻撃するかを判定するフラグ</summary>
+    /// <summary>死んでいるか判定するフラグ</summary>
     bool _isDead = false;
+
+    /// <summary>攻撃するかを判定するフラグ</summary>
+    bool _isAttack = false;
 
     [SerializeField, Tooltip("このオブジェクトのEnemyクラス")]
     Enemy _enemy;
+
+    [Header("Animatorのトリガー")]
+    [SerializeField,Tooltip("攻撃アニメーションのブール名")]
+    string _attackTrigger = "Attack";
+    [SerializeField, Tooltip("走りアニメーションのトリガー名")]
+    string _walkBool = "Walk";
+
 
     private void Start()
     {
@@ -53,19 +63,18 @@ public class EnemyMoveController : MonoBehaviour
         //移動アニメーションの設定
         if (_animator)
         {
-            _animator.SetFloat("Speed", _speed);
             //ダッシュフラグをオンに
-            _animator.SetBool("isRun", _isRun);
+            _animator.SetBool(_walkBool, _isWalk);
         }
 
         if (!_isDead)
         {
-            if (_isRun)
+            if (_isWalk)
             {
                 MoveToPlayer();
             }
 
-            StartCoroutine(StopMove());
+            StopFrontOfPlayer();
         }
 
     }
@@ -84,32 +93,31 @@ public class EnemyMoveController : MonoBehaviour
             //移動
             _speed = _initialSpeed;
             if (dir != Vector3.zero) this.transform.forward = dir;
-            _rb.velocity = dir.normalized * _speed;
+            _rb.velocity = dir.normalized * _speed * Time.deltaTime;
         }
 
     }
 
 
     /// <summary>
-    /// 動きを止めるコルーチン
+    /// 動きを止める関数
     /// </summary>
-    IEnumerator StopMove()
+    void StopFrontOfPlayer()
     {
         
         if (_attackDistance >= _distance)
-        {           
-            _isRun = false;
+        {
+            _isWalk = false;
             Debug.Log("こうげき");
             //動きを止める
             _rb.velocity = Vector3.zero;
             _speed = 0f;
-
-            yield return new WaitForSeconds(2f);
+            
             AttackMove();
         }
         else
         {
-            _isRun = true;
+            _isWalk = true;
         }
         
     }
@@ -125,16 +133,15 @@ public class EnemyMoveController : MonoBehaviour
             _enemy.Attack();
             Debug.Log($"HPは{PlayerPalam.Instance.HP}");
         }
-            
-        if (_animator)
-        {
-            _animator.SetTrigger("Attack");
-        }
+
+        _animator.SetTrigger(_attackTrigger);
         
     }
 
-
-    public void Stop()
+    /// <summary>
+    /// 死んだときに動きを止める関数
+    /// </summary>
+    public void DeadStop()
     {
         _isDead = true;
         _rb.velocity = Vector3.zero;
