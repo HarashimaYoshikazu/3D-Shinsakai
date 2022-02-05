@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
             _enemyMoveController.Stop();
             Destroy(gameObject,5f);
             //レイヤー変える
+            this.gameObject.layer = default;
         }
     }
 
