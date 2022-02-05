@@ -80,11 +80,10 @@ public class EnemyMoveController : MonoBehaviour
         {
             //プレイヤーの方向を取得
             Vector3 dir = _playerPosition - this.transform.position;
-            //プレイヤーの方向を向かせる
-            this.transform.LookAt(_playerPosition);
-            dir.y = 0;
+            dir.y = 0f;
             //移動
             _speed = _initialSpeed;
+            if (dir != Vector3.zero) this.transform.forward = dir;
             _rb.velocity = dir.normalized * _speed;
         }
 
