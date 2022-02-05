@@ -1273,7 +1273,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3543500364645220044}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8f7380da49034cd488ddff94b1ac35d1, type: 3}
   m_Controller: {fileID: 9100000, guid: 2ef8e6599b7f9934e8ff0d64c5325a1f, type: 2}
   m_CullingMode: 1
@@ -1297,9 +1297,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 3543500364645220046}
-  _speed: 5
+  _initialSpeed: 4
   _enemyVisibleDistance: 50
   _attackDistance: 1
+  _animator: {fileID: 7637067956515987877}
+  _enemy: {fileID: 3543500364645220045}
 --- !u!114 &3543500364645220045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1319,8 @@ MonoBehaviour:
   _getSkillPoint: 2
   _attackDamage: 2
   _attackInterval: 2
+  _animator: {fileID: 7637067956515987877}
+  _enemyMoveController: {fileID: 3543500364645220043}
 --- !u!54 &3543500364645220046
 Rigidbody:
   m_ObjectHideFlags: 0

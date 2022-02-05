@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
     float _attackInterval = 2f;
     /// <summary>攻撃間隔を計るタイマー</summary>
     float _timer = 0f;
+    [SerializeField, Tooltip("アニメーターコンポーネント")]
+    Animator _animator;
+
+    [SerializeField, Tooltip("EnemyMoveクラス")]
+    EnemyMoveController _enemyMoveController;
 
     void Start()
     {
@@ -50,7 +55,9 @@ public class Enemy : MonoBehaviour
         if (_life < 1)
         {
             Dead();
-            Destroy(gameObject);
+            _enemyMoveController.Stop();
+            Destroy(gameObject,5f);
+            //レイヤー変える
         }
     }
 
@@ -67,7 +74,17 @@ public class Enemy : MonoBehaviour
         PlayerPalam.Instance.Goldfluctuation(_getGold) ;
         InBattleSceneManager.Instance.GetGoldCount(_getGold);
         PlayerPalam.Instance.SkillPointfluctuation(_getSkillPoint);
-        //死ぬアニメーションを再生 
+
+        //死ぬアニメーションをランダムで再生 
+        int randum = Random.Range(0,2);
+        if (randum ==0)
+        {
+            _animator.SetTrigger("DeadBack");
+        }
+        else
+        {
+            _animator.SetTrigger("DeadForward");
+        }
 
     }
 

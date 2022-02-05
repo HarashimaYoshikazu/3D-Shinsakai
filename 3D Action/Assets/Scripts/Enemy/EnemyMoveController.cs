@@ -5,39 +5,69 @@ using UnityEngine.AI;
 
 public class EnemyMoveController : MonoBehaviour
 {
-    //[SerializeField,Tooltip("このオブジェクトについているNavMeshAgentコンポーネント")] 
-    //NavMeshAgent _navMesh;
 
     [SerializeField] Rigidbody _rb;
-    /// <summary>プレイヤーとの距離を保持しておく変数</summary>
+    /// <summary>プレイヤーの場所を保持する変数</summary>
     Vector3 _playerPosition = default;
 
-    [SerializeField] float _speed = 10f;
+    /// <summary>プレイヤーとの距離を保持しておく変数</summary>
+    float _distance = default;
+
+    [SerializeField,Tooltip("スピードの初期化値")]
+    float _initialSpeed = 10f;
+
+    /// <summary>エネミーを動かすスピード</summary>
+    float _speed = default;
 
     [SerializeField,Tooltip("プレイヤーに向かって移動し始めるまでの距離")]
     float _enemyVisibleDistance;
     [SerializeField, Tooltip("攻撃が開始されるプレイヤーとの距離")]
     float _attackDistance;
-    bool isStop = false;
 
+    [SerializeField, Tooltip("このオブジェクトについているアニメーターコンポーネント")]
+    Animator _animator = default;
+
+    /// <summary>動くか攻撃するかを判定するフラグ</summary>
+    bool _isRun = false;
+
+    /// <summary>動くか攻撃するかを判定するフラグ</summary>
+    bool _isDead = false;
+
+    [SerializeField, Tooltip("このオブジェクトのEnemyクラス")]
+    Enemy _enemy;
 
     private void Start()
     {
-            
-        
-        
+        _speed = _initialSpeed;
     }
+
     private void FixedUpdate()
     {
+        //プレイヤーの場所を取得
         _playerPosition = FPSPlayerMove.Instance.transform.position;
         //y軸を初期化
         _playerPosition.y = this.transform.position.y;
-        if (!isStop)
+        //このオブジェクトとプレイヤーの距離
+        _distance = Vector3.Distance(this.transform.position, FPSPlayerMove.Instance.transform.position);
+
+        //移動アニメーションの設定
+        if (_animator)
         {
-            MoveToPlayer();
+            _animator.SetFloat("Speed", _speed);
+            //ダッシュフラグをオンに
+            _animator.SetBool("isRun", _isRun);
         }
 
-        Stop();
+        if (!_isDead)
+        {
+            if (_isRun)
+            {
+                MoveToPlayer();
+            }
+
+            StartCoroutine(StopMove());
+        }
+
     }
 
     /// <summary>
@@ -45,41 +75,70 @@ public class EnemyMoveController : MonoBehaviour
     /// </summary>
     void MoveToPlayer()
     {
-        //このオブジェクトとプレイヤーの距離
-        float distance = Vector3.Distance(this.transform.position, FPSPlayerMove.Instance.transform.position);
-        Vector3 move = FPSPlayerMove.Instance.transform.position - this.transform.position;
-
         //発覚範囲になったらプレイヤーに向かって動く
-        if (_enemyVisibleDistance>distance)
+        if (_enemyVisibleDistance>_distance)
         {
+            //プレイヤーの方向を取得
+            Vector3 dir = _playerPosition - this.transform.position;
+            //プレイヤーの方向を向かせる
             this.transform.LookAt(_playerPosition);
-            //_navMesh.SetDestination(FPSPlayerMove.Instance.transform.position);
-            move.y = 0;
-            _rb.velocity = move.normalized * _speed;
+            dir.y = 0;
+            //移動
+            _speed = _initialSpeed;
+            _rb.velocity = dir.normalized * _speed;
         }
-
 
     }
 
-    private void Stop()
+
+    /// <summary>
+    /// 動きを止めるコルーチン
+    /// </summary>
+    IEnumerator StopMove()
     {
-        float distance = Vector3.Distance(this.transform.position, FPSPlayerMove.Instance.transform.position);
-        //攻撃範囲まで近づいたら攻撃を始める
-        if (_attackDistance > distance)
-        {
-            isStop = true;
+        
+        if (_attackDistance >= _distance)
+        {           
+            _isRun = false;
             Debug.Log("こうげき");
             //動きを止める
-            //_navMesh.velocity = Vector3.zero;
             _rb.velocity = Vector3.zero;
+            _speed = 0f;
 
-            //プレイヤーにダメージを与える
-            this.gameObject.GetComponent<Enemy>().Attack();
-            Debug.Log($"HPは{PlayerPalam.Instance.HP}");
+            yield return new WaitForSeconds(2f);
+            AttackMove();
         }
         else
         {
-            isStop = false;
+            _isRun = true;
         }
+        
+    }
+
+    /// <summary>
+    /// 攻撃を開始する関数
+    /// </summary>
+    void AttackMove()
+    {
+        //プレイヤーにダメージを与える
+        if (_enemy)
+        {
+            _enemy.Attack();
+            Debug.Log($"HPは{PlayerPalam.Instance.HP}");
+        }
+            
+        if (_animator)
+        {
+            _animator.SetTrigger("Attack");
+        }
+        
+    }
+
+
+    public void Stop()
+    {
+        _isDead = true;
+        _rb.velocity = Vector3.zero;
+        _speed = 0f;
     }
 }
