@@ -39,6 +39,7 @@ public class CardBase : MonoBehaviour
         if (this.transform.parent.gameObject.tag ==_inventoryPanelTag)
         {
             Execute();
+            Destroy(this.gameObject);
         }
         //セルカードタグだったら
         else if (this.transform.parent.gameObject.tag == _sellCardTag)
