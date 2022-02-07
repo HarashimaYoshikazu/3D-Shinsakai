@@ -32,6 +32,9 @@ public class FPSShoot : Singleton<FPSShoot>
     [SerializeField, Range(0f,5f), Tooltip("初期の射撃インターバル")]
     float _initialFireInterval = 0.5f;
 
+    [SerializeField, Tooltip("銃のAnimator")]
+    Animator _anim;
+
     /// <summary>現在の射撃インターバル</summary>
     float _fireInterval ;
     public float FireInterval => _fireInterval;
@@ -111,6 +114,10 @@ public class FPSShoot : Singleton<FPSShoot>
     {
         if (Input.GetButton("Fire1") && _timer >= _fireInterval)
         {
+            if (_anim)
+            {
+                _anim.SetTrigger("Shoot");
+            }
             if (_shootingSfx)
             {
                 AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);

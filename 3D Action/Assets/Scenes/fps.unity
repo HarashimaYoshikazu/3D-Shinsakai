@@ -6733,6 +6733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4247542812188233245, guid: 8d9faf4d2351e6f4098d581e5fb1342c,
         type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 1425815113310267}
+    - target: {fileID: 4247542812188233245, guid: 8d9faf4d2351e6f4098d581e5fb1342c,
+        type: 3}
       propertyPath: _crosshair
       value: 
       objectReference: {fileID: 2048417060}
