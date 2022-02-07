@@ -11,7 +11,7 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
     [SerializeField, Tooltip("キャラクターの Rigidbody")]
     Rigidbody _rb;
 
-    [SerializeField,Tooltip("キャラクターの Animator")] 
+    [SerializeField,Tooltip("銃のAnimator")] 
     Animator _anim;
 
     [SerializeField,Tooltip("ゲームクリア判定を行うためのタグ")]
@@ -19,6 +19,9 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
 
     [SerializeField, Tooltip("スポーンポジション")]
     Transform _initialTransform;
+
+    [SerializeField, Tooltip("SetBoolの使用するパラメータ")]
+    string _walkParam = "Walk";
 
 
     private void Start()
@@ -38,6 +41,8 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
         {
             // 方向の入力がニュートラルの時は、y 軸方向の速度を保持するだけ
             _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f);
+            //銃のアニメーションを停止
+            _anim.SetBool(_walkParam, false);
         }
         else
         {
@@ -50,7 +55,11 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             Vector3 velo = this.transform.forward * _movingSpeed;
             velo.y = _rb.velocity.y;
             _rb.velocity = velo;
+
+            //銃のアニメーション再生
+            _anim.SetBool(_walkParam, true);
         }
+
     }
 
     private void OnTriggerEnter(Collider other)

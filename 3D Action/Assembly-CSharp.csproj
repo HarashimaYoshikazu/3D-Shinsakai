@@ -64,7 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Scripts\Utility\FlyCameraBehaviour.cs" />
+    <Compile Include="Assets\Download\Aligned Games\Polygonal Modern Weapons Asset Package\Scripts\Utility\FlyCameraBehaviour.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
@@ -112,7 +112,7 @@
     <Compile Include="Assets\Scripts\_Else\DamageableController.cs" />
     <Compile Include="Assets\Scripts\_Else\EventAction.cs" />
     <Compile Include="Assets\Scripts\_Else\PlayerHPBar.cs" />
-    <None Include="Assets\Aligned Games\Polygonal Modern Weapons Asset Package\Shaders\Diffuse.shader" />
+    <None Include="Assets\Download\Aligned Games\Polygonal Modern Weapons Asset Package\Shaders\Diffuse.shader" />
     <None Include="Assets\Download\Customizable Skybox\Stylized Sky\Shaders\Stylized Sky.shader" />
     <None Include="Assets\Plug-ins\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
