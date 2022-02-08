@@ -39,7 +39,9 @@ public class CardBase : MonoBehaviour
         if (this.transform.parent.gameObject.tag ==_inventoryPanelTag)
         {
             Execute();
+            CardManager.Instance.InventriCards.RemoveAt(_cardIndex);
             Destroy(this.gameObject);
+
         }
         //セルカードタグだったら
         else if (this.transform.parent.gameObject.tag == _sellCardTag)
