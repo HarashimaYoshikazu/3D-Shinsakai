@@ -54,4 +54,9 @@ public class ShopManager : Singleton<ShopManager>
         Destroy(card);
         
     }
+
+    //public void SellGear(int index,)
+    //{
+
+    //}
 }

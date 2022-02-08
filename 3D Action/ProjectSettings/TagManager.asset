@@ -23,6 +23,7 @@ TagManager:
   - LevelPart
   - Dummie
   - End
+  - GearPanel
   layers:
   - Default
   - TransparentFX
