@@ -38,6 +38,7 @@ public class GearBase : MonoBehaviour
         {
             if (this is HeadGear)
             {
+                //頭装備のパネルの子オブジェクトにする
                 this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
             }
             else if (this is BodyGear)

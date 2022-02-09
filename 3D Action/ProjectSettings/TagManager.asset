@@ -24,6 +24,7 @@ TagManager:
   - Dummie
   - End
   - GearPanel
+  - GearTag
   layers:
   - Default
   - TransparentFX

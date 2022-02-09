@@ -38,10 +38,7 @@ public class GearManager : DDOLSingleton<GearManager>
 
     private void OnEnable()
     {
-        foreach(var gear in _gearInventry)
-        {
-            Instantiate(gear, HomeManager.Instance.GearInventryPanel.transform);
-        }       
+        InstansGear();
     }
 
     /// <summary>
@@ -55,28 +52,34 @@ public class GearManager : DDOLSingleton<GearManager>
             if (_currentHeadGear)
             {
                 _currentHeadGear.OnTakeOff();//すでに装備を着ている場合は外す
+                _gearInventry.Add(_currentHeadGear); //インベントリに装備を入れなおす
             }
             _currentHeadGear = (HeadGear)gear;//gearをダウンキャスト
 
             _currentHeadGear.OnEquipment();//着た時の処理
+            _gearInventry.Remove(_currentHeadGear); //着ている最中はインベントリから外す
         }
         else if (gear is BodyGear)
         {
             if (_currentBodyGear)
             {
                 _currentBodyGear.OnTakeOff();
+                _gearInventry.Add(_currentBodyGear);
             }
             _currentBodyGear = (BodyGear)gear;
             _currentBodyGear.OnEquipment();
+            _gearInventry.Remove(_currentBodyGear);
         }
         else if (gear is LegGear)
         {
             if (_currentLegGear)
             {
                 _currentLegGear.OnTakeOff();
+                _gearInventry.Add(_currentLegGear);
             }
             _currentLegGear = (LegGear)gear;
             _currentLegGear.OnEquipment();
+            _gearInventry.Remove(_currentLegGear);
         }
     }
 
@@ -90,5 +93,29 @@ public class GearManager : DDOLSingleton<GearManager>
     public void SellGear(GearBase gear)
     {
 
+    }
+
+    void InstansGear()
+    {
+        if (!isFirst)
+        {
+            DestroyAllGear();
+            isFirst = true;
+        }
+
+        for (int i = 0;i<_gearInventry.Count;++i)
+        {
+            _gearInventry[i] = Instantiate(_gearInventry[i], HomeManager.Instance.GearInventryPanel.transform);
+        }
+    }
+
+    bool isFirst = false;
+    void DestroyAllGear()
+    {
+        foreach (var gear in _gearInventry)
+        {
+            Debug.Log("うんこ");
+            Destroy(gear);
+        }
     }
 }
