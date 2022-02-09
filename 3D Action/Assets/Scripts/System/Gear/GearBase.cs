@@ -36,7 +36,18 @@ public class GearBase : MonoBehaviour
     {
         if (this.transform.parent.gameObject.CompareTag(_gearPanelTag)) //編成時
         {
-
+            if (this is HeadGear)
+            {
+                this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
+            }
+            else if (this is BodyGear)
+            {
+                this.transform.SetParent( HomeManager.Instance.BodyPanel.transform);
+            }
+            else
+            {
+                this.transform.SetParent(HomeManager.Instance.LegPanel.transform);
+            }
         }
         else if(this.transform.parent.gameObject.CompareTag(_sellGearTag)) //売るとき
         {
@@ -44,7 +55,7 @@ public class GearBase : MonoBehaviour
         }
         else //装備中パネル 
         {
-
+            this.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
         }
     }
 }

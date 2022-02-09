@@ -7,29 +7,41 @@ using UnityEngine;
 /// </summary>
 public class GearManager : DDOLSingleton<GearManager>
 {
-    [SerializeField,Tooltip("頭装備のプレハブの配列")] HeadGear[] _headGearPrefubs = null;
-    [SerializeField, Tooltip("体装備のプレハブの配列")] BodyGear[] _bodyGearPrefubs = null;
-    [SerializeField, Tooltip("脚装備のプレハブの配列")] LegGear[] _legGearPrefubs = null;
+    [SerializeField,Tooltip("頭装備のプレハブの配列")]
+    HeadGear[] _headGearPrefubs = null;
+    [SerializeField, Tooltip("体装備のプレハブの配列")]
+    BodyGear[] _bodyGearPrefubs = null;
+    [SerializeField, Tooltip("脚装備のプレハブの配列")]
+    LegGear[] _legGearPrefubs = null;
 
     /// <summary>現在持っている装備が格納されている配列</summary>
-    GearBase[] _gearInventry;
-    public GearBase[] GearInventry => _gearInventry;
+    List<GearBase> _gearInventry = new List<GearBase>();
+    public List<GearBase> GearInventry => _gearInventry;
 
-    [SerializeField,Tooltip("")] int _limitGearInventry = 10;
+    [SerializeField,Tooltip("装備を持てる上限")] int _limitGearInventry = 10;
 
     HeadGear _currentHeadGear = null;
     BodyGear _currentBodyGear = null;
     LegGear _currentLegGear = null;
 
 
-    void Start()
+    protected override void OnAwake()
     {
-        _gearInventry = new GearBase[_limitGearInventry];
+
+        //試しに３つ追加
+        AddGear(_headGearPrefubs[0]);
+        AddGear(_bodyGearPrefubs[0]);
+        AddGear(_legGearPrefubs[0]);
+        Debug.Log(_headGearPrefubs[0]);
+        Debug.Log($"インベントリのサイズ {_gearInventry.Count}");
     }
 
-    void Update()
+    private void OnEnable()
     {
-        
+        foreach(var gear in _gearInventry)
+        {
+            Instantiate(gear, HomeManager.Instance.GearInventryPanel.transform);
+        }       
     }
 
     /// <summary>
@@ -70,9 +82,9 @@ public class GearManager : DDOLSingleton<GearManager>
 
     public void AddGear(GearBase gear)
     {
-        if (_gearInventry.Length <= _limitGearInventry)
+        if (_gearInventry.Count <= _limitGearInventry)
         {
-            _gearInventry[_gearInventry.Length - 1] = gear;
+            _gearInventry.Add(gear);
         }
     }
     public void SellGear(GearBase gear)

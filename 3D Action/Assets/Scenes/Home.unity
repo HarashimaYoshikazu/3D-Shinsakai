@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gearPanel: {fileID: 8722609107806068611}
-  _gearInventryPanelPrefab: {fileID: 614989575541166913, guid: d79b6ffdbf8fdd442a969c2cc8d7b45c,
+  _gearInventryPanel: {fileID: 614989575541166913, guid: d79b6ffdbf8fdd442a969c2cc8d7b45c,
     type: 3}
   _headPanel: {fileID: 999541312171749921, guid: 69a276ac9883f164783b7bf633332b38,
     type: 3}
@@ -4976,7 +4976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5212113445797401995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6530,6 +6530,7 @@ GameObject:
   - component: {fileID: 8722609107806068614}
   - component: {fileID: 8722609107806068613}
   - component: {fileID: 8722609107806068612}
+  - component: {fileID: 8722609107806068615}
   m_Layer: 5
   m_Name: GearPanel
   m_TagString: Untagged
@@ -6594,3 +6595,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8722609107806068615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722609107806068611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c75aa7070261d4490a3b1c0f5bbc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headGearPrefubs:
+  - {fileID: -5733450488537832747, guid: 470e949901a6ff243b7dbd1c2a8f3dcf, type: 3}
+  _bodyGearPrefubs:
+  - {fileID: -1842345948858019656, guid: 12bd892509ac3f14aa000c59c2c5f7b4, type: 3}
+  _legGearPrefubs:
+  - {fileID: 8148431925821634800, guid: eb1f0a9b59c06134bba47e3a2c9241ef, type: 3}
+  _limitGearInventry: 10
