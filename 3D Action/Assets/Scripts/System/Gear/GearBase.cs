@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearBase : MonoBehaviour
+public abstract class GearBase : MonoBehaviour
 {
     [SerializeField] string _name;
     [SerializeField] int _addDefence = default;
@@ -36,19 +36,8 @@ public class GearBase : MonoBehaviour
     {
         if (this.transform.parent.gameObject.CompareTag(_gearPanelTag)) //編成時
         {
-            if (this is HeadGear)
-            {
-                //頭装備のパネルの子オブジェクトにする
-                this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
-            }
-            else if (this is BodyGear)
-            {
-                this.transform.SetParent( HomeManager.Instance.BodyPanel.transform);
-            }
-            else
-            {
-                this.transform.SetParent(HomeManager.Instance.LegPanel.transform);
-            }
+            SetTransformGear();
+            GearManager.Instance.EquipGear(this);
         }
         else if(this.transform.parent.gameObject.CompareTag(_sellGearTag)) //売るとき
         {
@@ -59,4 +48,8 @@ public class GearBase : MonoBehaviour
             this.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
         }
     }
+    /// <summary>
+    /// ボタンが押された際にトランスフォームを変更する関数
+    /// </summary>
+    protected abstract void SetTransformGear();
 }

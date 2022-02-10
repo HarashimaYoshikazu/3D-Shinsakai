@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 746368995570778548}
   - component: {fileID: 7224237758484135734}
   - component: {fileID: -8293144282422805799}
+  - component: {fileID: -697330075519144071}
   m_Layer: 5
   m_Name: GearInventryPanel
   m_TagString: Inventory
@@ -100,3 +101,15 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &-697330075519144071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614989575541166913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace0e118d7a2a07498ebf4b596d23f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

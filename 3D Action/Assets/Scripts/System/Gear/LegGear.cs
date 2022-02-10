@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class LegGear : GearBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void SetTransformGear()
     {
-        
+        this.transform.SetParent(HomeManager.Instance.LegPanel.transform);
+        if (GearManager.Instance.CurrentLegGear)
+        {
+            GearManager.Instance.CurrentLegGear.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
