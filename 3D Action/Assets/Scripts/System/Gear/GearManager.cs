@@ -20,13 +20,17 @@ public class GearManager : DDOLSingleton<GearManager>
 
     public HeadGear CurrentHeadGear { get => _currentHeadGear;}
     public LegGear CurrentLegGear { get => _currentLegGear;}
-
+    public BodyGear CurrentBodyGear { get => _currentBodyGear; }
 
     [SerializeField,Tooltip("装備を持てる上限")] int _limitGearInventry = 10;
 
     HeadGear _currentHeadGear = null;
     BodyGear _currentBodyGear = null;
     LegGear _currentLegGear = null;
+
+    HeadGear _lastHeadGear = null;
+    BodyGear _lastBodyGear = null;
+    LegGear _lastLegGear = null;
 
 
     protected override void OnAwake()
@@ -37,7 +41,6 @@ public class GearManager : DDOLSingleton<GearManager>
         AddGear(_headGearPrefubs[0]);
         AddGear(_bodyGearPrefubs[0]);
         AddGear(_legGearPrefubs[0]);
-        Debug.Log(_headGearPrefubs[0]);
         Debug.Log($"インベントリのサイズ {_gearInventry.Count}");
     }
 
@@ -53,14 +56,15 @@ public class GearManager : DDOLSingleton<GearManager>
             if (_currentHeadGear)
             {
                 _currentHeadGear.OnTakeOff();//すでに装備を着ている場合は外す
-                _gearInventry.Add(_currentHeadGear); //インベントリに装備を入れなおす
+                _gearInventry.Add(_headGearPrefubs[0]); //インベントリに装備を入れなおす※ここが原因
                 Debug.Log($"インベントリのサイズ脱ぐ {_gearInventry.Count}");
             }
+            _lastHeadGear = (HeadGear)gear;
             _currentHeadGear = (HeadGear)gear;//gearをダウンキャスト
 
             _currentHeadGear.OnEquipment();//着た時の処理
-            //IDが一致する奴を削除
-            _gearInventry.RemoveAt(gear.GearIndex); //着ている最中はインベントリから外す
+            //IDが一致する奴を削除            
+            _gearInventry.RemoveAt(RemoveGear(gear)); //着ている最中はインベントリから外す
             Debug.Log($"追加される装備のIndex {gear.GearIndex}");
             Debug.Log($"インベントリのサイズ着る {_gearInventry.Count}");
         }
@@ -69,24 +73,26 @@ public class GearManager : DDOLSingleton<GearManager>
             if (_currentBodyGear)
             {
                 _currentBodyGear.OnTakeOff();
-                _gearInventry.Add(_currentBodyGear);
+                _gearInventry.Add(_bodyGearPrefubs[0]);
             }
+            _lastBodyGear = (BodyGear)gear;
             _currentBodyGear = (BodyGear)gear;
             _currentBodyGear.OnEquipment();
-            _gearInventry.RemoveAt(gear.GearIndex);
-            Debug.Log($"追加される装備のIndex {gear.GearIndex}");
+
+            _gearInventry.RemoveAt(RemoveGear(gear));
         }
         else if (gear is LegGear)
         {
             if (_currentLegGear)
             {
                 _currentLegGear.OnTakeOff();
-                _gearInventry.Add(_currentLegGear);
+                _gearInventry.Add(_legGearPrefubs[0]);
             }
+            _lastLegGear = (LegGear)gear;
             _currentLegGear = (LegGear)gear;
             _currentLegGear.OnEquipment();
-            _gearInventry.RemoveAt(gear.GearIndex);
-            Debug.Log($"追加される装備のIndex {gear.GearIndex}");
+
+            _gearInventry.RemoveAt(RemoveGear(gear));
         }
     }
 
@@ -94,11 +100,8 @@ public class GearManager : DDOLSingleton<GearManager>
     {
         if (_gearInventry.Count <= _limitGearInventry)
         {
-            //インデックスを初期化
-            gear.GearIndex = _gearInventry.Count;  
             //インベントリに追加
             _gearInventry.Add(gear);
-            Debug.Log(gear.GearIndex);
         }
     }
     public void SellGear(GearBase gear)
@@ -108,7 +111,7 @@ public class GearManager : DDOLSingleton<GearManager>
 
     public void InstansGear()
     {
-        Debug.Log(_gearInventry.Count);
+        Debug.Log("インベントリのカウント"+_gearInventry.Count);
         if (_gearInventry.Count!=0)
         {
             for (int i = 0; i < _gearInventry.Count; ++i)
@@ -118,6 +121,31 @@ public class GearManager : DDOLSingleton<GearManager>
         }
 
 
+    }
+
+    void DestroyGear()
+    {
+        foreach (var i in _gearInventry)
+        {
+            
+        }
+    }
+
+    /// <summary>
+    /// 装備IDが一致しているかを確認する関数
+    /// </summary>
+    /// <param name="gear"></param>
+    /// <returns></returns>
+    public int RemoveGear(GearBase gear)
+    {
+        for(int i = 0;i<_gearInventry.Count;++i)
+        {
+            if(_gearInventry[i].GeatID == gear.GeatID)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }

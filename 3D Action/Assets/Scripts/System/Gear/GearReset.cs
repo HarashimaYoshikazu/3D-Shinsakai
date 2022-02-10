@@ -25,7 +25,8 @@ public class GearReset : MonoBehaviour
             Debug.Log("けす");
             foreach (Transform child in this.transform)
             {
-                child.gameObject.SetActive(false);
+                Debug.Log($"{child.name}");
+                //child.gameObject.SetActive(false);
                 Destroy(child.gameObject);
             }
         }

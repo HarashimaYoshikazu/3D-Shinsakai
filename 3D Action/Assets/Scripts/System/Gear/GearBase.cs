@@ -6,8 +6,11 @@ public abstract class GearBase : MonoBehaviour
 {
     [SerializeField] string _name;
     [SerializeField] int _addDefence = default;
-    /// <summary>カードがインベントリの何番目にあるかを表した番号</summary>
-    int _gearIndex;
+
+    [SerializeField,Tooltip("カードのID")]
+    int _gearID;
+    public int GeatID => _gearID;
+
     [SerializeField, Tooltip("装備の買値、正の値")]
     int _gearPrice;
 
@@ -18,7 +21,7 @@ public abstract class GearBase : MonoBehaviour
     [SerializeField, Tooltip("装備を売る際に表示されるインベントリパネルのタグ")]
     string _sellGearTag = "SellCardPanel";
 
-    public int GearIndex { get => _gearIndex; set => _gearIndex = value; }
+    public int GearIndex { get => _gearID; set => _gearID = value; }
     public string Name { get => _name; set => _name = value; }
 
 
