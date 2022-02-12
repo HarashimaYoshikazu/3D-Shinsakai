@@ -167,12 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c181746a0e255274f92a78dcd4d50ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\u4F53\uFF11"
   _addDefence: 10
-  _gearID: 1
   _gearPrice: 50
-  _gearPanelTag: Inventory
-  _sellGearTag: SellCardPanel
+  _gearID: 1
+  _inventryPanelName: Inventory
+  _sellPanelName: SellPanel
 --- !u!114 &-5468660312946238564
 MonoBehaviour:
   m_ObjectHideFlags: 0

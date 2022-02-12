@@ -7,145 +7,156 @@ using UnityEngine;
 /// </summary>
 public class GearManager : DDOLSingleton<GearManager>
 {
-    [SerializeField,Tooltip("頭装備のプレハブの配列")]
-    HeadGear[] _headGearPrefubs = null;
-    [SerializeField, Tooltip("体装備のプレハブの配列")]
-    BodyGear[] _bodyGearPrefubs = null;
-    [SerializeField, Tooltip("脚装備のプレハブの配列")]
-    LegGear[] _legGearPrefubs = null;
+    [SerializeField, Tooltip("頭装備のプレハブ")]
+    GameObject[] _headGearPrefabs;
 
-    /// <summary>現在持っている装備が格納されている配列</summary>
-    List<GearBase> _gearInventry = new List<GearBase>();
-    public List<GearBase> GearInventry => _gearInventry;
+    List<GameObject> _subHeadGears = new List<GameObject>();
 
-    public HeadGear CurrentHeadGear { get => _currentHeadGear;}
-    public LegGear CurrentLegGear { get => _currentLegGear;}
-    public BodyGear CurrentBodyGear { get => _currentBodyGear; }
+    /// <summary>現在の頭装備</summary>
+    GameObject _currentHeadGear = null;
+    public GameObject CurrentHeadGear { get => _currentHeadGear; }
 
-    [SerializeField,Tooltip("装備を持てる上限")] int _limitGearInventry = 10;
-
-    HeadGear _currentHeadGear = null;
-    BodyGear _currentBodyGear = null;
-    LegGear _currentLegGear = null;
-
-    HeadGear _lastHeadGear = null;
-    BodyGear _lastBodyGear = null;
-    LegGear _lastLegGear = null;
-
-
-    protected override void OnAwake()
+    private void Start()
     {
-
-        //試しに３つ追加
-        AddGear(_headGearPrefubs[0]);
-        AddGear(_headGearPrefubs[0]);
-        AddGear(_bodyGearPrefubs[0]);
-        AddGear(_legGearPrefubs[0]);
-        Debug.Log($"インベントリのサイズ {_gearInventry.Count}");
+        AddGear(_headGearPrefabs[0]);
     }
+    void AddGear(GameObject gear)
+    {
+        if (gear.TryGetComponent(out HeadGear headGear))
+        {
+            _subHeadGears.Add(gear);
+        }
+        else if (gear.TryGetComponent(out BodyGear bodyGear))
+        {
 
+        }
+        else if (gear.TryGetComponent(out LegGear legGear))
+        {
+
+        }
+    }
 
     /// <summary>
-    /// 現在の装備を変更する関数
+    /// 選んだ控え装備と現在装備中のものを交換する関数
     /// </summary>
-    /// <param name="gear">GearBaseを継承したオブジェクト</param>
-    public void EquipGear(GearBase gear)
+    /// <param name="gear">着る装備</param>
+    public void EquipGear(GameObject gear)
     {
-        if (gear is HeadGear)//型を見る
+        if (gear.TryGetComponent(out HeadGear headGear))
         {
-            if (_currentHeadGear)
-            {
-                _currentHeadGear.OnTakeOff();//すでに装備を着ている場合は外す
-                _gearInventry.Add(_headGearPrefubs[0]); //インベントリに装備を入れなおす※ここが原因
-                Debug.Log($"インベントリのサイズ脱ぐ {_gearInventry.Count}");
-            }
-            _lastHeadGear = (HeadGear)gear;
-            _currentHeadGear = (HeadGear)gear;//gearをダウンキャスト
 
-            _currentHeadGear.OnEquipment();//着た時の処理
-            //IDが一致する奴を削除            
-            _gearInventry.RemoveAt(RemoveGear(gear)); //着ている最中はインベントリから外す
-            Debug.Log($"追加される装備のIndex {gear.GearIndex}");
-            Debug.Log($"インベントリのサイズ着る {_gearInventry.Count}");
+            RemoveGearFromList(headGear.GearID);//控えリストから着たい装備を消す
+
+            _subHeadGears.Add(_currentHeadGear);//現在装備しているものを控えリストに追加
+
+            _currentHeadGear = gear;//装備中変数に装備したいものを代入
         }
-        else if (gear is BodyGear)
+        else if (gear.TryGetComponent(out BodyGear bodyGear))
         {
-            if (_currentBodyGear)
-            {
-                _currentBodyGear.OnTakeOff();
-                _gearInventry.Add(_bodyGearPrefubs[0]);
-            }
-            _lastBodyGear = (BodyGear)gear;
-            _currentBodyGear = (BodyGear)gear;
-            _currentBodyGear.OnEquipment();
 
-            _gearInventry.RemoveAt(RemoveGear(gear));
         }
-        else if (gear is LegGear)
+        else if (gear.TryGetComponent(out LegGear legGear))
         {
-            if (_currentLegGear)
-            {
-                _currentLegGear.OnTakeOff();
-                _gearInventry.Add(_legGearPrefubs[0]);
-            }
-            _lastLegGear = (LegGear)gear;
-            _currentLegGear = (LegGear)gear;
-            _currentLegGear.OnEquipment();
 
-            _gearInventry.RemoveAt(RemoveGear(gear));
         }
     }
 
-    public void AddGear(GearBase gear)
+    /// <summary>
+    /// ただ単に装備中のものを脱ぐ関数
+    /// </summary>
+    /// <param name="gear">脱ぐ装備</param>
+    public void TakeOffGear(GameObject gear)
     {
-        if (_gearInventry.Count <= _limitGearInventry)
+        if (gear.TryGetComponent(out HeadGear headGear))
         {
-            //インベントリに追加
-            _gearInventry.Add(gear);
+            //※Clearしてから入れなおす
+            _tempList.Clear();
+            foreach (var i in _subHeadGears)
+            {
+                if (i)
+                {
+                    _tempList.Add(i);
+                }
+
+            }
+            _subHeadGears.Clear();
+            foreach (var i in _tempList)
+            {
+                if (i)
+                {
+                    _subHeadGears.Add(i);
+                }
+
+            }
+            //引数で持ってきたGameObjectを控えリストに追加
+            _subHeadGears.Add(gear);
+            _currentHeadGear = null;
+        }
+        else if (gear.TryGetComponent(out BodyGear bodyGear))
+        {
+
+        }
+        else if (gear.TryGetComponent(out LegGear legGear))
+        {
+
         }
     }
-    public void SellGear(GearBase gear)
+
+    List<GameObject> _tempList = new List<GameObject>();
+    void RemoveGearFromList(int id)
     {
+        _tempList.Clear();
+        foreach (var i in _subHeadGears)
+        {
+            _tempList.Add(i);
+        }
+
+        foreach (var i in _tempList)
+        {
+            if (!i)
+            {
+                continue;
+            }
+            else if (i.GetComponent<HeadGear>().GearID == id)
+            {
+                _subHeadGears.Remove(i);
+            }
+        }
 
     }
 
+    List<GameObject> _sceneGearList = new List<GameObject>();
     public void InstansGear()
-    {
-        Debug.Log("インベントリのカウント"+_gearInventry.Count);
-        if (_gearInventry.Count!=0)
+    {　　
+
+        if (_sceneGearList.Count != 0)
         {
-            for (int i = 0; i < _gearInventry.Count; ++i)
+            foreach (var i in _sceneGearList)
             {
-                Instantiate(_gearInventry[i], HomeManager.Instance.GearInventryPanel.transform);
+                i.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (var i in _subHeadGears)
+            {
+                _sceneGearList.Add(Instantiate(i, HomeManager.Instance.GearInventryPanel.transform));
             }
         }
 
-
     }
 
-    void DestroyGear()
+    public void SetFalseSceneGear()
     {
-        foreach (var i in _gearInventry)
+        foreach (var i in _sceneGearList)
         {
-            
+            i.gameObject.SetActive(false);
         }
     }
 
-    /// <summary>
-    /// 装備IDが一致しているかを確認する関数
-    /// </summary>
-    /// <param name="gear"></param>
-    /// <returns></returns>
-    public int RemoveGear(GearBase gear)
+    public void ResetList()
     {
-        for(int i = 0;i<_gearInventry.Count;++i)
-        {
-            if(_gearInventry[i].GeatID == gear.GeatID)
-            {
-                return i;
-            }
-        }
-        return -1;
+        _sceneGearList.Clear();
     }
 
 }

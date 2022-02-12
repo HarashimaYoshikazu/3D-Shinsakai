@@ -8,8 +8,9 @@ public class HomeManager : Singleton<HomeManager>
     GameObject _gearPanel ;
 
     [SerializeField,Tooltip("持っている装備の親オブジェクトとなるパネル")]
-    GameObject _gearInventryPanel = null;
+    GameObject _gearInventryPanelPrefab = null;
     public GameObject GearInventryPanel => _gearInventryPanel;
+    GameObject _gearInventryPanel;
 
     [SerializeField,Tooltip("頭装備")] GameObject _headPanel = null;
     public GameObject HeadPanel => _headPanel;
@@ -24,9 +25,9 @@ public class HomeManager : Singleton<HomeManager>
         //HPリセット
         PlayerPalam.Instance.ResetHP();
         //装備パネルの生成
-        if (_gearPanel && _gearInventryPanel)
+        if (_gearPanel && _gearInventryPanelPrefab)
         {
-            _gearInventryPanel = Instantiate(_gearInventryPanel,_gearPanel.transform);
+            _gearInventryPanel = Instantiate(_gearInventryPanelPrefab,_gearPanel.transform);
             _headPanel = Instantiate(_headPanel, _gearPanel.transform);
             _bodyPanel = Instantiate(_bodyPanel, _gearPanel.transform);
             _legPanel = Instantiate(_legPanel, _gearPanel.transform);

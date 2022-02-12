@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gearPanel: {fileID: 8722609107806068611}
-  _gearInventryPanel: {fileID: 614989575541166913, guid: d79b6ffdbf8fdd442a969c2cc8d7b45c,
+  _gearInventryPanelPrefab: {fileID: 614989575541166913, guid: d79b6ffdbf8fdd442a969c2cc8d7b45c,
     type: 3}
   _headPanel: {fileID: 999541312171749921, guid: 69a276ac9883f164783b7bf633332b38,
     type: 3}
@@ -3014,13 +3014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c75aa7070261d4490a3b1c0f5bbc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headGearPrefubs:
-  - {fileID: -5733450488537832747, guid: 470e949901a6ff243b7dbd1c2a8f3dcf, type: 3}
-  _bodyGearPrefubs:
-  - {fileID: -1842345948858019656, guid: 12bd892509ac3f14aa000c59c2c5f7b4, type: 3}
-  _legGearPrefubs:
-  - {fileID: 8148431925821634800, guid: eb1f0a9b59c06134bba47e3a2c9241ef, type: 3}
-  _limitGearInventry: 10
+  _headGearPrefabs:
+  - {fileID: 4812101953825978115, guid: 470e949901a6ff243b7dbd1c2a8f3dcf, type: 3}
 --- !u!1 &1870570853
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,37 +4,13 @@ using UnityEngine;
 
 public class GearReset : MonoBehaviour
 {
-    bool isFirst = true;
-    // Start is called before the first frame update
-
     private void OnEnable()
     {
-        DestroyAllGear();
         GearManager.Instance.InstansGear();
     }
 
-
-    void DestroyAllGear()
+    private void OnDisable()
     {
-        if (isFirst)
-        {
-            isFirst = false;
-        }
-        else
-        {
-            Debug.Log("けす");
-            foreach (Transform child in this.transform)
-            {
-                Debug.Log($"{child.name}");
-                //child.gameObject.SetActive(false);
-                Destroy(child.gameObject);
-            }
-        }
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GearManager.Instance.SetFalseSceneGear();
     }
 }

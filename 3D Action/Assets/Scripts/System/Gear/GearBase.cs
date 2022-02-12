@@ -2,57 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GearBase : MonoBehaviour
+public class GearBase : MonoBehaviour
 {
-    [SerializeField] string _name;
-    [SerializeField] int _addDefence = default;
+    [SerializeField,Tooltip("装備時に上がる防御力の値")] 
+    int _addDefence  = 10;
 
-    [SerializeField,Tooltip("カードのID")]
+    [SerializeField, Tooltip("装備の買値（正の値）")]
+    int _gearPrice = 10;
+
+    [SerializeField, Tooltip("装備のID")]
     int _gearID;
-    public int GeatID => _gearID;
-
-    [SerializeField, Tooltip("装備の買値、正の値")]
-    int _gearPrice;
+    public int GearID { get => _gearID; }
 
 
-    [SerializeField, Tooltip("装備編成時のパネルのタグ")]
-    string _gearPanelTag = "Inventory";
+    [SerializeField,Tooltip("インベントリのパネルの名前")]
+    string _inventryPanelName = "Inventory";
 
-    [SerializeField, Tooltip("装備を売る際に表示されるインベントリパネルのタグ")]
-    string _sellGearTag = "SellCardPanel";
-
-    public int GearIndex { get => _gearID; set => _gearID = value; }
-    public string Name { get => _name; set => _name = value; }
-
-
-    public void OnEquipment()
-    {
-        PlayerPalam.Instance.Defencefluctuation(_addDefence);
-    }
-
-    public void OnTakeOff()
-    {
-        PlayerPalam.Instance.Defencefluctuation(-(_addDefence));
-    }
+    [SerializeField, Tooltip("セルパネルの名前")]
+    string _sellPanelName = "SellPanel";
 
     public void OnClick()
     {
-        if (this.transform.parent.gameObject.CompareTag(_gearPanelTag)) //編成時
+        //インベントリのとき
+        if (this.transform.parent.tag == _inventryPanelName)
         {
-            SetTransformGear();
-            GearManager.Instance.EquipGear(this);
+            Debug.Log("装備した");
+            GearManager.Instance.EquipGear(this.gameObject);
+            //トランスフォーム変更
+            this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
         }
-        else if(this.transform.parent.gameObject.CompareTag(_sellGearTag)) //売るとき
+        else if(this.transform.parent.tag == _sellPanelName)
         {
 
         }
-        else //装備中パネル 
+        else
         {
+            Debug.Log("装備脱いだ");
+            GearManager.Instance.TakeOffGear(this.gameObject);
             this.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
         }
+        
     }
-    /// <summary>
-    /// ボタンが押された際にトランスフォームを変更する関数
-    /// </summary>
-    protected abstract void SetTransformGear();
+
+   
 }
+
