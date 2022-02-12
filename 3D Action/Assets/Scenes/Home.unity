@@ -3014,7 +3014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c75aa7070261d4490a3b1c0f5bbc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headGearPrefabs:
+  _GearPrefabs:
   - {fileID: 4812101953825978115, guid: 470e949901a6ff243b7dbd1c2a8f3dcf, type: 3}
 --- !u!1 &1870570853
 GameObject:

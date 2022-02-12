@@ -23,24 +23,7 @@ public class GearBase : MonoBehaviour
 
     public void OnClick()
     {
-        //インベントリのとき
-        if (this.transform.parent.tag == _inventryPanelName)
-        {
-            Debug.Log("装備した");
-            GearManager.Instance.EquipGear(this.gameObject);
-            //トランスフォーム変更
-            this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
-        }
-        else if(this.transform.parent.tag == _sellPanelName)
-        {
-
-        }
-        else
-        {
-            Debug.Log("装備脱いだ");
-            GearManager.Instance.TakeOffGear(this.gameObject);
-            this.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
-        }
+        
         
     }
 

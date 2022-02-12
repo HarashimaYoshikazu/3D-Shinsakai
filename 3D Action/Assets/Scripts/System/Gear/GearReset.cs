@@ -11,6 +11,11 @@ public class GearReset : MonoBehaviour
 
     private void OnDisable()
     {
-        GearManager.Instance.SetFalseSceneGear();
+        GearManager.Instance.SetFalseGear();
+    }
+    private void OnDestroy()
+    {
+        Debug.Log("しんだ");
+        GearManager.Instance.InSceneGears.Clear();
     }
 }

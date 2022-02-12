@@ -7,156 +7,41 @@ using UnityEngine;
 /// </summary>
 public class GearManager : DDOLSingleton<GearManager>
 {
-    [SerializeField, Tooltip("頭装備のプレハブ")]
-    GameObject[] _headGearPrefabs;
+    [SerializeField, Tooltip("プレハブ")]
+    GameObject[] _GearPrefabs;
+    List<GameObject> _gearInventry = new List<GameObject>();
+    List<GameObject> _inSceneGears = new List<GameObject>();
 
-    List<GameObject> _subHeadGears = new List<GameObject>();
-
-    /// <summary>現在の頭装備</summary>
-    GameObject _currentHeadGear = null;
-    public GameObject CurrentHeadGear { get => _currentHeadGear; }
+    public List<GameObject> InSceneGears { get => _inSceneGears;}
 
     private void Start()
     {
-        AddGear(_headGearPrefabs[0]);
+        _gearInventry.Add( _GearPrefabs[0]);
     }
-    void AddGear(GameObject gear)
-    {
-        if (gear.TryGetComponent(out HeadGear headGear))
-        {
-            _subHeadGears.Add(gear);
-        }
-        else if (gear.TryGetComponent(out BodyGear bodyGear))
-        {
-
-        }
-        else if (gear.TryGetComponent(out LegGear legGear))
-        {
-
-        }
-    }
-
-    /// <summary>
-    /// 選んだ控え装備と現在装備中のものを交換する関数
-    /// </summary>
-    /// <param name="gear">着る装備</param>
-    public void EquipGear(GameObject gear)
-    {
-        if (gear.TryGetComponent(out HeadGear headGear))
-        {
-
-            RemoveGearFromList(headGear.GearID);//控えリストから着たい装備を消す
-
-            _subHeadGears.Add(_currentHeadGear);//現在装備しているものを控えリストに追加
-
-            _currentHeadGear = gear;//装備中変数に装備したいものを代入
-        }
-        else if (gear.TryGetComponent(out BodyGear bodyGear))
-        {
-
-        }
-        else if (gear.TryGetComponent(out LegGear legGear))
-        {
-
-        }
-    }
-
-    /// <summary>
-    /// ただ単に装備中のものを脱ぐ関数
-    /// </summary>
-    /// <param name="gear">脱ぐ装備</param>
-    public void TakeOffGear(GameObject gear)
-    {
-        if (gear.TryGetComponent(out HeadGear headGear))
-        {
-            //※Clearしてから入れなおす
-            _tempList.Clear();
-            foreach (var i in _subHeadGears)
-            {
-                if (i)
-                {
-                    _tempList.Add(i);
-                }
-
-            }
-            _subHeadGears.Clear();
-            foreach (var i in _tempList)
-            {
-                if (i)
-                {
-                    _subHeadGears.Add(i);
-                }
-
-            }
-            //引数で持ってきたGameObjectを控えリストに追加
-            _subHeadGears.Add(gear);
-            _currentHeadGear = null;
-        }
-        else if (gear.TryGetComponent(out BodyGear bodyGear))
-        {
-
-        }
-        else if (gear.TryGetComponent(out LegGear legGear))
-        {
-
-        }
-    }
-
-    List<GameObject> _tempList = new List<GameObject>();
-    void RemoveGearFromList(int id)
-    {
-        _tempList.Clear();
-        foreach (var i in _subHeadGears)
-        {
-            _tempList.Add(i);
-        }
-
-        foreach (var i in _tempList)
-        {
-            if (!i)
-            {
-                continue;
-            }
-            else if (i.GetComponent<HeadGear>().GearID == id)
-            {
-                _subHeadGears.Remove(i);
-            }
-        }
-
-    }
-
-    List<GameObject> _sceneGearList = new List<GameObject>();
     public void InstansGear()
-    {　　
-
-        if (_sceneGearList.Count != 0)
+    {
+        if (_inSceneGears.Count ==0)
         {
-            foreach (var i in _sceneGearList)
+            foreach (var i in _gearInventry)
             {
-                i.gameObject.SetActive(true);
+                _inSceneGears.Add(Instantiate(i, HomeManager.Instance.GearInventryPanel.transform));
             }
         }
         else
         {
-            foreach (var i in _subHeadGears)
+            foreach (var i in _inSceneGears)
             {
-                _sceneGearList.Add(Instantiate(i, HomeManager.Instance.GearInventryPanel.transform));
+                i.gameObject.SetActive(true);
             }
         }
-
     }
 
-    public void SetFalseSceneGear()
+    public void SetFalseGear()
     {
-        foreach (var i in _sceneGearList)
+        foreach (var i in _inSceneGears)
         {
             i.gameObject.SetActive(false);
         }
-    }
-
-    public void ResetList()
-    {
-        _sceneGearList.Clear();
     }
 
 }
