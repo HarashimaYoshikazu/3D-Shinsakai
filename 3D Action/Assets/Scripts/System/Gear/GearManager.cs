@@ -31,11 +31,29 @@ public class GearManager : DDOLSingleton<GearManager>
         _gearInventry.Add(_GearPrefabs[0]);
     }
 
+    List<GameObject> _tempList = new List<GameObject>();
     public void OnEquip(GameObject gear)
     {
         //装備するものをinSceneGearから削除
         _inSceneGears.Remove(gear);
         //※ここでSubGear（記憶用もRemoveする）
+
+        foreach (var i in _subGears)
+        {
+            _tempList.Add(i);
+        }
+
+        foreach(var i in _tempList)
+        {
+            int n = i.GetComponent<GearBase>().GearID;
+            if (gear.GetComponent<GearBase>().GearID == n)
+            {
+                Debug.Log(i);
+                _subGears.Remove(i);
+                break;
+            }
+        }
+        _tempList.Clear();
 
         foreach(var i in _GearPrefabs)
         {
