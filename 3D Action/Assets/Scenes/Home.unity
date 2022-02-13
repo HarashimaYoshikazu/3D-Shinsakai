@@ -3016,6 +3016,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GearPrefabs:
   - {fileID: 4812101953825978115, guid: 470e949901a6ff243b7dbd1c2a8f3dcf, type: 3}
+  - {fileID: 4812101953825978115, guid: 12bd892509ac3f14aa000c59c2c5f7b4, type: 3}
+  - {fileID: 4812101953825978115, guid: eb1f0a9b59c06134bba47e3a2c9241ef, type: 3}
 --- !u!1 &1870570853
 GameObject:
   m_ObjectHideFlags: 0

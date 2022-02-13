@@ -15,23 +15,34 @@ public class GearManager : DDOLSingleton<GearManager>
 
     /// <summary>装備しているものは含まないサブの装備リスト</summary>
     List<GameObject> _subGears = new List<GameObject>();
+    public List<GameObject> SubGears { get => _subGears; }
 
-    /// <summary>装備しているものは含まないサブの装備リスト</summary>
+    /// <summary>？装備しているものは含まないInstanc用のリスト</summary>
     List<GameObject> _inSceneGears = new List<GameObject>();
+    public List<GameObject> InSceneGears { get => _inSceneGears; }
 
     /// <summary>現在装備中の頭装備</summary>
     GameObject _currentHeadGear;
     public GameObject CurrentHeadGear => _currentHeadGear;
 
-    public List<GameObject> SubGears { get => _subGears;}
-    public List<GameObject> InSceneGears { get => _inSceneGears;  }
+    GameObject _currentBodyGear;
+    public GameObject CurrentBodyGear => _currentBodyGear;
+
+    GameObject _currentLegGear;
+    public GameObject CurrentLegGear => _currentLegGear;
+
+
+
 
     private void Start()
     {
         _gearInventry.Add( _GearPrefabs[0]);
         _gearInventry.Add(_GearPrefabs[0]);
+        _gearInventry.Add(_GearPrefabs[1]);
+        _gearInventry.Add(_GearPrefabs[2]);
     }
 
+    /// <summary>バグ回避用の一時リスト</summary>
     List<GameObject> _tempList = new List<GameObject>();
     public void OnEquip(GameObject gear)
     {
@@ -59,18 +70,31 @@ public class GearManager : DDOLSingleton<GearManager>
 
         foreach(var i in _GearPrefabs)
         {
+            GearBase gb = gear.GetComponent<GearBase>();
             int n = i.GetComponent<GearBase>().GearID;
-            if (gear.GetComponent<GearBase>().GearID == n)
+            if (gb.GearID == n)
             {
-                //装備中変数に装備するものを代入
-                _currentHeadGear = i;
+                //装備中変数に装備するものを型推論して代入
+                if (gb is HeadGear)
+                {
+                    _currentHeadGear = i;
+                }
+                else if (gb is BodyGear)
+                {
+                    _currentBodyGear = i;
+                }
+                else if (gb is LegGear)
+                {
+                    _currentLegGear = i;
+                }
+                
                 break;
             }
         }
         
     }
 
-    public void OnTakeOff()
+    public void OnTakeOff(GearBase gb)
     {
         int n;
 
@@ -84,7 +108,19 @@ public class GearManager : DDOLSingleton<GearManager>
                 _subGears.Add(i);
             }
         }
-        _currentHeadGear = null;
+        if (gb is HeadGear)
+        {
+            _currentHeadGear = null;
+        }
+        else if (gb is BodyGear)
+        {
+            _currentBodyGear = null;
+        }
+        else if (gb is LegGear)
+        {
+            _currentLegGear = null;
+        }
+        
     }
 
 

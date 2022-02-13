@@ -6,13 +6,16 @@ public class HeadGear : GearBase
 {
     protected override void OnEquip()
     {
-        //防御力UP
-        PlayerPalam.Instance.Defencefluctuation(_addDefence);
-        //頭パネルの子オブジェクトに
-        this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
+        if (!GearManager.Instance.CurrentHeadGear)
+        {
+            //防御力UP
+            PlayerPalam.Instance.Defencefluctuation(_addDefence);
+            //頭パネルの子オブジェクトに
+            this.transform.SetParent(HomeManager.Instance.HeadPanel.transform);
 
-        //gearManagerの内部処理
-        GearManager.Instance.OnEquip(this.gameObject);
+            //gearManagerの内部処理
+            GearManager.Instance.OnEquip(this.gameObject);
+        }
     }
 
     protected override void OnTakeOff()
@@ -22,6 +25,6 @@ public class HeadGear : GearBase
         //インベントリパネルの子オブジェクトに
         this.transform.SetParent(HomeManager.Instance.GearInventryPanel.transform);
         //gearManagerの内部処理
-        GearManager.Instance.OnTakeOff();
+        GearManager.Instance.OnTakeOff(this.GetComponent<HeadGear>());
     }
 }
