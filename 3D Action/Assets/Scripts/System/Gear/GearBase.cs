@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearBase : MonoBehaviour
+public abstract class GearBase : MonoBehaviour
 {
     [SerializeField,Tooltip("装備時に上がる防御力の値")] 
-    int _addDefence  = 10;
+    protected int _addDefence  = 10;
 
     [SerializeField, Tooltip("装備の買値（正の値）")]
-    int _gearPrice = 10;
+    protected int _gearPrice = 10;
 
     [SerializeField, Tooltip("装備のID")]
-    int _gearID;
+    protected int _gearID;
     public int GearID { get => _gearID; }
+
 
 
     [SerializeField,Tooltip("インベントリのパネルの名前")]
@@ -21,9 +22,16 @@ public class GearBase : MonoBehaviour
     [SerializeField, Tooltip("セルパネルの名前")]
     string _sellPanelName = "SellPanel";
 
+    protected abstract void OnEquip();
+
+    protected abstract void OnTakeOff();
+
     public void OnClick()
     {
-        
+        if (this.transform.parent.tag ==_inventryPanelName)
+        {
+            OnEquip();
+        }
         
     }
 

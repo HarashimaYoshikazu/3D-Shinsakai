@@ -16,6 +16,10 @@ public class GearReset : MonoBehaviour
     private void OnDestroy()
     {
         Debug.Log("しんだ");
-        GearManager.Instance.InSceneGears.Clear();
+        //InSceneGearをクリアすることで次もまたinstanceされるように
+        if (GearManager.Instance)
+        {
+            GearManager.Instance.InSceneGears.Clear();
+        }        
     }
 }

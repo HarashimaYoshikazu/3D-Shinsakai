@@ -170,6 +170,7 @@ MonoBehaviour:
   _addDefence: 5
   _gearPrice: 30
   _gearID: 2
+  _selfPrefab: {fileID: 4812101953825978115}
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
 --- !u!114 &-6055371402659668697
