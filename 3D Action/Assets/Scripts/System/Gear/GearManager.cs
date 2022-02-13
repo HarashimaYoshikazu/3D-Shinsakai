@@ -21,6 +21,7 @@ public class GearManager : DDOLSingleton<GearManager>
 
     /// <summary>現在装備中の頭装備</summary>
     GameObject _currentHeadGear;
+    public GameObject CurrentHeadGear => _currentHeadGear;
 
     public List<GameObject> SubGears { get => _subGears;}
     public List<GameObject> InSceneGears { get => _inSceneGears;  }
@@ -36,7 +37,8 @@ public class GearManager : DDOLSingleton<GearManager>
     {
         //装備するものをinSceneGearから削除
         _inSceneGears.Remove(gear);
-        //※ここでSubGear（記憶用もRemoveする）
+        //SubGear（記憶用もRemoveする）
+        //エラー回避のためにTempListも使用
 
         foreach (var i in _subGears)
         {
@@ -65,11 +67,26 @@ public class GearManager : DDOLSingleton<GearManager>
                 break;
             }
         }
-
         
     }
 
-    bool _isFirst = true;
+    public void OnTakeOff()
+    {
+        int n;
+
+        //装備しなくなったものをSubGearに戻す
+        foreach(var i in _GearPrefabs)
+        {
+            n = _currentHeadGear.GetComponent<GearBase>().GearID;
+            Debug.Log(n);
+            if(n ==i.GetComponent<GearBase>().GearID)
+            {
+                _subGears.Add(i);
+            }
+        }
+        _currentHeadGear = null;
+    }
+
 
     /// <summary>
     /// まだシーン上にインスタンスされてない場合は生成、されている場合はSetActiveをTrueに
@@ -98,7 +115,11 @@ public class GearManager : DDOLSingleton<GearManager>
             {
                 i.gameObject.SetActive(true);
             }
-            Instantiate(_currentHeadGear,HomeManager.Instance.HeadPanel.transform);
+            if (_currentHeadGear)
+            {
+                Instantiate(_currentHeadGear, HomeManager.Instance.HeadPanel.transform);
+            }
+            
         }
         else
         {

@@ -30,7 +30,18 @@ public abstract class GearBase : MonoBehaviour
     {
         if (this.transform.parent.tag ==_inventryPanelName)
         {
-            OnEquip();
+            if (!GearManager.Instance.CurrentHeadGear)
+            {
+                OnEquip();
+            }
+        }
+        else if (this.transform.parent.tag == _sellPanelName)
+        {
+
+        }
+        else
+        {
+                OnTakeOff();           
         }
         
     }
