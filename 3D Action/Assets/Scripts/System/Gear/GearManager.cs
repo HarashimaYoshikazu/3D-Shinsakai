@@ -99,31 +99,50 @@ public class GearManager : DDOLSingleton<GearManager>
         int n;
 
         //装備しなくなったものをSubGearに戻す
-        foreach(var i in _GearPrefabs)
-        {
-            n = _currentHeadGear.GetComponent<GearBase>().GearID;
-            Debug.Log(n);
-            if(n ==i.GetComponent<GearBase>().GearID)
-            {
-                _subGears.Add(i);
-            }
-        }
+
         if (gb is HeadGear)
         {
+            foreach (var i in _GearPrefabs)
+            {
+                n = _currentHeadGear.GetComponent<GearBase>().GearID;
+                Debug.Log(n);
+                if (n == i.GetComponent<GearBase>().GearID)
+                {
+                    _subGears.Add(i);
+                }
+            }
             _currentHeadGear = null;
         }
         else if (gb is BodyGear)
         {
+            foreach (var i in _GearPrefabs)
+            {
+                n = _currentBodyGear.GetComponent<GearBase>().GearID;
+                Debug.Log(n);
+                if (n == i.GetComponent<GearBase>().GearID)
+                {
+                    _subGears.Add(i);
+                }
+            }
             _currentBodyGear = null;
         }
         else if (gb is LegGear)
         {
+            foreach (var i in _GearPrefabs)
+            {
+                n = _currentLegGear.GetComponent<GearBase>().GearID;
+                Debug.Log(n);
+                if (n == i.GetComponent<GearBase>().GearID)
+                {
+                    _subGears.Add(i);
+                }
+            }
             _currentLegGear = null;
         }
         
     }
 
-
+    public bool isFirst = true;
     /// <summary>
     /// まだシーン上にインスタンスされてない場合は生成、されている場合はSetActiveをTrueに
     /// </summary>
@@ -141,7 +160,7 @@ public class GearManager : DDOLSingleton<GearManager>
                 i.gameObject.SetActive(true);
             }
         }
-        else if (_subGears.Count !=0 && _inSceneGears.Count ==0)
+        else if (!isFirst && _inSceneGears.Count ==0)
         {
             foreach (var i in _subGears)
             {                
@@ -155,7 +174,15 @@ public class GearManager : DDOLSingleton<GearManager>
             {
                 Instantiate(_currentHeadGear, HomeManager.Instance.HeadPanel.transform);
             }
-            
+            if (_currentBodyGear)
+            {
+                Instantiate(_currentBodyGear, HomeManager.Instance.BodyPanel.transform);
+            }
+            if (_currentLegGear)
+            {
+                Instantiate(_currentLegGear, HomeManager.Instance.LegPanel.transform);
+            }
+                        
         }
         else
         {

@@ -20,6 +20,7 @@ public class GearReset : MonoBehaviour
         if (GearManager.Instance)
         {
             GearManager.Instance.InSceneGears.Clear();
-        }        
+        }
+        GearManager.Instance.isFirst = false;
     }
 }
