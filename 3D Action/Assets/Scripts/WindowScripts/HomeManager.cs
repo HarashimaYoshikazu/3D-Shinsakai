@@ -19,9 +19,13 @@ public class HomeManager : Singleton<HomeManager>
     [SerializeField, Tooltip("脚装備")] GameObject _legPanel = null;
     public GameObject LegPanel => _legPanel;
 
-    [SerializeField, Tooltip("武器のパネル")]
+    [SerializeField, Tooltip("武器のインベントリパネル")]
     GameObject _weaponInventryPanel;
     public GameObject WeaponInventryPanel => _weaponInventryPanel;
+
+    [SerializeField, Tooltip("現在の武器パネル")]
+    GameObject _currentWeaponPanel;
+    public GameObject CurrentWeaponPanel => _currentWeaponPanel;
 
 
     void Start()

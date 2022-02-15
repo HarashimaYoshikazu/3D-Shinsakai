@@ -10,44 +10,59 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     [SerializeField, Tooltip("銃のアイコンのプレハブ")]
     GameObject[] _gunIconPrefabs;
 
-    /// <summary>現在の銃のアニメーターコンポーネント </summary>
-    Animator _currentGunAnimator;
-    public Animator CurrentGunAnimator => _currentGunAnimator;
+    /// <summary>現在の銃のアイコンオブジェクト、これを変更することで生成を切り替える </summary>
+    GameObject _currentGun;
+    public GameObject CurrentGun => _currentGun;
 
-
-    List<GameObject> _weaponInventry = new List<GameObject>();
+    List<GameObject> _weaponIconInventry = new List<GameObject>();
 
 
     private void Start()
     {
+        _currentGun = _gunIconPrefabs[0];
         //アイコンオブジェクトを追加
-        _weaponInventry.Add(_gunIconPrefabs[0]);
+        _weaponIconInventry.Add(_gunIconPrefabs[0]);
     }
 
+
+    /// <summary>
+    /// 装備した際に装備中武器変数の中身を変える
+    /// </summary>
+    public void Equip(GameObject go)
+    {
+        foreach (var i in _gunIconPrefabs)
+        {
+            int gearID = i.GetComponent<GearBase>().GearID;
+            //IDが一致したプレハブを装備中武器変数に代入
+            if (gearID == go.GetComponent<GearBase>().GearID)
+            {
+                _currentGun = i;
+                break;
+            }
+        }
+    }
+    /// <summary>
+    /// バトルシーン用のインスタンス関数
+    /// </summary>
+    /// <param name="gunCameraTransform"></param>
     public void InstanceWeaponObject(Transform gunCameraTransform)
     {
-        //武器のIDをインデックスとして使用しプレハブを生成
-        int index =  _currentGunAnimator.gameObject.GetComponent<GearBase>().GearID;
-        if (_gunIconPrefabs.Length-1 >= index)
-        {
-            var go = Instantiate(_gunPrefabs[index], gunCameraTransform);
-            _currentGunAnimator = go.GetComponent<Animator>();
-        }
-        else
-        {
-            //ギアIDが不正な値の場合はピストルを装備
-            var go = Instantiate(_gunPrefabs[0], gunCameraTransform);
-            _currentGunAnimator = go.GetComponent<Animator>();
-        }
-        
-        
+        //GearBaseのIDを添え字として使用
+        int index = _currentGun.GetComponent<GearBase>().GearID;
+        //武器用カメラの子オブジェクトとして武器を生成
+        Instantiate(_gunPrefabs[index],InBattleSceneManager.Instance.GunCamera.transform);
     }
 
+    /// <summary>
+    /// ホーム用のインスタンス関数
+    /// </summary>
     public void InstanceWeaponIcon()
     {
-        foreach(var i in _gunIconPrefabs)
-        {
-            Instantiate(i,HomeManager.Instance.WeaponInventryPanel.transform);
-        }
+
+    }
+
+    public Animator CurrentAnimator()
+    {
+        return _currentGun.GetComponent<Animator>();
     }
 }

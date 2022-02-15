@@ -20,7 +20,7 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
 
     [SerializeField, Tooltip("銃のカメラオブジェクト")]
     GameObject _gunCamera;
-
+    public GameObject GunCamera => _gunCamera;
     
 
     /// <summary>ダンジョン１回で手に入れたゴールド</summary>
