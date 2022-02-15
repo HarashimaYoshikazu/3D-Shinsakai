@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\System\Skill\MemorySkills.cs" />
     <Compile Include="Assets\Scripts\System\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\System\Skill\SkillParam.cs" />
+    <Compile Include="Assets\Scripts\System\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\CardUI.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FalseSelf.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FieldPanel.cs" />

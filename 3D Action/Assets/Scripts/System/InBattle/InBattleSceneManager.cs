@@ -15,6 +15,14 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     [SerializeField, Tooltip("リザルトを出力するテキストコンポーネントプレハブ")]
     Text _resultTextPrefub;
 
+
+
+
+    [SerializeField, Tooltip("銃のカメラオブジェクト")]
+    GameObject _gunCamera;
+
+    
+
     /// <summary>ダンジョン１回で手に入れたゴールド</summary>
     int _goldCount = 0;
     /// <summary>ダンジョン１回で手に入れたカード</summary>
@@ -35,6 +43,9 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     protected override void OnAwake()
     {        
         OnResult += SetResultText;
+        //gearManagerで保存した番号の武器をinstance
+        WeaponManager.Instance.InstanceWeaponObject(_gunCamera.transform);
+        
     }
     private void Update()
     {

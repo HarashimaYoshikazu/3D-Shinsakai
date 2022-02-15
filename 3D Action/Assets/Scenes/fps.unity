@@ -3837,6 +3837,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol1
       objectReference: {fileID: 0}
+    - target: {fileID: 4545182192998442210, guid: 0e159148507f8c6438ec3877e1d4ea45,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e159148507f8c6438ec3877e1d4ea45, type: 3}
 --- !u!1001 &689267151
@@ -6155,6 +6160,11 @@ MonoBehaviour:
     type: 3}
   _resultTextPrefub: {fileID: 9140662423431823505, guid: c4611343c50d9124590b5c160176a6ae,
     type: 3}
+  _gunPrefabs:
+  - {fileID: 4545182192998442210, guid: 0e159148507f8c6438ec3877e1d4ea45, type: 3}
+  - {fileID: 7527705405950317722, guid: 4b6f91f4c0bab5247b9bd537a834af55, type: 3}
+  - {fileID: 5397895293643700587, guid: f5194bad69bfe3c41bf929827aa77bdf, type: 3}
+  _gunCamera: {fileID: 408965041881430006}
 --- !u!4 &1357164173
 Transform:
   m_ObjectHideFlags: 0

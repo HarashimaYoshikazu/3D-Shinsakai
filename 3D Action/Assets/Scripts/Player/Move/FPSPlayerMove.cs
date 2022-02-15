@@ -11,8 +11,6 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
     [SerializeField, Tooltip("キャラクターの Rigidbody")]
     Rigidbody _rb;
 
-    [SerializeField,Tooltip("銃のAnimator")] 
-    Animator _anim = null;
 
     [SerializeField,Tooltip("ゲームクリア判定を行うためのタグ")]
     string _tag = "End";
@@ -42,9 +40,9 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             // 方向の入力がニュートラルの時は、y 軸方向の速度を保持するだけ
             _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f);
             //銃のアニメーションを停止
-            if (_anim)
+            if (WeaponManager.Instance.CurrentGunAnimator)
             {
-                _anim.SetBool(_walkParam, false);
+                WeaponManager.Instance.CurrentGunAnimator.SetBool(_walkParam, false);
             }
             
         }
@@ -61,9 +59,9 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             _rb.velocity = velo;
 
             //銃のアニメーション再生
-            if (_anim)
+            if (WeaponManager.Instance.CurrentGunAnimator)
             {
-                _anim.SetBool(_walkParam, true);
+                WeaponManager.Instance.CurrentGunAnimator.SetBool(_walkParam, true);
             }           
         }
 

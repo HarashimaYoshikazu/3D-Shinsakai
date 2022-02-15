@@ -18,6 +18,12 @@ public class HomeManager : Singleton<HomeManager>
     public GameObject BodyPanel => _bodyPanel;
     [SerializeField, Tooltip("脚装備")] GameObject _legPanel = null;
     public GameObject LegPanel => _legPanel;
+
+    [SerializeField, Tooltip("武器のパネル")]
+    GameObject _weaponInventryPanel;
+    public GameObject WeaponInventryPanel => _weaponInventryPanel;
+
+
     void Start()
     {
         //テキストをデフフォルトに
