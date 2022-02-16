@@ -43,8 +43,10 @@ public class HomeManager : Singleton<HomeManager>
             _legPanel = Instantiate(_legPanel, _gearPanel.transform);
         }
 
-        //武器アイコンの生成
-        //WeaponManager.Instance.InstanceWeaponIcon();
     }
-
+    public void OnWeaponPanelEnable()
+    {
+        //武器アイコンの生成
+        WeaponManager.Instance.InstanceWeaponIcon();
+    }
 }

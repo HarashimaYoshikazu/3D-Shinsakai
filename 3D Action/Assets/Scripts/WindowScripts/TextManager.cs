@@ -35,7 +35,11 @@ public class TextManager : Singleton<TextManager>
     /// <param name="mes"></param>
     public void SetMessage(string mes)
     {
-        _message.text = mes;
+        if (_message)
+        {
+            _message.text = mes;
+        }
+        
     }
 
     /// <summary>

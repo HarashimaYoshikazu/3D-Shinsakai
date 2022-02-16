@@ -120,7 +120,7 @@ public class FPSShoot : Singleton<FPSShoot>
             }
             else if (WeaponManager.Instance)
             {
-                WeaponManager.Instance.CurrentAnimator().SetTrigger("Shoot");
+                WeaponManager.Instance.CurrentAnimator().SetBool("Shoot",true);
             }
 
 
@@ -149,7 +149,11 @@ public class FPSShoot : Singleton<FPSShoot>
         }
         else if (Input.GetButtonUp("Fire1"))
         {
-            debugAnim.SetBool("Shoot", false);
+            WeaponManager.Instance.CurrentAnimator().SetBool("Shoot", false);
+            if (isDebug)
+            {
+                debugAnim.SetBool("Shoot", false);
+            }
         }
     }
     /// <summary>

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7521475028397692626}
   - component: {fileID: 7495934650280805732}
   - component: {fileID: 7503757817785952014}
-  m_Layer: 0
+  - component: {fileID: 1201738529}
+  m_Layer: 8
   m_Name: SMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,3 +80,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &1201738529
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527705405950317722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88ac86bb3e5873f499190d9d476933b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

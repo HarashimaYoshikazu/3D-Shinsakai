@@ -934,8 +934,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1174596472}
-        m_MethodName: InstanceWeaponIcon
+      - m_Target: {fileID: 859224137}
+        m_MethodName: OnWeaponPanelEnable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4362,7 +4362,7 @@ GameObject:
   - component: {fileID: 1870570855}
   - component: {fileID: 1870570860}
   m_Layer: 0
-  m_Name: _panelManager
+  m_Name: _sceneManager
   m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4394,6 +4394,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86390b54305aa0140bd1ab6dc5789944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadePanel: {fileID: 4849952780739344560, guid: 772e08402afdf4d45bb94ea4ab99ed62,
+    type: 3}
+  _canvs: {fileID: 5212113445797401997}
+  _fadeTime: 2
 --- !u!1 &1929336235
 GameObject:
   m_ObjectHideFlags: 0
