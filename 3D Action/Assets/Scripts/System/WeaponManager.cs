@@ -12,7 +12,11 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
 
     /// <summary>現在の銃のアイコンオブジェクト、これを変更することで生成を切り替える </summary>
     GameObject _currentGun;
+
     public GameObject CurrentGun => _currentGun;
+
+    GameObject _homeSceneGunIcon;
+    public GameObject HomeSceneGunIcon => _homeSceneGunIcon;
 
     List<GameObject> _weaponIconInventry = new List<GameObject>();
 
@@ -21,7 +25,9 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     {
         _currentGun = _gunIconPrefabs[0];
         //アイコンオブジェクトを追加
-        _weaponIconInventry.Add(_gunIconPrefabs[0]);
+        _weaponIconInventry.Add(_gunIconPrefabs[1]);
+        _weaponIconInventry.Add(_gunIconPrefabs[2]);
+
     }
 
 
@@ -30,6 +36,7 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     /// </summary>
     public void Equip(GameObject go)
     {
+        _homeSceneGunIcon = go;
         foreach (var i in _gunIconPrefabs)
         {
             int gearID = i.GetComponent<GearBase>().GearID;
@@ -50,7 +57,7 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
         //GearBaseのIDを添え字として使用
         int index = _currentGun.GetComponent<GearBase>().GearID;
         //武器用カメラの子オブジェクトとして武器を生成
-        Instantiate(_gunPrefabs[index],InBattleSceneManager.Instance.GunCamera.transform);
+        _inBattleSceneWeapon = Instantiate(_gunPrefabs[index],InBattleSceneManager.Instance.GunCamera.transform);
     }
 
     /// <summary>
@@ -58,11 +65,18 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     /// </summary>
     public void InstanceWeaponIcon()
     {
-
+        _homeSceneGunIcon =  Instantiate(_currentGun, HomeManager.Instance.CurrentWeaponPanel.transform);
+        foreach(var i in _weaponIconInventry)
+        {
+            Instantiate(i,HomeManager.Instance.WeaponInventryPanel.transform);
+        }
     }
 
+    GameObject _inBattleSceneWeapon;
     public Animator CurrentAnimator()
     {
-        return _currentGun.GetComponent<Animator>();
+        return _inBattleSceneWeapon.GetComponent<Animator>();
     }
+
+
 }

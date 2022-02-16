@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8817190162633113902}
   - component: {fileID: 7309974701795712439}
   m_Layer: 5
-  m_Name: Pistol
+  m_Name: _SMG
   m_TagString: GearTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7309974701795712439}
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _addDefence: 10
   _gearPrice: 10
-  _gearID: 0
+  _gearID: 1
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
 --- !u!1 &7486926208403592107
@@ -225,4 +225,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6B66\u5668\uFF11"
+  m_Text: SMG

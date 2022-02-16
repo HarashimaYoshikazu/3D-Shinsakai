@@ -42,6 +42,9 @@ public class HomeManager : Singleton<HomeManager>
             _bodyPanel = Instantiate(_bodyPanel, _gearPanel.transform);
             _legPanel = Instantiate(_legPanel, _gearPanel.transform);
         }
+
+        //武器アイコンの生成
+        WeaponManager.Instance.InstanceWeaponIcon();
     }
 
 }
