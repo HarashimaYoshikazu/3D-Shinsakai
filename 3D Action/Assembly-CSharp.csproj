@@ -96,7 +96,7 @@
     <Compile Include="Assets\Scripts\System\Gear\GearReset.cs" />
     <Compile Include="Assets\Scripts\System\Gear\HeadGear.cs" />
     <Compile Include="Assets\Scripts\System\Gear\LegGear.cs" />
-    <Compile Include="Assets\Scripts\System\Gear\Pistol.cs" />
+    <Compile Include="Assets\Scripts\System\Gear\Weapon.cs" />
     <Compile Include="Assets\Scripts\System\InBattle\InBattleSceneManager.cs" />
     <Compile Include="Assets\Scripts\System\PlayerCreate.cs" />
     <Compile Include="Assets\Scripts\System\PlayerPos.cs" />

@@ -44,8 +44,10 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     {        
         OnResult += SetResultText;
         //gearManagerで保存した番号の武器をinstance
-        WeaponManager.Instance.InstanceWeaponObject(_gunCamera.transform);
-        
+        if (WeaponManager.Instance)
+        {
+            WeaponManager.Instance.InstanceWeaponObject();
+        }               
     }
     private void Update()
     {

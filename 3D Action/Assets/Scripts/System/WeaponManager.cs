@@ -43,7 +43,9 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
             //IDが一致したプレハブを装備中武器変数に代入
             if (gearID == go.GetComponent<GearBase>().GearID)
             {
-                _currentGun = i;
+                _weaponIconInventry.Remove(i);
+                _weaponIconInventry.Add(_currentGun);
+                _currentGun = i;               
                 break;
             }
         }
@@ -52,7 +54,7 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     /// バトルシーン用のインスタンス関数
     /// </summary>
     /// <param name="gunCameraTransform"></param>
-    public void InstanceWeaponObject(Transform gunCameraTransform)
+    public void InstanceWeaponObject()
     {
         //GearBaseのIDを添え字として使用
         int index = _currentGun.GetComponent<GearBase>().GearID;

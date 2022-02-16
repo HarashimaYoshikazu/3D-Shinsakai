@@ -44,7 +44,7 @@ public class HomeManager : Singleton<HomeManager>
         }
 
         //武器アイコンの生成
-        WeaponManager.Instance.InstanceWeaponIcon();
+        //WeaponManager.Instance.InstanceWeaponIcon();
     }
 
 }

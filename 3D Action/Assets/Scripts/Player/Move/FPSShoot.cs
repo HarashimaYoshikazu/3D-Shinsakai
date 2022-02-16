@@ -112,7 +112,7 @@ public class FPSShoot : Singleton<FPSShoot>
     {
         if (Input.GetButton("Fire1") && _timer >= _fireInterval)
         {
-            if (WeaponManager.Instance.CurrentAnimator())
+            if (WeaponManager.Instance)
             {
                 WeaponManager.Instance.CurrentAnimator().SetTrigger("Shoot");
             }
