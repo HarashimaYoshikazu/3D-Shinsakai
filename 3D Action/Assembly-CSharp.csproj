@@ -73,6 +73,7 @@
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Plug-ins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Scripts\CardBase\AttackUpCard.cs" />
     <Compile Include="Assets\Scripts\CardBase\CardBase.cs" />
     <Compile Include="Assets\Scripts\CardBase\FireUpCard.cs" />
     <Compile Include="Assets\Scripts\CardBase\HealCard.cs" />

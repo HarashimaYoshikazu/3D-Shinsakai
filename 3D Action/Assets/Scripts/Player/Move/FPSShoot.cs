@@ -17,6 +17,7 @@ public class FPSShoot : Singleton<FPSShoot>
     [SerializeField, Range(1, 200), Tooltip("射撃可能距離")]
     float _shootRange = 10f;
 
+
     [SerializeField, Tooltip("照準の Ray が当たる Layer")]
     LayerMask _shootingLayer;
 
@@ -112,49 +113,93 @@ public class FPSShoot : Singleton<FPSShoot>
     /// </summary>
     private void Shoot()
     {
-        if (Input.GetButton("Fire1") && _timer >= _fireInterval)
+        if (WeaponManager.Instance?.CurrentGun != WeaponManager.Instance?.GunIconPrefabs[0])
         {
-            if (isDebug)
+            if (Input.GetButton("Fire1") && _timer >= _fireInterval)
             {
-                debugAnim.SetBool("Shoot", true);
-            }
-            else if (WeaponManager.Instance)
-            {
-                WeaponManager.Instance.CurrentAnimator().SetBool("Shoot",true);
-            }
-
-
-
-            if (_shootingSfx)
-            {
-                AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);
-            }
-            if (_target)
-            {   
-                _target.Damage(1);
-
-                Rigidbody rb = _target.GetComponent<Rigidbody>();
-                if (rb)
+                if (isDebug)
                 {
-                    // 斜め上方向に力を加える
-                    Vector3 dir = _target.transform.position - this.transform.position;
-                    dir.y = 0;
-                    dir = (dir.normalized + Vector3.up).normalized;
-                    rb.AddForce(dir * _shootPower, ForceMode.Impulse);
+                    debugAnim.SetBool("Shoot", true);
+                }
+                else if (WeaponManager.Instance)
+                {
+                    WeaponManager.Instance.CurrentAnimator().SetBool("Shoot", true);
+                }
+
+
+
+                if (_shootingSfx)
+                {
+                    AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);
+                }
+                if (_target)
+                {
+                    //ダメージを与える
+                    _target.Damage(PlayerPalam.Instance.Attack);
+
+                    Rigidbody rb = _target.GetComponent<Rigidbody>();
+                    if (rb)
+                    {
+                        // 斜め上方向に力を加える
+                        Vector3 dir = _target.transform.position - this.transform.position;
+                        dir.y = 0;
+                        dir = (dir.normalized + Vector3.up).normalized;
+                        rb.AddForce(dir * _shootPower, ForceMode.Impulse);
+                    }
+                }
+
+
+                _timer = 0f;
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                WeaponManager.Instance.CurrentAnimator().SetBool("Shoot", false);
+                if (isDebug)
+                {
+                    debugAnim.SetBool("Shoot", false);
                 }
             }
-
-
-            _timer = 0f;
         }
-        else if (Input.GetButtonUp("Fire1"))
+        else
         {
-            WeaponManager.Instance.CurrentAnimator().SetBool("Shoot", false);
-            if (isDebug)
+            if (Input.GetButtonDown("Fire1") && _timer >= _fireInterval)
             {
-                debugAnim.SetBool("Shoot", false);
+                if (isDebug)
+                {
+                    debugAnim.SetTrigger("Shoot");
+                }
+                else if (WeaponManager.Instance)
+                {
+                    WeaponManager.Instance.CurrentAnimator().SetTrigger("Shoot");
+                }
+
+
+
+                if (_shootingSfx)
+                {
+                    AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);
+                }
+                if (_target)
+                {
+                    //ダメージを与える
+                    _target.Damage(PlayerPalam.Instance.Attack);
+
+                    Rigidbody rb = _target.GetComponent<Rigidbody>();
+                    if (rb)
+                    {
+                        // 斜め上方向に力を加える
+                        Vector3 dir = _target.transform.position - this.transform.position;
+                        dir.y = 0;
+                        dir = (dir.normalized + Vector3.up).normalized;
+                        rb.AddForce(dir * _shootPower, ForceMode.Impulse);
+                    }
+                }
+
+
+                _timer = 0f;
             }
         }
+
     }
     /// <summary>
     /// ファイレートを変更する関数
@@ -171,6 +216,7 @@ public class FPSShoot : Singleton<FPSShoot>
             _fireInterval = 0.1f;
         }        
     }
+
 
     /// <summary>
     /// クロスヘアのSetActiveを変更する関数

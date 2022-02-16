@@ -8,8 +8,7 @@ public class FireUpCard : CardBase
 
     public override void Execute()
     {
-        FPSShoot fps = GameObject.FindGameObjectWithTag("Player").GetComponent<FPSShoot>();
-        fps.FireIntervalfluctuation(Intervalfluctuation);
+        FPSShoot.Instance.FireIntervalfluctuation(Intervalfluctuation);
         base.Execute();
     }
 }

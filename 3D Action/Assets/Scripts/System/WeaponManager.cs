@@ -10,6 +10,8 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     [SerializeField, Tooltip("銃のアイコンのプレハブ")]
     GameObject[] _gunIconPrefabs;
 
+    public GameObject[] GunIconPrefabs => _gunIconPrefabs;
+
     /// <summary>現在の銃のアイコンオブジェクト、これを変更することで生成を切り替える </summary>
     GameObject _currentGun;
 

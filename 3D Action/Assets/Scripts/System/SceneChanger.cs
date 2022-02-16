@@ -14,7 +14,16 @@ public class SceneChanger : MonoBehaviour
     {
         if (_fadePanel)
         {
-            var go =  Instantiate(_fadePanel,_canvs.transform);
+            Image go;
+            if (_canvs)
+            {
+                 go = Instantiate(_fadePanel, _canvs.transform);
+            }
+            else
+            {
+                go = Instantiate(_fadePanel, this.transform.root);
+            }
+            
             go.color = new Color(0,0,0,0);//黒
 
             go.DOColor(
@@ -23,7 +32,7 @@ public class SceneChanger : MonoBehaviour
             ).OnComplete(()=>SceneManager.LoadScene(name, LoadSceneMode.Single));
         }
 
-        ;
+        
     }
 
     public void SceneChangeAddtive(string name)

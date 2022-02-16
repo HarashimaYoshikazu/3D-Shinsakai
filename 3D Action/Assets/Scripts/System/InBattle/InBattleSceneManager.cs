@@ -124,7 +124,6 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     public void GetGoldCount(int gold)
     {
         _goldCount += gold;
-        Debug.Log(_goldCount);
     }
     /// <summary>
     /// ダンジョン内でカードを手に入れた時にそれをカウントしておく関数
