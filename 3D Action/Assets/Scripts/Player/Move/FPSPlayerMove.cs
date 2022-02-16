@@ -21,6 +21,9 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
     [SerializeField, Tooltip("SetBoolの使用するパラメータ")]
     string _walkParam = "Walk";
 
+    [SerializeField] bool isDebug = false;
+    [SerializeField] Animator debugAnim;
+
 
     private void Start()
     {
@@ -44,7 +47,11 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             {
                 WeaponManager.Instance.CurrentAnimator().SetBool(_walkParam, false);
             }
-            
+            else if (isDebug)
+            {
+                debugAnim.SetBool("isWalk", false);
+            }
+
         }
         else
         {
@@ -62,7 +69,11 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             if (WeaponManager.Instance)
             {
                 WeaponManager.Instance.CurrentAnimator().SetBool(_walkParam, true);
-            }           
+            }
+            else if (isDebug)
+            {
+                debugAnim.SetBool("isWalk",true);
+            }
         }
 
     }

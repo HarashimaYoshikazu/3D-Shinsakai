@@ -105,6 +105,8 @@ public class FPSShoot : Singleton<FPSShoot>
         
     }
 
+    [SerializeField] bool isDebug = false;
+    [SerializeField] Animator debugAnim;
     /// <summary>
     /// 敵を撃つ関数
     /// </summary>
@@ -112,10 +114,17 @@ public class FPSShoot : Singleton<FPSShoot>
     {
         if (Input.GetButton("Fire1") && _timer >= _fireInterval)
         {
-            if (WeaponManager.Instance)
+            if (isDebug)
+            {
+                debugAnim.SetBool("Shoot", true);
+            }
+            else if (WeaponManager.Instance)
             {
                 WeaponManager.Instance.CurrentAnimator().SetTrigger("Shoot");
             }
+
+
+
             if (_shootingSfx)
             {
                 AudioSource.PlayClipAtPoint(_shootingSfx, this.transform.position);
@@ -134,8 +143,14 @@ public class FPSShoot : Singleton<FPSShoot>
                     rb.AddForce(dir * _shootPower, ForceMode.Impulse);
                 }
             }
+
+
             _timer = 0f;
-        }       
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            debugAnim.SetBool("Shoot", false);
+        }
     }
     /// <summary>
     /// ファイレートを変更する関数

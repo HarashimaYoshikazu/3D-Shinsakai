@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5396005909889540069}
   - component: {fileID: 5375981218663346539}
   - component: {fileID: 5385953403658460677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Assalut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
