@@ -5,25 +5,29 @@ using UnityEngine;
 
 public class CardBase : MonoBehaviour
 {
-    /// <summary>カードの名前</summary>
-    [SerializeField] string _name;
+    [SerializeField,Tooltip("カードの名前")] 
+    protected string _name;
+    public string Name { get => _name; }
 
     [SerializeField, Tooltip("カードの説明")]
-    string _cardInfo;
+    protected string _cardInfo;
+
 
     /// <summary>カードがインベントリの何番目にあるかを表した番号</summary>
-    int _cardIndex;
+    protected int _cardIndex;
+    public int CardIndex { get => _cardIndex; set => _cardIndex = value; }
+
 
     [SerializeField,Tooltip("カードの買値、正の値")]
     int _cardPrice;
+
 
     [SerializeField,Tooltip("出撃時のインベントリパネルのタグ")] 
     string _inventoryPanelTag = "Inventory";
     [SerializeField,Tooltip("カードを売る際に表示されるインベントリパネルのタグ")]
     string _sellCardTag = "SellCardPanel";
 
-    public int CardIndex { get => _cardIndex; set => _cardIndex = value; }
-    public string Name { get => _name; }
+
 
     /// <summary>
     /// カードの効果を実行する関数

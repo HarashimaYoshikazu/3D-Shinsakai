@@ -9,7 +9,7 @@ public class CardManager : DDOLSingleton<CardManager>
     //今持っているカードが入っているゲームオブジェクト型のリスト
     List<GameObject> _inventriCards = new List<GameObject>();
     public List<GameObject> InventriCards => _inventriCards;
-    public GameObject[] AllCards { get => _allCards; set => _allCards = value; }
+    public GameObject[] AllCards { get => _allCards;}
 
     protected override void OnAwake()
     {
