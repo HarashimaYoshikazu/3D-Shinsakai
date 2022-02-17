@@ -12,6 +12,11 @@ public class Chest : MonoBehaviour
 
     [SerializeField, Tooltip("宝箱に入っているお金")]
     int _goldInChest;
+
+
+    [SerializeField,Tooltip("このオブジェクトのアニメーター")] 
+    Animator _anim;
+
     public void OpenChest()
     {
         if(_cardInChest)
@@ -28,6 +33,7 @@ public class Chest : MonoBehaviour
         }
         var cardname = _cardInChest.GetComponent<CardBase>().Name;
         var gearname = _gearInChest.GetComponent<GearBase>().GearName;
+        _anim.SetTrigger("Open");
         InBattleSceneManager.Instance.SetItemText($"＋{cardname}\n＋{_goldInChest}ゴールド\n＋{gearname}");
     }
 }

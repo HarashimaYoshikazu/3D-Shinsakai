@@ -4852,6 +4852,7 @@ MonoBehaviour:
   _fadePanel: {fileID: 4849952780739344560, guid: 772e08402afdf4d45bb94ea4ab99ed62,
     type: 3}
   _canvs: {fileID: 2123555331}
+  _fadeTime: 2
 --- !u!4 &1951147868
 Transform:
   m_ObjectHideFlags: 0

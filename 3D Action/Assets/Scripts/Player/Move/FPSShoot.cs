@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSShoot : Singleton<FPSShoot>
 {
@@ -36,6 +37,8 @@ public class FPSShoot : Singleton<FPSShoot>
     [SerializeField, Range(0f,5f), Tooltip("初期の射撃インターバル")]
     float _initialFireInterval = 0.5f;
 
+    [SerializeField, Tooltip("ガイドを表示するテキスト")]
+    Text _displayText;
 
     /// <summary>現在の射撃インターバル</summary>
     float _fireInterval ;
@@ -101,9 +104,15 @@ public class FPSShoot : Singleton<FPSShoot>
                 {
                     _crosshair.color = _noTarget;
                 }
+
+                if (_chest)
+                {
+                    _displayText.text = $"[E]ボタンで開けられるよ！";
+                }
             }
             else
             {
+                _displayText.text = "";
                 _target = null;
                 _chest = null;
                 _crosshair.color = _noTarget;
