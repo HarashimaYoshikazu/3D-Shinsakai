@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Player\Move\FPSPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Player\Move\FPSShoot.cs" />
     <Compile Include="Assets\Scripts\Player\State\PlayerPalam.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\System\DDOLSingleton.cs" />
     <Compile Include="Assets\Scripts\System\DDOLSystem.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
