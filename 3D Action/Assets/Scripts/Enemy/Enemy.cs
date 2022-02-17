@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -82,6 +83,9 @@ public class Enemy : MonoBehaviour
         //死亡時アニメーション
         _animator.SetTrigger(_deathTrigger);
 
+        //死亡時サウンド
+        SoundManager.Instance.SoundPlay(SoundManager.Instance.EnemyDeathSE);
+
         var cardname = _dropCard.GetComponent<CardBase>().Name;
         //手に入れたアイテムをパネルに表示
         InBattleSceneManager.Instance.SetItemText($"＋{cardname}\n＋{_getGold}ゴールド\n＋{_getSkillPoint}ポイント");
@@ -94,7 +98,12 @@ public class Enemy : MonoBehaviour
     {        
         if (_attackInterval<_timer)
         {
-            PlayerPalam.Instance.HPfluctuation(-(_attackDamage));
+            int dmg = _attackDamage - PlayerPalam.Instance.Defence / 10;
+            if (dmg<=0)
+            {
+                dmg = 1;
+            }
+            PlayerPalam.Instance.HPfluctuation(-(dmg));
             _timer = 0;
         }
     }

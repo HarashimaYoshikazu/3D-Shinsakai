@@ -15,6 +15,9 @@ public class PlayerPalam : DDOLSingleton<PlayerPalam>
     ///<summary>初期スキルポイント</summary>
     [SerializeField, Range(1, 100)] int _initialSkillPoint = 10;
 
+    [SerializeField, Range(0f, 5f), Tooltip("初期の射撃インターバル")]
+    float _initialFireInterval = 0.5f;
+
     ///<summary>現在のレベル</summary>
     int _level;
     ///<summary>現在のHP</summary>
@@ -27,12 +30,16 @@ public class PlayerPalam : DDOLSingleton<PlayerPalam>
     int _gold ;
     ///<summary>現在のスキルポイント</summary>
     int _skillPoint = 0;
+    /// <summary>現在の射撃インターバル</summary>
+    float _fireInterval;
+
 
     public int HP => _hp;
     public int Attack => _at;
     public int Defence => _def;
     public int Gold => _gold;
     public int SkillPoint => _skillPoint;
+    public float FireInterval => _fireInterval;
 
     protected override void OnAwake()
     {
@@ -41,6 +48,7 @@ public class PlayerPalam : DDOLSingleton<PlayerPalam>
         _def = _initialDefence;
         _gold = _initialGold;
         _skillPoint = _initialSkillPoint;
+        _fireInterval = _initialFireInterval;
     }
 
     public void HPfluctuation(int value)
@@ -80,5 +88,21 @@ public class PlayerPalam : DDOLSingleton<PlayerPalam>
     public void ResetHP()
     {
         _hp = _initialHP;
+    }
+
+    /// <summary>
+    /// ファイレートを変更する関数
+    /// </summary>
+    /// <param name="value"></param>
+    public void FireIntervalfluctuation(float value)
+    {
+        if (_fireInterval + value >= 0)
+        {
+            _fireInterval += value;
+        }
+        else
+        {
+            _fireInterval = 0.1f;
+        }
     }
 }

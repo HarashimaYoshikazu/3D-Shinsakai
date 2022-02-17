@@ -17,7 +17,7 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
 
     public GameObject CurrentGun => _currentGun;
 
-    GameObject _homeSceneGunIcon;
+    GameObject _homeSceneGunIcon = null;
     public GameObject HomeSceneGunIcon => _homeSceneGunIcon;
 
     List<GameObject> _weaponIconInventry = new List<GameObject>();
@@ -69,14 +69,17 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     /// </summary>
     public void InstanceWeaponIcon()
     {
-        _homeSceneGunIcon =  Instantiate(_currentGun, HomeManager.Instance.CurrentWeaponPanel.transform);
-        foreach(var i in _weaponIconInventry)
+        if (!_homeSceneGunIcon)
         {
-            Instantiate(i,HomeManager.Instance.WeaponInventryPanel.transform);
+            _homeSceneGunIcon = Instantiate(_currentGun, HomeManager.Instance.CurrentWeaponPanel.transform);
+            foreach (var i in _weaponIconInventry)
+            {
+                Instantiate(i, HomeManager.Instance.WeaponInventryPanel.transform);
+            }
         }
     }
 
-    GameObject _inBattleSceneWeapon;
+    public GameObject _inBattleSceneWeapon;
     public Animator CurrentAnimator()
     {
         return _inBattleSceneWeapon.GetComponent<Animator>();

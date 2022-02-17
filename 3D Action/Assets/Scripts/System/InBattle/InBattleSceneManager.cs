@@ -44,6 +44,7 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     /// <summary>リザルト時に呼ばれるメソッド</summary>
     public event Action OnResult;
 
+
     protected override void OnAwake()
     {        
         OnResult += SetResultText;
@@ -53,9 +54,16 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
             WeaponManager.Instance.InstanceWeaponObject();
         }               
     }
+
+    bool isStart = false;
+    public void StartTrue() { isStart = true; }
+
     private void Update()
     {
-        BattleUpdate();
+        if(isStart)
+        {
+            BattleUpdate();
+        }       
     }
 
     /// <summary>
@@ -81,7 +89,6 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
         OnResult();
         //ゴールドとカードのカウントをリセット
         ResetCount();
-
     }
 
     void CheackHP()

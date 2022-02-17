@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FPSShoot : Singleton<FPSShoot>
 {
@@ -7,7 +8,7 @@ public class FPSShoot : Singleton<FPSShoot>
     Camera _mainCamera;
 
     [SerializeField, Tooltip("照準となる UI オブジェクト")] 
-    UnityEngine.UI.Image _crosshair;  
+    Image _crosshair;
 
     [SerializeField, Tooltip("照準に敵を捕らえていない時の色")] 
     Color _noTarget = Color.white;
@@ -34,22 +35,18 @@ public class FPSShoot : Singleton<FPSShoot>
     [SerializeField, Tooltip("射撃音")]
     AudioClip _shootingSfx;
 
-    [SerializeField, Range(0f,5f), Tooltip("初期の射撃インターバル")]
-    float _initialFireInterval = 0.5f;
 
     [SerializeField, Tooltip("ガイドを表示するテキスト")]
     Text _displayText;
 
-    /// <summary>現在の射撃インターバル</summary>
-    float _fireInterval ;
-    public float FireInterval => _fireInterval;
+
 
    /// <summary>インターバルを計測するタイマー</summary>
     float _timer = 0;
 
     void Start()
     {
-        _fireInterval = _initialFireInterval;
+        
         // マウスカーソルを消す
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -80,6 +77,12 @@ public class FPSShoot : Singleton<FPSShoot>
         Cursor.lockState = CursorLockMode.None;
     }
 
+    /// <summary>レイ</summary>
+    RaycastHit _hit;
+
+    [SerializeField,Tooltip("血のエフェクト")] 
+    GameObject _efectprefab;
+
     /// <summary>
     /// 照準を操作する
     /// 照準にダメージを与えられる対象がいる場合に照準の色を変え、その対象を _target に保存する
@@ -89,12 +92,12 @@ public class FPSShoot : Singleton<FPSShoot>
         if (_crosshair)
         {
             Ray ray = _mainCamera.ScreenPointToRay(_crosshair.rectTransform.position);
-            RaycastHit hit;
+            
 
-            if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
+            if (Physics.Raycast(ray, out _hit, _shootRange, _shootingLayer))
             {
-                _target = hit.collider.GetComponent<Enemy>();
-                _chest = hit.collider.GetComponent<Chest>();
+                _target = _hit.collider.GetComponent<Enemy>();
+                _chest = _hit.collider.GetComponent<Chest>();
 
                 if (_target || _chest)
                 {
@@ -129,9 +132,9 @@ public class FPSShoot : Singleton<FPSShoot>
     private void Shoot()
     {
         //ピストルの時は単発に
-        if (WeaponManager.Instance?.CurrentGun != WeaponManager.Instance?.GunIconPrefabs[0])
+        if (WeaponManager.Instance?.CurrentGun != WeaponManager.Instance?.GunIconPrefabs[0] || isDebug)
         {
-            if (Input.GetButton("Fire1") && _timer >= _fireInterval)
+            if (Input.GetButton("Fire1") && _timer >= PlayerPalam.Instance.FireInterval)
             {
                 if (isDebug)
                 {
@@ -152,6 +155,8 @@ public class FPSShoot : Singleton<FPSShoot>
                 {
                     //ダメージを与える
                     _target.Damage(PlayerPalam.Instance.Attack);
+                    var ef =  Instantiate(_efectprefab,_hit.point,Quaternion.identity);
+                    Destroy(ef, 2f);
 
                     Rigidbody rb = _target.GetComponent<Rigidbody>();
                     if (rb)
@@ -167,9 +172,9 @@ public class FPSShoot : Singleton<FPSShoot>
 
                 _timer = 0f;
             }
-            else if (Input.GetButtonUp("Fire1"))
+            else if (Input.GetButtonUp("Fire1")&& WeaponManager.Instance._inBattleSceneWeapon)
             {
-                WeaponManager.Instance.CurrentAnimator().SetBool("Shoot", false);
+                WeaponManager.Instance.CurrentAnimator()?.SetBool("Shoot", false);
                 if (isDebug)
                 {
                     debugAnim.SetBool("Shoot", false);
@@ -178,13 +183,13 @@ public class FPSShoot : Singleton<FPSShoot>
         }
         else
         {
-            if (Input.GetButtonDown("Fire1") && _timer >= _fireInterval)
+            if (Input.GetButtonDown("Fire1") && _timer >= PlayerPalam.Instance.FireInterval)
             {
                 if (isDebug)
                 {
                     debugAnim.SetTrigger("Shoot");
                 }
-                else if (WeaponManager.Instance)
+                else if (WeaponManager.Instance._inBattleSceneWeapon)
                 {
                     WeaponManager.Instance.CurrentAnimator().SetTrigger("Shoot");
                 }
@@ -199,6 +204,8 @@ public class FPSShoot : Singleton<FPSShoot>
                 {
                     //ダメージを与える
                     _target.Damage(PlayerPalam.Instance.Attack);
+                    var ef =  Instantiate(_efectprefab, _hit.point, Quaternion.identity);
+                    Destroy(ef,2f);
 
                     Rigidbody rb = _target.GetComponent<Rigidbody>();
                     if (rb)
@@ -229,21 +236,7 @@ public class FPSShoot : Singleton<FPSShoot>
         }
     }
 
-    /// <summary>
-    /// ファイレートを変更する関数
-    /// </summary>
-    /// <param name="value"></param>
-    public void FireIntervalfluctuation(float value)
-    {
-        if(_fireInterval + value >= 0)
-        {
-            _fireInterval += value;
-        }
-        else
-        {
-            _fireInterval = 0.1f;
-        }        
-    }
+
 
 
     /// <summary>
@@ -253,6 +246,28 @@ public class FPSShoot : Singleton<FPSShoot>
     public void SetCrosshair(bool value)
     {
         _crosshair.gameObject.SetActive(value);
+    }
+
+    [SerializeField] Text _startText;
+    private void OnTriggerStay(Collider other)
+    {      
+        if (other.CompareTag("Door"))
+        {
+            _startText.text = $"[E]ボタンではじまります！";
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                other.transform.parent.GetComponent<Animator>().SetTrigger("Open");
+            }
+            
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Door"))
+        {
+            _startText.text = "";
+            DOVirtual.DelayedCall(3, () => InBattleSceneManager.Instance.StartTrue()); 
+        }
     }
 
 }

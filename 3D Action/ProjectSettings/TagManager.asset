@@ -25,6 +25,7 @@ TagManager:
   - End
   - GearPanel
   - GearTag
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - 
   - Gun
   - Enemy
-  - 
+  - Door
   - 
   - 
   - 

@@ -8,7 +8,7 @@ public class FireUpCard : CardBase
 
     public override void Execute()
     {
-        FPSShoot.Instance.FireIntervalfluctuation(Intervalfluctuation);
+        PlayerPalam.Instance.FireIntervalfluctuation(Intervalfluctuation);
         base.Execute();
     }
 }

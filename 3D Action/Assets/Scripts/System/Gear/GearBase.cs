@@ -30,10 +30,11 @@ public abstract class GearBase : MonoBehaviour
 
     public void OnClick()
     {
-        if (this.transform.parent.tag ==_inventryPanelName)
+        if (this.transform.parent.tag ==_inventryPanelName) //インベントリの時
         {
 
-                OnEquip();
+            OnEquip();
+            SoundManager.Instance.SoundPlay(SoundManager.Instance.EqipSE);
 
         }
         else if (this.transform.parent.tag == _sellPanelName)
@@ -42,7 +43,8 @@ public abstract class GearBase : MonoBehaviour
         }
         else
         {
-                OnTakeOff();           
+            OnTakeOff();
+            SoundManager.Instance.SoundPlay(SoundManager.Instance.TakeOffSE);
         }
         
     }

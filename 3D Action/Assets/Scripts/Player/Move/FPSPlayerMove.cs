@@ -43,7 +43,7 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             // 方向の入力がニュートラルの時は、y 軸方向の速度を保持するだけ
             _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f);
             //銃のアニメーションを停止
-            if (WeaponManager.Instance)
+            if (WeaponManager.Instance._inBattleSceneWeapon)
             {
                 WeaponManager.Instance.CurrentAnimator().SetBool(_walkParam, false);
             }
@@ -66,9 +66,9 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             _rb.velocity = velo;
 
             //銃のアニメーション再生
-            if (WeaponManager.Instance)
+            if (WeaponManager.Instance._inBattleSceneWeapon)
             {
-                WeaponManager.Instance.CurrentAnimator().SetBool(_walkParam, true);
+                WeaponManager.Instance.CurrentAnimator()?.SetBool(_walkParam, true);
             }
             else if (isDebug)
             {

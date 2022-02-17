@@ -146,8 +146,11 @@ MonoBehaviour:
   _addDefence: 10
   _gearPrice: 10
   _gearID: 2
+  _gearName: 
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
+  _addLate: -0.7
+  _addDamage: 10
 --- !u!1 &7486926208403592107
 GameObject:
   m_ObjectHideFlags: 0
