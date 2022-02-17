@@ -82,6 +82,9 @@ public class Enemy : MonoBehaviour
         //死亡時アニメーション
         _animator.SetTrigger(_deathTrigger);
 
+        var cardname = _dropCard.GetComponent<CardBase>().Name;
+        //手に入れたアイテムをパネルに表示
+        EnemyManager.Instance.SetItemText($"＋{cardname}カード\n＋{_getGold}ゴールド\n＋{_getSkillPoint}スキルポイント");
     }
 
     /// <summary>

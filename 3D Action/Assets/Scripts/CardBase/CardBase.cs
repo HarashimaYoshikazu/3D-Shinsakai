@@ -20,7 +20,7 @@ public class CardBase : MonoBehaviour
     string _sellCardTag = "SellCardPanel";
 
     public int CardIndex { get => _cardIndex; set => _cardIndex = value; }
-    public string Name { get => _name; set => _name = value; }
+    public string Name { get => _name; }
 
     /// <summary>
     /// カードの効果を実行する関数
