@@ -8,6 +8,9 @@ public class CardBase : MonoBehaviour
     /// <summary>カードの名前</summary>
     [SerializeField] string _name;
 
+    [SerializeField, Tooltip("カードの説明")]
+    string _cardInfo;
+
     /// <summary>カードがインベントリの何番目にあるかを表した番号</summary>
     int _cardIndex;
 
@@ -47,6 +50,14 @@ public class CardBase : MonoBehaviour
         else if (this.transform.parent.gameObject.tag == _sellCardTag)
         {
             ShopManager.Instance.SellCard(_cardIndex,_cardPrice/2,this.gameObject);
+        }
+        else
+        {
+            if(TextManager.Instance)
+            {
+                TextManager.Instance.SetMessage($"<color=#0073FF>{_name}</color>:{_cardInfo}");
+            }
+            
         }
         
     }

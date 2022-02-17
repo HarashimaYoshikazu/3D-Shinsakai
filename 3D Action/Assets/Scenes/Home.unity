@@ -362,8 +362,8 @@ GameObject:
   - component: {fileID: 135683380}
   - component: {fileID: 135683384}
   - component: {fileID: 135683383}
-  - component: {fileID: 135683382}
   - component: {fileID: 135683381}
+  - component: {fileID: 135683382}
   m_Layer: 5
   m_Name: SellPanel
   m_TagString: SellCardPanel
@@ -378,17 +378,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135683379}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1122860805}
+  m_Children: []
   m_Father: {fileID: 797302970}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.9000244, y: 4}
+  m_AnchoredPosition: {x: 4.8999023, y: 4}
   m_SizeDelta: {x: -292.8777, y: -259.52094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135683381
@@ -413,7 +412,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 135683379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -422,13 +421,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 244.42, y: 287.9}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!114 &135683383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,6 +1757,7 @@ RectTransform:
   - {fileID: 1180071808}
   - {fileID: 1929336236}
   - {fileID: 135683380}
+  - {fileID: 1122860805}
   m_Father: {fileID: 5212113445797401998}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2390,7 +2389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1122860805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2403,13 +2402,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1501330326}
-  m_Father: {fileID: 135683380}
-  m_RootOrder: 0
+  m_Father: {fileID: 797302970}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 167.02704, y: -86.96123}
-  m_SizeDelta: {x: 334.05408, y: 173.92245}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1686, y: -120}
+  m_SizeDelta: {x: 377.12854, y: 152.43799}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122860806
 MonoBehaviour:
@@ -4594,6 +4593,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1929336238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6718,7 +6728,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5212113445076471043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -6727,13 +6737,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 244.42, y: 287.9}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!114 &5212113445076471046
 MonoBehaviour:
   m_ObjectHideFlags: 0
