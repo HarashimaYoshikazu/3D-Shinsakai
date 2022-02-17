@@ -2544,8 +2544,8 @@ MonoBehaviour:
   _initialHP: 10
   _initialAttack: 4
   _initialDefence: 10
-  _initialGold: 10
-  _initialSkillPoint: 10
+  _initialGold: 8
+  _initialSkillPoint: 1
   _initialFireInterval: 0.5
 --- !u!4 &1155440259
 Transform:

@@ -253,7 +253,7 @@ public class FPSShoot : Singleton<FPSShoot>
     {      
         if (other.CompareTag("Door"))
         {
-            _startText.text = $"[E]ボタンではじまります！";
+            _startText.text = $"[E]でスタート";
             if (Input.GetKeyDown(KeyCode.E))
             {
                 other.transform.parent.GetComponent<Animator>().SetTrigger("Open");
