@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
 
         var cardname = _dropCard.GetComponent<CardBase>().Name;
         //手に入れたアイテムをパネルに表示
-        EnemyManager.Instance.SetItemText($"＋{cardname}カード\n＋{_getGold}ゴールド\n＋{_getSkillPoint}スキルポイント");
+        InBattleSceneManager.Instance.SetItemText($"＋{cardname}\n＋{_getGold}ゴールド\n＋{_getSkillPoint}ポイント");
     }
 
     /// <summary>

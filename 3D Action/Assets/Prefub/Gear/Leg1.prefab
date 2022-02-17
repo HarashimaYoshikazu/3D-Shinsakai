@@ -170,7 +170,7 @@ MonoBehaviour:
   _addDefence: 3
   _gearPrice: 10
   _gearID: 3
-  _selfPrefab: {fileID: 4812101953825978115}
+  _gearName: "\u9244\u811A"
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
 --- !u!114 &-867005628682983319

@@ -24,6 +24,9 @@ public class FPSShoot : Singleton<FPSShoot>
     /// <summary>攻撃したらダメージを与えられる対象</summary>
     Enemy _target;
 
+    /// <summary>攻撃したらダメージを与えられる対象</summary>
+    Chest _chest;
+
     [SerializeField, Tooltip("攻撃した時に加える力のスカラー量")] 
     float _shootPower = 50f;
 
@@ -44,7 +47,7 @@ public class FPSShoot : Singleton<FPSShoot>
     void Start()
     {
         _fireInterval = _initialFireInterval;
-        // マウスカーソルを消す（実行中は ESC キーを押すとマウスカーソルが表示される）
+        // マウスカーソルを消す
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -64,7 +67,8 @@ public class FPSShoot : Singleton<FPSShoot>
         
         Shoot();
 
-        Aim();        
+        Aim();
+        OpenChest();
     }
 
     void OnDestroy()
@@ -87,8 +91,9 @@ public class FPSShoot : Singleton<FPSShoot>
             if (Physics.Raycast(ray, out hit, _shootRange, _shootingLayer))
             {
                 _target = hit.collider.GetComponent<Enemy>();
+                _chest = hit.collider.GetComponent<Chest>();
 
-                if (_target)
+                if (_target || _chest)
                 {
                     _crosshair.color = _onTarget;
                 }
@@ -100,6 +105,7 @@ public class FPSShoot : Singleton<FPSShoot>
             else
             {
                 _target = null;
+                _chest = null;
                 _crosshair.color = _noTarget;
             }
         }
@@ -113,6 +119,7 @@ public class FPSShoot : Singleton<FPSShoot>
     /// </summary>
     private void Shoot()
     {
+        //ピストルの時は単発に
         if (WeaponManager.Instance?.CurrentGun != WeaponManager.Instance?.GunIconPrefabs[0])
         {
             if (Input.GetButton("Fire1") && _timer >= _fireInterval)
@@ -201,6 +208,18 @@ public class FPSShoot : Singleton<FPSShoot>
         }
 
     }
+
+    void OpenChest()
+    {
+        if(_chest && Input.GetKeyDown(KeyCode.E))
+        {
+            _chest.OpenChest();
+            //開けたらチェストのレイヤーをデフォルトに
+            _chest.gameObject.layer = default;
+            _chest = null;
+        }
+    }
+
     /// <summary>
     /// ファイレートを変更する関数
     /// </summary>

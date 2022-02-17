@@ -15,7 +15,11 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     [SerializeField, Tooltip("リザルトを出力するテキストコンポーネントプレハブ")]
     Text _resultTextPrefub;
 
+    [SerializeField, Tooltip("敵を倒した時に手に入れたものを表示するテキスト")]
+    Text _getItemInfoText;
 
+    [SerializeField, Tooltip("敵を倒した時に手に入れたものを表示するテキスト")]
+    Animator _getItemInfoAnimator;
 
 
     [SerializeField, Tooltip("銃のカメラオブジェクト")]
@@ -140,5 +144,11 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
     {
         _goldCount = 0;
         _cardCount = 0;
+    }
+
+    public void SetItemText(string msgtext)
+    {
+        _getItemInfoText.text = msgtext;
+        _getItemInfoAnimator.SetTrigger("GetItem");
     }
 }

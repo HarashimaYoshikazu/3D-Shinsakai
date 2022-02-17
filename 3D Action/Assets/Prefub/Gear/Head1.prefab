@@ -170,6 +170,7 @@ MonoBehaviour:
   _addDefence: 10
   _gearPrice: 50
   _gearID: 1
+  _gearName: "\u9244\u982D"
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
 --- !u!114 &-5468660312946238564

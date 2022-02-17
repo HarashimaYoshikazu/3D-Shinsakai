@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\System\Skill\SkillParam.cs" />
     <Compile Include="Assets\Scripts\System\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\CardUI.cs" />
+    <Compile Include="Assets\Scripts\WindowScripts\Chest.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FalseSelf.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FieldPanel.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\FieldPanelScript.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Assets\Scripts\WindowScripts\QuestionExcute.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\QuestionUItext.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\TextManager.cs" />
-    <Compile Include="Assets\Scripts\WindowScripts\UIController.cs" />
     <Compile Include="Assets\Scripts\WindowScripts\UItext.cs" />
     <Compile Include="Assets\Scripts\_Else\CardDebug.cs" />
     <Compile Include="Assets\Scripts\_Else\DamageableController.cs" />

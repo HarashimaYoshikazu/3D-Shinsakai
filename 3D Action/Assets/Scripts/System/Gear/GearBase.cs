@@ -14,7 +14,9 @@ public abstract class GearBase : MonoBehaviour
     protected int _gearID;
     public int GearID { get => _gearID; }
 
-
+    [SerializeField, Tooltip("装備の名前")]
+    string _gearName;
+    public string GearName => _gearName;
 
     [SerializeField,Tooltip("インベントリのパネルの名前")]
     string _inventryPanelName = "Inventory";

@@ -17,11 +17,7 @@ public class EnemyManager : Singleton<EnemyManager>
     [SerializeField, Tooltip("敵を何体まで生成させるか")]
     int _enemyLimit;
 
-    [SerializeField, Tooltip("敵を倒した時に手に入れたものを表示するテキスト")]
-    Text _getItemInfoText;
 
-    [SerializeField, Tooltip("敵を倒した時に手に入れたものを表示するテキスト")]
-    Animator _getItemInfoAnimator;
 
     /// <summary>生成間隔を計るためのタイマー</summary>
     float _timer = 0f;
@@ -85,10 +81,6 @@ public class EnemyManager : Singleton<EnemyManager>
         }
     }
 
-    public void SetItemText(string msg)
-    {
-        _getItemInfoText.text = msg;
-        _getItemInfoAnimator.SetTrigger("GetItem");
-    }
+
     
 }

@@ -42,6 +42,11 @@ public class GearManager : DDOLSingleton<GearManager>
         _gearInventry.Add(_GearPrefabs[2]);
     }
 
+    public void AddGear(GameObject gear)
+    {
+        _gearInventry.Add(gear);
+    }
+
     /// <summary>バグ回避用の一時リスト</summary>
     List<GameObject> _tempList = new List<GameObject>();
     public void OnEquip(GameObject gear)
