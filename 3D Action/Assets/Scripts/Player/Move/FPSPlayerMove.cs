@@ -86,6 +86,11 @@ public class FPSPlayerMove : Singleton<FPSPlayerMove>
             Debug.Log("おわり");
             InBattleSceneManager.Instance.Result();
         }
+
+        if(other.CompareTag("Dead"))
+        {
+            PlayerPalam.Instance.HPfluctuation(-(PlayerPalam.Instance.HP));
+        }
     }
 
 

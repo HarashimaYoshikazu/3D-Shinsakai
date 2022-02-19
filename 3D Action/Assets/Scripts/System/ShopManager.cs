@@ -31,7 +31,7 @@ public class ShopManager : Singleton<ShopManager>
             //インデックスの設定
             CardBase cardBase = card.GetComponent<CardBase>();
             //cardBase.CardIndex = CardManager.Instance.InventriCards.Count - 1;
-            TextManager.Instance.SetMessage(cardBase.Name + "を手に入れた！\n 所持ゴールド：" + PlayerPalam.Instance.Gold);
+            TextManager.Instance.SetMessage($"<color=#0073FF>{cardBase.Name}</color>を手に入れた！\n 所持ゴールド：<color=#ffff00>{PlayerPalam.Instance.Gold}</color>");
         }
 
     }
@@ -45,7 +45,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         //削除するカードのCardManagerコンポーネントを取得
         CardBase cardBase = CardManager.Instance.InventriCards[index].GetComponent<CardBase>();
-        TextManager.Instance.SetMessage($"{cardBase.Name}を{value}で売った\n 所持ゴールド：{PlayerPalam.Instance.Gold}");
+        TextManager.Instance.SetMessage($"<color=#0073FF>{cardBase.Name}</color>を{value}で売った\n 所持ゴールド：<color=#ffff00>{PlayerPalam.Instance.Gold}</color>");
         //ゴールド追加
         PlayerPalam.Instance.Goldfluctuation(value);
         //削除

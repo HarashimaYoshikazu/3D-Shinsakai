@@ -26,6 +26,7 @@ TagManager:
   - GearPanel
   - GearTag
   - Door
+  - Dead
   layers:
   - Default
   - TransparentFX
