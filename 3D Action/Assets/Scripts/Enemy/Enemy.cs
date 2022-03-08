@@ -34,6 +34,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, Tooltip("死亡アニメーションのトリガー名")]
     string _deathTrigger = "Death";
 
+    [SerializeField, Tooltip("このオブジェクトのAudioSource")]
+    AudioSource _audio;
+
     void Start()
     {
         //HP初期化
@@ -103,6 +106,7 @@ public class Enemy : MonoBehaviour
             {
                 dmg = 1;
             }
+            _audio.Play();
             PlayerPalam.Instance.HPfluctuation(-(dmg));
             _timer = 0;
         }

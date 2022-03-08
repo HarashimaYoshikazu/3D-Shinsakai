@@ -46,6 +46,8 @@ public class EnemyMoveController : MonoBehaviour
     string _walkBool = "Walk";
 
 
+
+
     private void Start()
     {
         _speed = _initialSpeed;

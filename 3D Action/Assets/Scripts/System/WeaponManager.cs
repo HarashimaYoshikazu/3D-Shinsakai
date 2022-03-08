@@ -21,15 +21,12 @@ public class WeaponManager : DDOLSingleton<WeaponManager>
     public GameObject HomeSceneGunIcon => _homeSceneGunIcon;
 
     List<GameObject> _weaponIconInventry = new List<GameObject>();
+    public List<GameObject> WeaponIconInventry => _weaponIconInventry;
 
 
     private void Start()
     {
         _currentGun = _gunIconPrefabs[0];
-        //アイコンオブジェクトを追加
-        _weaponIconInventry.Add(_gunIconPrefabs[1]);
-        _weaponIconInventry.Add(_gunIconPrefabs[2]);
-
     }
 
 

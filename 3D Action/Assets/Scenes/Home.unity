@@ -2541,12 +2541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a3714cc9cdff043bde10b9f7f13a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHP: 10
+  _initialHP: 12
   _initialAttack: 4
   _initialDefence: 10
-  _initialGold: 8
-  _initialSkillPoint: 1
-  _initialFireInterval: 0.5
+  _initialGold: 10
+  _initialSkillPoint: 2
+  _initialFireInterval: 0.6
 --- !u!4 &1155440259
 Transform:
   m_ObjectHideFlags: 0
@@ -2701,7 +2701,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -2
+          m_IntArgument: -10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6434,6 +6434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BloodEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042876408104415646, guid: 204090b9ba716e84f81c2407de0a2ea0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 204090b9ba716e84f81c2407de0a2ea0, type: 3}

@@ -117,7 +117,12 @@ public class InBattleSceneManager : Singleton<InBattleSceneManager>
             if (!_isDead)
             {
                 text.text = $"ステージクリア！今回の探索で・・・\nゴールドを{_goldCount}手に入れた！" +
-                   $"\nカードを{_cardCount}枚手に入れた！";
+                   $"\nカードを{_cardCount}枚手に入れた！\n武器を手に入れた！";
+
+                int n = UnityEngine.Random.Range(0, WeaponManager.Instance.GunIconPrefabs.Length);
+                //アイコンオブジェクトを追加
+                WeaponManager.Instance.WeaponIconInventry.Add(WeaponManager.Instance.GunIconPrefabs[n]);
+                
             }
             else
             {

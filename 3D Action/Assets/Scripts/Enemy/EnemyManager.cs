@@ -17,7 +17,8 @@ public class EnemyManager : Singleton<EnemyManager>
     [SerializeField, Tooltip("敵を何体まで生成させるか")]
     int _enemyLimit;
 
-
+    [SerializeField]
+    GameObject[] _boss;
 
     /// <summary>生成間隔を計るためのタイマー</summary>
     float _timer = 0f;
@@ -76,6 +77,10 @@ public class EnemyManager : Singleton<EnemyManager>
         _generetorOperation = false;
         //敵を消す
         foreach (var i in _enemies)
+        {
+            Destroy(i);
+        }
+        foreach(var i in _boss)
         {
             Destroy(i);
         }
