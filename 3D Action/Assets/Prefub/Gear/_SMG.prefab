@@ -149,7 +149,7 @@ MonoBehaviour:
   _gearName: 
   _inventryPanelName: Inventory
   _sellPanelName: SellPanel
-  _addLate: -0.7
+  _addLate: -0.5
   _addDamage: 5
 --- !u!1 &7486926208403592107
 GameObject:
